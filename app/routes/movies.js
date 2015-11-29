@@ -34,7 +34,6 @@ router.route('/movies/:id').put(function(req, res) {
         for (prop in req.body) {
             movie[prop] = req.body[prop];
         }
-        // save the movie
         movie.save(function(err) {
             if (err) {
                 return res.send(err);
