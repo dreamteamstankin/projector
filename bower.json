@@ -1,17 +1,19 @@
 {
-	"name": "projector",
-	"version": "0.0.1",
-	"authors": [
-		"gcor <anton@gcor.ru>"
-	],
-	"license": "MIT",
-	"ignore": [
-		"**/.*",
-		"node_modules",
-		"bower_components",
-		"test",
-		"tests"
-	],
-	"dependencies": {},
-	"devDependencies": {}
+  "name": "projector",
+  "version": "0.0.1",
+  "authors": [
+    "gcor <anton@gcor.ru>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize-css": "normalize.css#~3.0.3"
+  },
+  "devDependencies": {}
 }

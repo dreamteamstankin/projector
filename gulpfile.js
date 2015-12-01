@@ -22,14 +22,15 @@ gulp.task('watch', ['less', 'js', 'images', 'browser-sync'], function() {
     gulp.watch("app/static/less/**/*.less", ['less']);
     gulp.watch("app/static/js/**/*.js", ['js']);
     gulp.watch("app/static/**/*", ['images'], reload);
+    gulp.watch("app/views/**/*", reload);
 });
 
 gulp.task('less', function() {
-    gulp.src("app/static/less/**/*.less")
+    gulp.src("app/static/less/*.less")
         .pipe(less())
+        .on('error', console.log)
         .pipe(prefixer())
         .pipe(csso())
-        .on('error', console.log)
         .pipe(gulp.dest("public/css/"))
         .pipe(reload({
             stream: true
