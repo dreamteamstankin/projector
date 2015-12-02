@@ -19,7 +19,7 @@ var connectionString = 'mongodb://localhost:27017/' + dbName;
 mongoose.connect(connectionString);
 
 // view engine setup
-app.set('views', path.join(__dirname, 'app/views'));
+app.set('views', path.join(__dirname, 'app/pages/'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public

@@ -23,6 +23,7 @@ gulp.task('watch', ['less', 'js', 'images', 'browser-sync'], function() {
     gulp.watch("app/static/js/**/*.js", ['js']);
     gulp.watch("app/static/**/*", ['images'], reload);
     gulp.watch("app/views/**/*", reload);
+    gulp.watch("app/pages/**/*", reload);
 });
 
 gulp.task('less', function() {

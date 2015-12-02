@@ -1,0 +1,23 @@
+@import 'sections/description.less';
+@import 'sections/dashboard.less';
+@import 'sections/attach.less';
+@import 'sections/table.less';
+@import 'sections/title.less';
+
+.project {
+	background-color: #fff;
+	border-radius: 10px;
+	padding: 20px 30px;
+	box-shadow: 0 0 70px 0 rgba(0,0,0,.1);
+	margin: 60px auto;
+	&__section {
+		margin: 15px 0;
+		&:first-child,
+		&:last-child {
+			margin: 0;
+		}
+	}
+	&__title {
+		margin-bottom: 30px;
+	}
+}

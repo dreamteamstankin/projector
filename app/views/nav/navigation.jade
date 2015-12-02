@@ -1,27 +1,28 @@
-nav.navigation
-	.wrap
-		a(href="#").link_color_black.link_no_link.navigation__block.navigation__logo Projector
-		.navigation__block.navigation__menu
-			a(href="#").link.link_color_black.link_no_border.link_style_bold.navigation__item Проекты
-			a(href="#").link.link_color_black.link_no_border.navigation__item Финансы
-			a(href="#").link.link_color_black.link_no_border.navigation__item Календарь
-			a(href="#").link.link_color_black.link_no_border.navigation__item Компания
-			a(href="#").link.link_color_black.link_no_border.navigation__item Компания
-		.navigation__block.dropdown.dropdown_on_hover
-			.dropdown__button
-				.navigation__create Создать
-			.dropdown__context
-				.dropdown__list
-					.dropdown__item 1
-					.dropdown__item 2
-					.dropdown__item 3
-		.navigation__block.navigation__userbar.dropdown.dropdown_on_hover 
-			.dropdown__button
-				.userbar
-					.userbar__pic
-					.userbar__name Антон Ахатов
-			.dropdown__context
-				.dropdown__list
-					.dropdown__item 1
-					.dropdown__item 2
-					.dropdown__item 3
+mixin navigation()
+	nav.navigation
+		.wrap.navigation__container
+			a(href="#").style_black.style_no_link.navigation__block.navigation__logo Projector
+			.navigation__block.navigation__menu
+				a(href="#").link.style_black.style_no_border.style_bold.navigation__item Проекты
+				a(href="#").link.style_black.style_no_border.navigation__item Финансы
+				a(href="#").link.style_black.style_no_border.navigation__item Календарь
+				a(href="#").link.style_black.style_no_border.navigation__item Компания
+				a(href="#").link.style_black.style_no_border.navigation__item Компания
+			.navigation__block.dropdown.dropdown_on_hover
+				.dropdown__button
+					.navigation__create Создать
+				.dropdown__context
+					.dropdown__list
+						.dropdown__item 1
+						.dropdown__item 2
+						.dropdown__item 3
+			.navigation__block.navigation__userbar.dropdown.dropdown_on_hover 
+				.dropdown__button
+					.userbar
+						.userbar__pic
+						.userbar__name Антон Ахатов
+				.dropdown__context
+					.dropdown__list
+						.dropdown__item 1
+						.dropdown__item 2
+						.dropdown__item 3

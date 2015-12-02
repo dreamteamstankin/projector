@@ -1,0 +1,41 @@
+.grid {
+	&:after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+	&__cell{
+		float: left;
+		box-sizing: border-box;
+		padding-right: 30px;
+		&:last-child {
+			padding-right: 0;
+		}
+	}
+	&_size_1 {
+		width: 100%/8*1;
+	}
+	&_size_2 {
+		width: 100%/8*2;
+	}
+	&_size_3 {
+		width: 100%/8*3;
+	}
+	&_size_4 {
+		width: 100%/8*4;
+	}
+	&_size_5 {
+		width: 100%/8*5;
+	}
+	&_size_6 {
+		width: 100%/8*6;
+	}
+	&_size_7 {
+		width: 100%/8*7;
+	}
+	&_size_8 {
+		width: 100%/8*8;
+	}
+}
+
+// TODO: gridgenerator
