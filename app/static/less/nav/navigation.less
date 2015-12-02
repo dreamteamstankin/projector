@@ -1,9 +1,58 @@
 .navigation {
-	&__block {}
+	width: 100%;
+	background-color: @nav;
+	&__block {
+		display: inline-block;
+		vertical-align: middle;
+		height: 100%;
+		margin-left: 20px;
+		line-height: @nav-height;
+		&:first-child{
+			margin-left: 0;
+		}
+	}
 }
 .navigation {
-	&__logo {}
-	&__menu {}
-	&__item {}
-	&__user {}
+	&:after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+	&__logo {
+		font-size: @font-xl;
+		padding-right: 15px;
+	}
+	&__item {
+		display: inline-block;
+		padding: 0 10px;
+		&:hover {
+			background-color: @nav-hover;
+		}
+	}
+	&__create {
+		line-height: 1;
+		border: 1px solid @green;
+		color: @darkgreen;
+		padding: 5px 10px;
+		border-radius: @border-radius;
+		background-color: @lightgreen;
+	}
+	&__userbar {
+		float: right;
+	}
+}
+
+.userbar {
+	&__name,
+	&__pic {
+		display: inline-block;
+		vertical-align: middle;
+	}
+	&__pic {
+		width: 24px;
+		height: 24px;
+		margin-right: 15px;
+		border-radius: @border-radius-rounded;
+		background-color: @orange;
+	}
 }
