@@ -1,12 +1,17 @@
 .header {
 	&__section {
 		text-transform: uppercase;
-		font-size: 13px;
-		margin: 10px 0 5px 0;
+		font-size: @font-xxs;
+		margin: @padding-s 0 @padding-xs 0;
+		.header__add,
+		& + .header__add {
+			margin-left: 10px;
+			display: inline-block;
+		}
 	}
 }
 h1 {
-	font-size: @font-l;
+	font-size: @font-xl;
 	font-family: @font-bold;
 	font-weight: 700;
 	margin: 0;

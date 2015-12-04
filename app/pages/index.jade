@@ -13,10 +13,12 @@ block content
 					+project-description()
 				section.grid__cell.grid_size_5.project__dashboard
 					+project-dashboard()
-			section.project__section.project__attach.attach
+			section.project__section.project__attach
 				.header__section.style_gray Прикрепленные файлы
 				+project-attach()
-			section.project__section.project__table.table
-				.header__section.style_gray Номер релиза
-				+project-table()
+			section.project__section.project__tasks
+				+project-tasks()
+			section.project__section.project__comments
+				.header__section.style_gray Комментарии
+				+project-comments()
 		.tracker.grid__cell.grid_size_2

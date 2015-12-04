@@ -4,19 +4,19 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 
 
 var routes = require('./app/routes/index');
 var users = require('./app/routes/users');
-var movies = require('./app/routes/movies');
+//var movies = require('./app/routes/movies');
 
 var app = express();
 
-var dbName = 'projector';
-var connectionString = 'mongodb://localhost:27017/' + dbName;
+//var dbName = 'projector';
+//var connectionString = 'mongodb://localhost:27017/' + dbName;
 
-mongoose.connect(connectionString);
+//mongoose.connect(connectionString);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app/pages/'));
@@ -31,7 +31,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public/')));
 
 app.use('/', routes);
-app.use('/api', movies);
+//app.use('/api', movies);
 app.use('/users', users);
 
 // catch 404 and forward to error handler

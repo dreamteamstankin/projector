@@ -1,0 +1,40 @@
+.comments {
+	&__list {
+	}
+	&__item {
+		border-top: 1px solid @border-color;
+		padding: @padding-s @block-padding-horizontal;
+		box-sizing: border-box;
+		&:last-child {
+			border-bottom: 1px solid @border-color;
+		}
+	}
+	&__form {
+		padding: @padding-l @block-padding-horizontal;
+	}
+	&__input {
+	}
+	&__actions {
+		margin-top: @padding-l;
+	}
+	&__button {
+		margin-right: @padding-s;
+	}
+}
+
+.comment {
+	&__name {
+		display: inline-block;
+		font-size: @font-xs;
+		font-family: @font-bold;
+	}
+	&__time {
+		display: inline-block;
+		font-size: @font-xxs;
+		font-family: @font-light;
+	}
+	&__message {
+		font-size: @font-s;
+		padding-top: @padding-xs;
+	}
+}

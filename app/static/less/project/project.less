@@ -1,23 +1,47 @@
 @import 'sections/description.less';
 @import 'sections/dashboard.less';
+@import 'sections/comments.less';
 @import 'sections/attach.less';
-@import 'sections/table.less';
+@import 'sections/tasks.less';
 @import 'sections/title.less';
 
 .project {
 	background-color: #fff;
-	border-radius: 10px;
-	padding: 20px 30px;
+	border-radius: @border-radius;
+	padding: @padding-l 0;
 	box-shadow: 0 0 70px 0 rgba(0,0,0,.1);
-	margin: 60px auto;
+	margin: @block-padding-vertical*3 auto;
 	&__section {
-		margin: 15px 0;
+		margin: @padding-m 0;
+		padding: 0 @block-padding-horizontal;
+		box-sizing: border-box;
 		&:first-child,
 		&:last-child {
 			margin: 0;
 		}
 	}
+	&__comments {
+		.header__section {
+			padding-left: @block-padding-horizontal;
+		}
+	}
+	&__comments,
+	&__tasks {
+		padding: 0;
+	}
 	&__title {
-		margin-bottom: 30px;
+		margin-bottom: @block-padding-horizontal;
+	}
+	.tasks__cell{
+		&:nth-child(1){
+			width: 100%;
+		}
+		&:nth-child(2){
+			text-align: right;
+		}
+		&:nth-child(3){
+			padding-left: @block-padding-horizontal;
+		}
+		&:nth-child(4){}
 	}
 }

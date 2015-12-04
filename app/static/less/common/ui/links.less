@@ -3,50 +3,54 @@
 	color: @blue;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
-	border-bottom-color: fade(@blue, 20%);
+	border-color: fade(@blue, 20%);
 	&:hover {
 		color: @red;
-		border-bottom-color: fade(@red, 20%)
+		border-color: fade(@red, 20%)
 	}
 }
 .style {
 	&_red {
 		color: @red;
-		border-bottom-color: fade(@red, 20%);
+		border-color: fade(@red, 20%);
 	}
 	&_blue {
 		color: @blue;
-		border-bottom-color: fade(@blue, 20%);
+		border-color: fade(@blue, 20%);
 	}
 	&_black {
 		color: @black;
-		border-bottom-color: fade(@black, 20%);
+		border-color: fade(@black, 20%);
 	}
 	&_green {
 		color: @green;
-		border-bottom-color: fade(@green, 20%);
+		border-color: fade(@green, 20%);
 	}
 	&_orange {
 		color: @orange;
-		border-bottom-color: fade(@orange, 20%);
+		border-color: fade(@orange, 20%);
 	}
 	&_gray {
 		color: @gray;
-		border-bottom-color: fade(@gray, 20%);
+		border-color: fade(@gray, 20%);
 	}
 	&_dotted {
+		border-bottom-width: 1px;
 		border-bottom-style: dotted;
 	}
 	&_dashed {
+		border-bottom-width: 1px;
 		border-bottom-style: dashed;
 	}
 	&_solid {
+		border-bottom-width: 1px;
 		border-bottom-style: solid;
 	}
 	&_no {
 		&_link {
 			text-decoration: none;
 			border-bottom-width: 0;
+			color: inherit;
 		}
 		&_border {
 			border-bottom-width: 0;
@@ -54,7 +58,7 @@
 		&_hover:hover {
 			span {
 				color: inherit;
-				border-bottom-color: inherit;
+				border-color: inherit;
 			}
 		}
 	}
@@ -76,5 +80,23 @@
 	&_delimiter {
 		padding: 0 7px;
 		opacity: .8;
+		cursor: default;
+	}
+	&_hover {
+		&_dark {
+			&:hover {
+				background-color: @style-dark-hover;
+				color: #fff;
+				[class*='link'],
+				[class*='style_'] {
+					color: #fff;
+				}
+			}
+		}
+		&_light {
+			&:hover {
+				background-color: @style-light-hover;
+			}
+		}
 	}
 }

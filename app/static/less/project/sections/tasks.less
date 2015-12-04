@@ -1,0 +1,26 @@
+.tasks {
+	display: table;
+	width: 100%;
+	&__item {
+		display: table-row;
+		box-sizing: border-box;
+		font-size: @font-s;
+	}
+	&__cell {
+		display: table-cell;
+		padding: @padding-xs @padding-s;
+		box-sizing: border-box;
+		position: relative;
+		min-width: 100px;
+		&:first-child {
+			padding-left: @block-padding-horizontal;
+		}
+		&:last-child {
+			padding-right: 0;
+		}
+	}
+	&__dropdown {
+		display: inline-block;
+		padding-left: @padding-s;
+	}
+}

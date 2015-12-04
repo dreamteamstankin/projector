@@ -1,4 +1,4 @@
-var Movie = require('../models/movie');
+/*var Movie = require('../models/movie');
 var express = require('express');
 var router = express.Router();
 
@@ -81,3 +81,4 @@ router.route('/movies/').delete(function(req, res) {
 });
 
 module.exports = router;
+*/

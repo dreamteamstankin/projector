@@ -1,0 +1,12 @@
+.title {
+	&__header,
+	&__label {
+		display: inline-block;
+		vertical-align: bottom;
+	}
+	&__header {
+		& + .title__label {
+			margin-left: @padding-m;
+		}
+	}
+}

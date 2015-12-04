@@ -1,0 +1,26 @@
+mixin project-comments()
+	.comments
+		.comments__list
+			.comments__item.comment
+				.comment__name Антон Ахатов
+				span.style_delimiter.style_gray –
+				.comment__time 15 минут назад
+				.comment__message
+					.comment__text Соломкина, что будет при ховере?)
+					.comment__attaches
+				.comment__menu
+			.comments__item.comment
+				.comment__name Соломкина Наталия
+				span.style_delimiter.style_gray –
+				.comment__time 12 минут назад
+				.comment__message
+					.comment__text Я приложила макеты)
+					.comment__attaches
+				.comment__menu
+		form.comments__form
+			.comments__input
+				textarea(placeholder="Введите сообщение").input
+			.comments__actions
+				.comments__button.button.button_state_disable Сказать
+				.comments__button.button.button_type_icon
+					i.icon И
