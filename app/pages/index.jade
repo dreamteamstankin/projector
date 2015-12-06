@@ -5,7 +5,7 @@ extends ../views/common/layout.jade
 block content
 	+navigation()
 	.grid.wrap
-		.project.project_level_2.grid__cell.grid_size_6
+		section.project.project_level_2.grid__cell.grid_size_6
 			section.project__section
 				.project__title
 					+project-title()
@@ -36,5 +36,5 @@ block content
 					span.style_gray Комментарии
 					i.icon.icon__add.icon_padding_left.icon_hover_on
 				+project-comments()
-		.tracker.grid__cell.grid_size_2
+		section.tracker.grid__cell.grid_size_2
 			+tracker()
