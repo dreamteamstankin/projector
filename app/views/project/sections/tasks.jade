@@ -1,31 +1,27 @@
 mixin project-tasks(tasks)
-		each section in tasks
-			each blocks, block in section
-				if block === 'header'
-					.tasks
-						.tasks__item
-							each el in blocks
-								.tasks__cell.header__section
-									span.style_gray= el.title
-									if el.isAdd
-										i.icon.icon__add.icon_padding_left.icon_hover_on
-				if block === 'body'
-					each row in blocks
-						each item, rowType in row
-							a(href="#").link.style_hover_light.tasks__item
-								each cell in item
-									case cell.type
-										when 'main'
-											.tasks__cell.task__main
-												span.task__title= cell.title
-										when 'nums'
-											.tasks__cell.task_align_right
-												each link, i in cell.nums
-													span(class="style_" + link.color)= link.num
-													if i != cell.nums.length-1
-														span.style_delimiter.style_gray /
-										when 'text'
-											.tasks__cell.style_black= cell.title
-										when 'menu'
-											.tasks__cell
-												i.icon.icon__more.icon_size_s
+	each section in tasks
+		.tasks
+			.tasks__item
+				each blocks in section.header
+					.tasks__cell.header__section
+						span.style_gray= blocks.title
+						if blocks.isAdd
+							i.icon.icon__add.icon_padding_left.icon_hover_on
+			each row in section.body
+				a(href="#").link.style_hover_light.tasks__item
+					each cell in row.cells
+						case cell.type
+							when 'main'
+								.tasks__cell.task__main
+									span.task__title= cell.title
+							when 'nums'
+								.tasks__cell.task_align_right
+									each link, i in cell.nums
+										span(class="style_" + link.color)= link.num
+										if i != cell.nums.length-1
+											span.style_delimiter.style_gray /
+							when 'text'
+								.tasks__cell.style_black= cell.title
+							when 'menu'
+								.tasks__cell
+									i.icon.icon__more.icon_size_s

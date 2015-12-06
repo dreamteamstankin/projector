@@ -187,8 +187,6 @@ router.get('/', function(req, res, next) {
 						isEmpty: true
 					},{
 						isEmpty: true
-					},{
-						isEmpty: true
 					}
 				],
 				body: [

@@ -3,7 +3,7 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
 	res.render('index', {
-		title: 'Проекты',
+		title: 'Главная',
 		sections: {
 			description: 'Описание',
 			attach: 'Прикрепленные файлы'
