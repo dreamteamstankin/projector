@@ -57,7 +57,14 @@ router.get('/', function(req, res, next) {
 			},
 			'Старт': {
 				'text': {
-					name: '11 авг 15'
+					name: '11.08',
+					color: 'black'
+				}
+			},
+			'Релиз': {
+				'text': {
+					name: '29.09',
+					color: 'red'
 				}
 			}
 		},
@@ -65,16 +72,14 @@ router.get('/', function(req, res, next) {
 			{
 				header: [
 					{
-						title: 'Бэкэнд',
+						title: 'Фронтенд',
 						isAdd: true,
 						isMain: true
 					},{
-						title: 'Задачи',
+						title: 'Прогресс',
 						isRight: true
 					},{
-						title: 'Старт'
-					},{
-						title: 'Релиз'
+						title: 'Назначено'
 					},{
 						isEmpty: true
 					}
@@ -92,26 +97,18 @@ router.get('/', function(req, res, next) {
 								nums: [
 									{
 										url: '#',
-										num: '12',
-										color: 'orange'
+										num: '1',
+										color: 'black'
 									},{
 										url: '#',
-										num: '23',
-										color: 'green'
-									},{
-										url: '#',
-										num: '92',
+										num: '4',
 										color: 'gray'
 									}
 								]
 							},
 							{
 								type: 'text',
-								title: '12 апр'
-							},
-							{
-								type: 'text',
-								title: 'Завтра'
+								title: 'Антон Ахатов'
 							},
 							{
 								type: 'menu'
@@ -130,26 +127,18 @@ router.get('/', function(req, res, next) {
 								nums: [
 									{
 										url: '#',
-										num: '12',
-										color: 'orange'
+										num: '1',
+										color: 'black'
 									},{
 										url: '#',
-										num: '23',
-										color: 'green'
-									},{
-										url: '#',
-										num: '92',
+										num: '4',
 										color: 'gray'
 									}
 								]
 							},
 							{
 								type: 'text',
-								title: '12 апр'
-							},
-							{
-								type: 'text',
-								title: 'Завтра'
+								title: 'Антон Ахатов'
 							},
 							{
 								type: 'menu'
@@ -168,26 +157,125 @@ router.get('/', function(req, res, next) {
 								nums: [
 									{
 										url: '#',
-										num: '12',
-										color: 'orange'
+										num: '1',
+										color: 'black'
 									},{
 										url: '#',
-										num: '23',
-										color: 'green'
-									},{
-										url: '#',
-										num: '92',
+										num: '4',
 										color: 'gray'
 									}
 								]
 							},
 							{
 								type: 'text',
-								title: '12 апр'
+								title: 'Антон Ахатов'
+							},
+							{
+								type: 'menu'
+							}
+						]
+					}
+				]
+			},
+			{
+				header: [
+					{
+						title: 'Фронтенд'
+					},{
+						isEmpty: true
+					},{
+						isEmpty: true
+					},{
+						isEmpty: true
+					},{
+						isEmpty: true
+					}
+				],
+				body: [
+					{
+						color: 'black',
+						cells: [
+							{
+								type: 'main',
+								title: '2.1'
+							},
+							{
+								type: 'nums',
+								nums: [
+									{
+										url: '#',
+										num: '1',
+										color: 'black'
+									},{
+										url: '#',
+										num: '4',
+										color: 'gray'
+									}
+								]
 							},
 							{
 								type: 'text',
-								title: 'Завтра'
+								title: 'Антон Ахатов'
+							},
+							{
+								type: 'menu'
+							}
+						]
+					},
+					{
+						color: 'black',
+						cells: [
+							{
+								type: 'main',
+								title: '2.0'
+							},
+							{
+								type: 'nums',
+								nums: [
+									{
+										url: '#',
+										num: '1',
+										color: 'black'
+									},{
+										url: '#',
+										num: '4',
+										color: 'gray'
+									}
+								]
+							},
+							{
+								type: 'text',
+								title: 'Антон Ахатов'
+							},
+							{
+								type: 'menu'
+							}
+						]
+					},
+					{
+						color: 'black',
+						cells: [
+							{
+								type: 'main',
+								title: '1.9'
+							},
+							{
+								type: 'nums',
+								nums: [
+									{
+										url: '#',
+										num: '1',
+										color: 'black'
+									},{
+										url: '#',
+										num: '4',
+										color: 'gray'
+									}
+								]
+							},
+							{
+								type: 'text',
+								title: 'Антон Ахатов'
 							},
 							{
 								type: 'menu'

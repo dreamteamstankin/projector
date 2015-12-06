@@ -15,4 +15,4 @@ mixin project-dashboard(dashboard)
 									if i != item.length-1
 										span.style_delimiter.style_gray /
 							when 'text'
-								span.style_bold= item.name
+								span(class="style_bold style_" + item.color)= item.name
