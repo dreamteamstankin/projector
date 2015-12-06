@@ -1,0 +1,26 @@
+.list {
+	&__item {
+		font-size: @font-xs;
+	}
+	&_type {
+		&_horizontal {
+			overflow: hidden;
+			display: block;
+			.list__item {
+				float: left;
+				width: 100% / 3;
+				padding-right: @padding-l;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				box-sizing: border-box;
+				&:nth-child(3n+3) {
+					padding-right: 0;
+				}
+				&:nth-child(3n+4) {
+					clear: left;
+				}
+			}
+		}
+	}
+}

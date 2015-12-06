@@ -1,16 +1,17 @@
 mixin project-tasks()
 	.tasks
 		.style_hover.tasks__item
-			.tasks__cell.header__section.style_gray Номер релиза
-				.header__add 
-					+ui-add()
-			.tasks__cell.header__section.style_gray Задачи
+			.tasks__cell.task__main.header__section
+				span.style_gray Бэкенд
+				i.icon.icon__add.icon_padding_left.icon_hover_on
+			.tasks__cell.task_align_right.header__section.style_gray Задачи
 			.tasks__cell.header__section.style_gray Старт
 			.tasks__cell.header__section.style_gray Релиз
-		a(href="#").link.style_hover_light.tasks__item
-			.tasks__cell
-				span 2.0
-			.tasks__cell
+			.tasks__cell.task__menu
+		a(href="#").link.style_black.style_hover_light.tasks__item
+			.tasks__cell.task__main
+				span.task__title 2.0
+			.tasks__cell.task_align_right
 				span.style_orange 12
 				span.style_delimiter.style_gray /
 				span.style_green 48
@@ -18,12 +19,56 @@ mixin project-tasks()
 				span.style_black 50
 			.tasks__cell.style_black 12 апр
 			.tasks__cell.style_black Завтра
-		a(href="#").link.style_hover_light.tasks__item
+			.tasks__cell.task__menu
+				i.icon.icon__more.icon_size_s
+		.style_hover.tasks__item
+			.tasks__cell.task__main.header__section.style_gray Фронтенд
+			.tasks__cell 
 			.tasks__cell
-				span 1.3
 			.tasks__cell
+			.tasks__cell
+		a(href="#").link.style_black.style_hover_light.tasks__item
+			.tasks__cell.task__main
+				span.task__title 1.3
+			.tasks__cell.task_align_right
 				span.style_gray 29
 				span.style_delimiter.style_gray /
 				span.style_gray 29
+			.tasks__cell.style_black 09 августа
+			.tasks__cell.style_black 18 окт
+			.tasks__cell.task__menu
+				i.icon.icon__more.icon_size_s
+		.style_hover.tasks__item
+			.tasks__cell.task__main.header__section.style_gray Дизайн
+			.tasks__cell
+			.tasks__cell
+			.tasks__cell
+			.tasks__cell
+		.style_hover_light.tasks__item.tasks-group
+			.tasks__cell.task__main
+				i.icon.icon__collapse-arrow.icon_size_xs
+				span.task__title Правки по верстке
+			.tasks__cell.task_align_right
+				i.icon.icon__done.icon_size_s
 			.tasks__cell.style_black 09 авг
 			.tasks__cell.style_black 18 окт
+			.tasks__cell.task__menu
+				i.icon.icon__more.icon_size_s
+		a(href="#").link.style_black.style_hover_light.tasks__item.tasks-group__item
+			.tasks__cell.task__main
+				span.task__title Синхронизация Nginx кэшей
+			.tasks__cell.task_align_right
+				i.icon.icon__progress.icon_size_s
+			.tasks__cell.style_black 09 авг
+			.tasks__cell.style_black 18 окт
+			.tasks__cell.task__menu
+				i.icon.icon__more.icon_size_s
+		a(href="#").link.style_red.style_hover_light.tasks__item.tasks-group__item
+			.tasks__cell.task__main
+				span.task__title Исправления радаров
+			.tasks__cell.task_align_right
+				i.icon.icon__problem.icon_size_s
+			.tasks__cell.style_black 09 авг
+			.tasks__cell.style_black 18 окт
+			.tasks__cell.task__menu
+				i.icon.icon__more.icon_size_s

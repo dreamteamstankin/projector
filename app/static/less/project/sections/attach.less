@@ -1,0 +1,23 @@
+.attach {
+	&__list {
+		padding: 5px 0 0 0;
+	}
+	&__item {
+		display: inline-block;
+		margin-right: @padding-l;
+		cursor: pointer;
+		&:last-child {
+			margin-right: 0;
+			cursor: pointer;
+		}
+	}
+	&__preview {
+		max-width: 100px;
+		max-height: 50px;
+		display: inline-block;
+		background-size: 100% 100%;
+		&:hover {
+			opacity: .8;
+		}
+	}
+}

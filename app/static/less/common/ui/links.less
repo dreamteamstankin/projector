@@ -1,7 +1,7 @@
 .link {
 	text-decoration: none;
 	color: @blue;
-	border-bottom-width: 1px;
+	border-bottom-width: 0px;
 	border-bottom-style: solid;
 	border-color: fade(@blue, 20%);
 	&:hover {
@@ -26,6 +26,10 @@
 		color: @green;
 		border-color: fade(@green, 20%);
 	}
+	&_darkgreen {
+		color: @darkgreen;
+		border-color: fade(@darkgreen, 20%);
+	}
 	&_orange {
 		color: @orange;
 		border-color: fade(@orange, 20%);
@@ -34,6 +38,8 @@
 		color: @gray;
 		border-color: fade(@gray, 20%);
 	}
+}
+.style {
 	&_dotted {
 		border-bottom-width: 1px;
 		border-bottom-style: dotted;
@@ -46,6 +52,25 @@
 		border-bottom-width: 1px;
 		border-bottom-style: solid;
 	}
+}
+.style {
+	&_thin {
+		font-family: @font-thin;
+	}
+	&_light {
+		font-family: @font-light;
+	}
+	&_regular {
+		font-family: @font-regular;
+	}
+	&_semibold {
+		font-family: @font-medium;
+	}
+	&_bold {
+		font-family: @font-bold;
+	}
+}
+.style {
 	&_no {
 		&_link {
 			text-decoration: none;
@@ -61,21 +86,6 @@
 				border-color: inherit;
 			}
 		}
-	}
-	&_thin {
-		font-family: @font-thin;
-	}
-	&_light {
-		font-family: @font-light;
-	}
-	&_regular {
-		font-family: @font-regular;
-	}
-	&_semibold {
-		font-family: @font-medium;
-	}
-	&_bold {
-		font-family: @font-bold;
 	}
 	&_delimiter {
 		padding: 0 7px;

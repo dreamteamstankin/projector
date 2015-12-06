@@ -4,44 +4,71 @@
 @import 'sections/attach.less';
 @import 'sections/tasks.less';
 @import 'sections/title.less';
-
 .project {
-	background-color: #fff;
-	border-radius: @border-radius;
-	padding: @padding-l 0;
-	box-shadow: 0 0 70px 0 rgba(0,0,0,.1);
-	margin: @block-padding-vertical*3 auto;
-	&__section {
-		margin: @padding-m 0;
-		padding: 0 @block-padding-horizontal;
-		box-sizing: border-box;
-		&:first-child,
-		&:last-child {
-			margin: 0;
-		}
-	}
-	&__comments {
-		.header__section {
-			padding-left: @block-padding-horizontal;
-		}
-	}
-	&__comments,
-	&__tasks {
-		padding: 0;
-	}
-	&__title {
-		margin-bottom: @block-padding-horizontal;
-	}
-	.tasks__cell{
-		&:nth-child(1){
-			width: 100%;
-		}
-		&:nth-child(2){
-			text-align: right;
-		}
-		&:nth-child(3){
-			padding-left: @block-padding-horizontal;
-		}
-		&:nth-child(4){}
-	}
+    background-color: #fff;
+    border-radius: @border-radius;
+    padding: @padding-l 0;
+    box-shadow: 0 0 70px 0 rgba(0, 0, 0, .1);
+    margin: @block-padding-vertical*3 auto;
+    border: 1px solid @lightgray;
+    position: relative;
+    box-sizing: border-box;
+    &_level {
+        &_1 {
+            &:after {
+                content: ''
+            }
+        }
+        &_2 {
+            &:after,
+            &:before {
+                content: ''
+            }
+        }
+    }
+    &:after,
+    &:before {
+        position: absolute;
+        background-color: @white;
+        border: 1px solid @lightgray;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        border-radius: @border-radius;
+    }
+    &:after {
+        top: -7px;
+        left: 7px;
+    }
+    &:before {
+        top: -13px;
+        left: 13px;
+    }
+    &__section {
+        margin: @padding-xs 0;
+        padding: 0 @block-padding-horizontal;
+        box-sizing: border-box;
+        overflow: hidden;
+        &:first-child,
+        &:last-child {
+            margin: 0;
+        }
+    }
+    &__comments {
+        .header__section {
+            padding-left: @block-padding-horizontal;
+        }
+    }
+    &__comments,
+    &__tasks {
+        padding: 0;
+    }
+    &__title {
+        float: left;
+        width: 75%;
+    }
+    &__set {
+        float: right;
+    }
 }

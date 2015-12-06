@@ -3,8 +3,8 @@
 	border-radius: @border-radius-rounded;
 	border-width: 1px;
 	border-style: solid;
-	border-color: @orange;
-	color: @orange;
+	border-color: @lightgray;
+	color: @darkgray;
 	font-size: @font-xs;
 	padding: 0 @padding-l;
 	height: 25px;
@@ -12,9 +12,11 @@
 	text-align: center;
 	user-select: none;
 	cursor: pointer;
+	&:active {
+		opacity: .8;
+	}
 	&:hover {
-		background-color: @orange;
-		color: @white;
+		background-color: @darkwhite;
 	}
 	&_state {
 		&_disable{

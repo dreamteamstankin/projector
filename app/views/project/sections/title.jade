@@ -1,6 +1,10 @@
 mixin project-title()
 	.title
 		.title__header
-			h1 Погодный сайт
-		.title__label
-			+ui-label('orange', 'Готовится в релиз')
+			a(href="#").link.style_solid.style_gray Погодный сайт
+			span.style_delimiter.style_gray /
+			a(href="#").link.style_solid.style_gray Релиз 5.1
+			span.style_delimiter.style_gray /
+			span.style_black.style_bold Правки по верстке
+			.title__label
+				+ui-label('orange', 'Готовится в релиз')

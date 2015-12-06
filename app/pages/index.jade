@@ -1,24 +1,40 @@
 include ../views/nav/navigation.jade
 include ../views/project/project.jade
+include ../views/tracker/tracker.jade
 extends ../views/common/layout.jade
 block content
 	+navigation()
 	.grid.wrap
-		.project.grid__cell.grid_size_6
-			section.project__section.project__title
-				+project-title()
+		.project.project_level_2.grid__cell.grid_size_6
+			section.project__section
+				.project__title
+					+project-title()
+				.project__set
+					i.icon.icon__set.icon_hover_on
 			.grid.project__section
-				.header__section.style_gray Описание
+				.header__section
+					span.style_gray Описание
+					i.icon.icon__add.icon_padding_left.icon_hover_on
 				section.grid__cell.grid_size_3.project__description
 					+project-description()
 				section.grid__cell.grid_size_5.project__dashboard
 					+project-dashboard()
+			section.project__section.project__related
+				.header__section
+					pan.style_gray Связано
+					i.icon.icon__add.icon_padding_left.icon_hover_on
+				+project-list()
 			section.project__section.project__attach
-				.header__section.style_gray Прикрепленные файлы
+				.header__section
+					span.style_gray Прикрепленные файлы
+					i.icon.icon__add.icon_padding_left.icon_hover_on
 				+project-attach()
 			section.project__section.project__tasks
 				+project-tasks()
 			section.project__section.project__comments
-				.header__section.style_gray Комментарии
+				.header__section
+					span.style_gray Комментарии
+					i.icon.icon__add.icon_padding_left.icon_hover_on
 				+project-comments()
 		.tracker.grid__cell.grid_size_2
+			+tracker()

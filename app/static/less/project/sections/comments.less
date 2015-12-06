@@ -1,9 +1,7 @@
 .comments {
-	&__list {
-	}
 	&__item {
 		border-top: 1px solid @border-color;
-		padding: @padding-s @block-padding-horizontal;
+		padding: @padding-s @padding-m @padding-s @block-padding-horizontal;
 		box-sizing: border-box;
 		&:last-child {
 			border-bottom: 1px solid @border-color;
@@ -23,6 +21,19 @@
 }
 
 .comment {
+	display: table;
+	width: 100%;
+	&__info {
+		display: table-row;
+	}
+	&__message,
+	&__menu {
+		display: table-cell;
+		vertical-align: middle;
+	}
+	&__message {
+		width: 100%;
+	}
 	&__name {
 		display: inline-block;
 		font-size: @font-xs;
@@ -33,8 +44,21 @@
 		font-size: @font-xxs;
 		font-family: @font-light;
 	}
-	&__message {
+	&__text {
+		display: block;
 		font-size: @font-s;
 		padding-top: @padding-xs;
+		padding-right: @padding-l;
+		box-sizing: border-box;
+	}
+	&__attaches {
+		margin-top: 10px;
+	}
+	&__menu {
+		opacity: .2;
+		cursor: pointer;
+		&:hover {
+			opacity: 1;
+		}
 	}
 }
