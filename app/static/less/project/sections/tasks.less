@@ -6,6 +6,11 @@
         box-sizing: border-box;
         font-size: @font-xs;
         border: none;
+        &:last-child {
+            .tasks__cell {
+                border-bottom: none;
+            }
+        }
     }
     &__cell {
         display: table-cell;

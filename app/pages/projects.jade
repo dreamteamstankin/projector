@@ -5,12 +5,9 @@ extends ../views/common/layout.jade
 block content
 	+navigation()
 	.grid.wrap
-		section.project.grid__cell.grid_size_6
-			section.project__section
-				.project__title
-					+project-title(header)
-				.project__set
-					i.icon.icon__set.icon_hover_on
+		section(class="project grid__cell grid_size_6 #{level ? 'project_level_'+level : ''} ")
+			section.project__section.project__title
+				+project-title(header)
 			.grid.project__section
 				.header__section
 					span.style_gray #{sections.description}
@@ -21,4 +18,4 @@ block content
 			section.project__section.project__tasks
 				+project-tasks(tasks)
 		section.tracker.grid__cell.grid_size_2
-			+tracker()
+			+tracker(tracker)

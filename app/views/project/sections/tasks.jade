@@ -3,25 +3,33 @@ mixin project-tasks(tasks)
 		.tasks
 			.tasks__item
 				each blocks in section.header
-					.tasks__cell.header__section
+					div(class="tasks__cell header__section #{blocks.isRight ? 'task_align_right' : ''} #{blocks.isMain ? 'task__main' : ''}")
 						span.style_gray= blocks.title
 						if blocks.isAdd
 							i.icon.icon__add.icon_padding_left.icon_hover_on
 			each row in section.body
-				a(href="#").link.style_hover_light.tasks__item
+				a(href= row.url, class="link style_hover_light tasks__item #{row.isGroup ? 'tasks-group' : ''} #{row.isGroupItem ? 'tasks-group__item' : ''} style_#{row.color}")
 					each cell in row.cells
-						case cell.type
-							when 'main'
-								.tasks__cell.task__main
+						div(class="tasks__cell #{cell.isRight ? 'task_align_right' : ''}")
+							case cell.type
+								when 'main'
+									if row.isGroup
+										i.icon.icon__collapse-arrow.icon_size_xs
 									span.task__title= cell.title
-							when 'nums'
-								.tasks__cell.task_align_right
+								when 'nums'
 									each link, i in cell.nums
 										span(class="style_" + link.color)= link.num
 										if i != cell.nums.length-1
 											span.style_delimiter.style_gray /
-							when 'text'
-								.tasks__cell.style_black= cell.title
-							when 'menu'
-								.tasks__cell
+								when 'text'
+									span.style_black= cell.title
+								when 'menu'
 									i.icon.icon__more.icon_size_s
+								when 'icon'
+									case cell.state
+										when 'done'
+											i.icon.icon__done
+										when 'problem'
+											i.icon.icon__problem
+										when 'progress'
+											i.icon.icon__progress

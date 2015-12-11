@@ -1,18 +1,17 @@
 mixin project-dashboard(dashboard)
 	.dashboard
-		each section, title in dashboard
+		each section in dashboard
 			.dashboard__item
-				.dashboard__title.style_gray= title
+				.dashboard__title.style_gray= section.title
 				.dashboard__content
-					each item, value in section
-						case value
-							when 'link'
-								a(href= item.url).link.style_bold= item.name
-							when 'nums'
-								each link,i in item
-									a(href= link.nums, 
-									  class="link style_bold style_" + link.color)= link.num
-									if i != item.length-1
-										span.style_delimiter.style_gray /
-							when 'text'
-								span(class="style_bold style_" + item.color)= item.name
+					case section.type
+						when 'link'
+							a(href= section.value.url).link.style_bold= section.value.name
+						when 'nums'
+							each link, i in section.values
+								a(href= link.url, 
+								  class="link style_bold style_" + link.color)= link.num
+								if i != section.values.length-1
+									span.style_delimiter.style_gray /
+						when 'text'
+							span(class="style_bold style_" + section.values.color)= section.values.name

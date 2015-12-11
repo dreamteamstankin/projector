@@ -1,22 +1,8 @@
-mixin project-list()
+mixin project-list(list)
 	.list.list_type_horizontal
-		.list__item
-			a(href="#").link
-				span GIS-200
-				span.style_gray.style_delimiter –
-				span.style_black Родитель
-		.list__item
-			a(href="#").link
-				span GIS-506
-				span.style_gray.style_delimiter –
-				span.style_black Дизайн-макеты
-		.list__item
-			a(href="#").link
-				span GIS-304
-				span.style_gray.style_delimiter –
-				span.style_black Подключение mongodb
-		.list__item
-			a(href="#").link
-				span GIS-507
-				span.style_gray.style_delimiter –
-				span.style_black Настройка миксинов
+		each item in list
+			.list__item
+				a(href= item.url).link
+					span= item.branch
+					span.style_gray.style_delimiter –
+					span.style_black= item.description

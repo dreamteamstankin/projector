@@ -1,33 +1,54 @@
 .button {
-	display: inline-block;
-	border-radius: @border-radius-rounded;
-	border-width: 1px;
-	border-style: solid;
-	border-color: @lightgray;
-	color: @darkgray;
-	font-size: @font-xs;
-	padding: 0 @padding-l;
-	height: 25px;
-	line-height: 25px;
-	text-align: center;
-	user-select: none;
-	cursor: pointer;
-	&:active {
-		opacity: .8;
-	}
-	&:hover {
-		background-color: @darkwhite;
-	}
-	&_state {
-		&_disable{
-			border-color: @lightgray;
-			color: @darkgray;
-		}
-	}
-	&_type{
-		&_icon {
-			padding: 0;
-			width: 25px;
-		}
-	}
+    display: inline-block;
+    border-radius: @border-radius-rounded;
+    border-width: 1px;
+    border-style: solid;
+    border-color: @lightgray;
+    color: @darkgray;
+    font-size: @font-xs;
+    padding: 0 @padding-l;
+    background-color: @white;
+    b height: 25px;
+    line-height: 25px;
+    text-align: center;
+    user-select: none;
+    cursor: pointer;
+    &:active {
+        opacity: .8;
+    }
+    &:hover {
+        background-color: @darkwhite;
+    }
+    &_state {
+        &_disable {
+            border-color: @lightgray;
+            color: @darkgray;
+        }
+    }
+    &_no {
+        &_border {
+            border-color: transparent;
+        }
+        &_padding {
+            padding: 0;
+            width: 25px;
+        }
+        &_hover {
+            background-color: @white;
+        }
+    }
+    &_hover {
+        &_icon {
+        	cursor: pointer;
+            .icon {
+                opacity: .6;
+            }
+            &:hover {
+                background-color: @white;
+                .icon {
+                    opacity: 1;
+                }
+            }
+        }
+    }
 }

@@ -7,8 +7,11 @@ var bodyParser = require('body-parser');
 //var mongoose = require('mongoose');
 
 
-var routes = require('./app/routes/index');
+var task = require('./app/routes/task');
 var users = require('./app/routes/users');
+var group = require('./app/routes/group');
+var groups = require('./app/routes/groups');
+var index = require('./app/routes/index');
 var projects = require('./app/routes/projects');
 //var movies = require('./app/routes/movies');
 
@@ -31,9 +34,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public/')));
 
-app.use('/', routes);
+app.use('/', index);
+app.use('/task', task);
 app.use('/users', users);
-app.use('/projects', projects);
+app.use('/group/', group);
+app.use('/groups/', groups);
+app.use('/projects/', projects);
 //app.use('/api', movies);
 
 // catch 404 and forward to error handler

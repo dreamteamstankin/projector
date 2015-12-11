@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 		header: {
 			title: [
 				{
-					name: 'Погодный сайт'
+					name: 'Погодный сайт',
 				}
 			],
 			label: {
@@ -24,24 +24,28 @@ router.get('/', function(req, res, next) {
 			{
 				type: 'img',
 				url: '#',
-				src: 'img/attach.png',
+				src: '/img/attach.png',
 				alt: 'Картинка 1'
 			},{
 				type: 'img',
 				url: '#',
-				src: 'img/attach.png',
+				src: '/img/attach.png',
 				alt: 'Картинка 2'
 			}
 		],
-		dashboard: {
-			'Руководитель': {
-				'link': {
+		dashboard: [
+			{
+				title: 'Руководитель',
+				type: 'link',
+				value: {
 					url: '#',
 					name: 'Ахатов Антон'
 				}
 			},
-			'Прогресс': {
-				'nums':[{
+			{
+				title: 'Прогресс',
+				type: 'nums',
+				values:[{
 						url: '#',
 						num: '12',
 						color: 'orange'
@@ -55,19 +59,23 @@ router.get('/', function(req, res, next) {
 						color: 'gray'
 				}]
 			},
-			'Старт': {
-				'text': {
+			{
+				title: 'Старт',
+				type: 'text',
+				values: {
 					name: '11.08',
 					color: 'black'
 				}
 			},
-			'Релиз': {
-				'text': {
+			{
+				title: 'Релиз',
+				type: 'text',
+				values: {
 					name: '29.09',
 					color: 'red'
 				}
 			}
-		},
+		],
 		tasks: [
 			{
 				header: [
@@ -80,19 +88,20 @@ router.get('/', function(req, res, next) {
 						isRight: true
 					},{
 						title: 'Назначено'
-					},{
-						isEmpty: true
-					}
+					},
+					{}
 				],
 				body: [
 					{
 						color: 'black',
+						url: '#',
 						cells: [
 							{
 								type: 'main',
 								title: '2.1'
 							},
 							{
+								isRight: true,
 								type: 'nums',
 								nums: [
 									{
@@ -117,12 +126,14 @@ router.get('/', function(req, res, next) {
 					},
 					{
 						color: 'black',
+						url: '#',
 						cells: [
 							{
 								type: 'main',
 								title: '2.0'
 							},
 							{
+								isRight: true,
 								type: 'nums',
 								nums: [
 									{
@@ -147,12 +158,14 @@ router.get('/', function(req, res, next) {
 					},
 					{
 						color: 'black',
+						url: '#',
 						cells: [
 							{
 								type: 'main',
 								title: '1.9'
 							},
 							{
+								isRight: true,
 								type: 'nums',
 								nums: [
 									{
@@ -180,18 +193,20 @@ router.get('/', function(req, res, next) {
 			{
 				header: [
 					{
-						title: 'Фронтенд'
-					},{
-						isEmpty: true
-					},{
-						isEmpty: true
-					},{
-						isEmpty: true
-					}
+						title: 'Фронтенд',
+						isMain: true
+					},
+					{},
+					{
+						isRight: true
+					},
+					{}
 				],
 				body: [
 					{
+						isGroup: true,
 						color: 'black',
+						url: '#',
 						cells: [
 							{
 								type: 'main',
@@ -221,7 +236,9 @@ router.get('/', function(req, res, next) {
 						]
 					},
 					{
-						color: 'black',
+						isGroupItem: true,
+						color: 'blue',
+						url: '#',
 						cells: [
 							{
 								type: 'main',
@@ -251,7 +268,9 @@ router.get('/', function(req, res, next) {
 						]
 					},
 					{
-						color: 'black',
+						isGroupItem: true,
+						color: 'red',
+						url: '#',
 						cells: [
 							{
 								type: 'main',
@@ -282,7 +301,41 @@ router.get('/', function(req, res, next) {
 					}
 				]
 			}
-		]
+		],
+		tracker: {
+			time: (new Date).getMilliseconds(),
+			tasks: [
+				{
+					url: '#',
+					branch: 'GIS-452',
+					type: 'problem',
+					time: (new Date).getMilliseconds() + 'ч',
+					description: 'Решение проблем с MongoDB'
+				},{
+					url: '#',
+					branch: 'GIS-452',
+					type: 'open',
+					time: (new Date).getMilliseconds() + 'ч',
+					description: 'Преобразование картинки в pdf'
+				},{
+					url: '#',
+					branch: 'GIS-452',
+					time: (new Date).getMilliseconds() + 'ч',
+					description: 'Новая верстка каталога'
+				},{
+					url: '#',
+					branch: 'GIS-452',
+					time: (new Date).getMilliseconds() + 'ч',
+					description: 'Изменение цветов геомагнетики'
+				},{
+					url: '#',
+					branch: 'GIS-452',
+					type: 'done',
+					time: (new Date).getMilliseconds() + 'ч',
+					description: 'Вставить погодные фоны'
+				}
+			]
+		}
 	});
 });
 

@@ -1,11 +1,15 @@
 mixin project-title(header)
-	.title
-		.title__header
+	.grid.title
+		.title__header.grid.grid__cell.grid_size_7
 			each item,i in header.title
 				if i == header.title.length-1
 					span.style_size_l.style_bold= item.name
 				else 
 					a(href=item.url).link.style_solid.style_gray= item.name
 					span.style_delimiter.style_gray /
-			.title__label
-				+ui-label(header.label.color, header.label.name)
+			if header.label
+				.title__label
+					+ui-label(header.label.color, header.label.name)
+		.grid__cell.grid_size_1.grid_align_right
+				.button.button_type_icon.button_no_border.button_no_padding.button_hover_icon
+					i.icon.icon__set
