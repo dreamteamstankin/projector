@@ -1,12 +1,13 @@
 var express = require('express');
 var path = require('path');
+var http = require('http');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var expressSession = require('express-session');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-
 
 /*-----------------------
   Passport.js config
@@ -34,7 +35,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(require('express-session')({
+app.use(expressSession({
     secret: 'test phrase',
     resave: false,
     saveUninitialized: false
@@ -60,7 +61,6 @@ app.use('/', task);
 app.use('/', group);
 app.use('/', groups);
 app.use('/', projects);
-//app.use('/api', movies);
 
 
 /*-----------------------
@@ -79,6 +79,12 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+
+/*-----------------------
+  Server
+------------------------- */
+http.createServer(app).listen(3000);
 
 
 module.exports = app;
