@@ -2,16 +2,18 @@
 @import 'sections/comments.less';
 @import 'sections/attach.less';
 @import 'sections/tasks.less';
-@import 'sections/title.less';
+@import 'sections/menu.less';
 .project {
     background-color: #fff;
     border-radius: @border-radius;
-    padding: @padding-l 0;
+    padding-bottom: @padding-l;
     box-shadow: 0 0 70px 0 rgba(0, 0, 0, .1);
-    margin: @block-padding-vertical*3 auto;
+    margin: @block-padding-vertical auto @block-padding-vertical*3;
     border: 1px solid @lightgray;
     position: relative;
     box-sizing: border-box;
+    box-shadow: @block-shadow;
+    overflow: hidden;
     &_level {
         &_1 {
             &:after {
@@ -59,6 +61,10 @@
             padding-left: @block-padding-horizontal;
         }
     }
+    &__menu {
+        box-shadow: @menu-shadow;
+    }
+    &__menu,
     &__comments,
     &__tasks {
         padding: 0;
@@ -66,5 +72,7 @@
     &__description {
         font-size: @font-xs;
         line-height: @font-xs * 1.5;
+        padding-right: @padding-l;
+        box-sizing: border-box;
     }
 }

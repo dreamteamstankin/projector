@@ -1,29 +1,23 @@
-mixin project-comments()
+mixin project-comments(comments)
 	.comments
 		.comments__list
-			.comments__item.comment
-				.comment__message
-					.comment__name Антон Ахатов
-					span.style_delimiter.style_gray –
-					.comment__time 15 минут назад
-					.comment__text ага
-					.comment__attaches.attach
-						.attach__list
-							a(href="#").attach__item
-								img(src="img/attach.png", alt="attach").attach__preview
-							a(href="#").attach__item
-								img(src="img/attach.png", alt="attach").attach__preview
-				.comment__menu
-					i.icon.icon__more
-			.comments__item.comment
-				.comment__info
-					.comment__name Соломкина Наталия
-					span.style_delimiter.style_gray –
-					.comment__time 12 минут назад					
-				.comment__message
-					.comment__text Я приложила макеты)
-				.comment__menu
-					i.icon.icon__more
+			each comment in comments.messages
+				.comments__item.comment
+					.comment__message
+						.comment__name= comment.name
+						span.style_delimiter.style_gray –
+						.comment__time= comment.time
+						.comment__text= comment.text
+						if comments.attaches
+							.comment__attaches.attach
+								.attach__list
+									each attach in commetns.attaches
+										case attach.type
+											when 'img'
+												a(href="#{attach.url}").attach__item
+													img(src="#{attach.src}", alt="attach").attach__preview
+					.comment__menu
+						i.icon.icon__more
 		form.comments__form
 			.comments__input
 				textarea(placeholder="Введите сообщение").input

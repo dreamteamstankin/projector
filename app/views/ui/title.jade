@@ -1,0 +1,18 @@
+mixin title(header)
+	if header.header
+		.title.title__page
+			.title__header
+				a(href= header.header.url).link.style_size_l.style_bold.style_black= header.header.name
+	else
+		.title
+			.title__header					
+				if header.title
+					each item,i in header.title
+						if i == header.title.length-1
+							span.style_size_l.style_bold= item.name
+						else 
+							a(href=item.url).link.style_solid.style_gray= item.name
+							span.style_delimiter.style_gray /
+				if header.label
+					.title__label
+						+ui-label(header.label)

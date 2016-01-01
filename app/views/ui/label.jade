@@ -1,4 +1,5 @@
-mixin ui-label(type, text)
-	.label(class="style_"+type)
-		span(class="label__text")= text
+mixin ui-label(label)
+	each item in label
+		.label(class="style_"+item.color)
+			span(class="label__text")= item.name
 	

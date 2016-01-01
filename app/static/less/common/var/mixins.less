@@ -1,0 +1,11 @@
+.icon-render(@icon-color, @code) {
+    @svg: escape(replace(@code,'{{{icon-color}}}', '@{icon-color}'));
+    background-image: url("data:image/svg+xml, @{svg}");
+}
+
+.gridGenerator (@index) when (@index > 0) {
+    .grid_size_@{index} {
+    	width: 100% / 8 * @index
+    }
+    .gridGenerator(@index - 1);
+}

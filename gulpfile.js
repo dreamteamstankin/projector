@@ -1,3 +1,4 @@
+'use strict';
 var gulp = require('gulp'),
     less = require('gulp-less'),
     csso = require('gulp-csso'),
@@ -10,44 +11,58 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync').create(),
     reload = browserSync.reload;
 
-gulp.task('browser-sync', ['nodemon'], function() {
-	browserSync.init(null, {
-		proxy: "http://localhost:3000",
-        files: ["/static/**/*.*"],
-        port: 7000,
-	});
+var path = {
+    from: {
+        less:  "app/static/less/*.less",
+        allless: "app/static/less/**/*.less",
+        js: "app/static/js/**/*.js",
+        img: "app/static/img/**/*",
+        jade: ["app/views/**/*", "app/pages/**/*"]
+    },
+    to: {
+        css: "public/css/",
+        js: "public/js/",
+        img: "public/img/"
+    }
+}
+
+gulp.task('w', ['less', 'js', 'images', 'browser-sync'], function() {
+    gulp.watch(path.from.allless, ['less']);
+    gulp.watch(path.from.js, ['js']);
+    gulp.watch(path.from.img, ['images'], reload);
+    gulp.watch(path.from.jade, reload);
 });
 
-gulp.task('watch', ['less', 'js', 'images', 'browser-sync'], function() {
-    gulp.watch("app/static/less/**/*.less", ['less']);
-    gulp.watch("app/static/js/**/*.js", ['js']);
-    gulp.watch("app/static/**/*", ['images'], reload);
-    gulp.watch("app/views/**/*", reload);
-    gulp.watch("app/pages/**/*", reload);
+gulp.task('browser-sync', ['nodemon'], function() {
+    browserSync.init(null, {
+        proxy: "http://localhost:3000",
+        files: ["/static/**/*.*"],
+        port: 7000
+    });
 });
 
 gulp.task('less', function() {
-    gulp.src("app/static/less/*.less")
+    gulp.src(path.from.less)
         .pipe(less())
         .on('error', console.log)
         .pipe(prefixer())
         .pipe(csso())
-        .pipe(gulp.dest("public/css/"))
+        .pipe(gulp.dest(path.to.css))
         .pipe(reload({
             stream: true
         }));
 });
 gulp.task('js', function() {
-    gulp.src(['app/static/js/**/*.js'])
+    gulp.src(path.from.js)
         .pipe(concat('index.js'))
-        .pipe(gulp.dest('public/js/'))
+        .pipe(gulp.dest(path.to.js))
         .pipe(uglify())
         .pipe(reload({
             stream: true
         }));
 });
 gulp.task('images', function() {
-    gulp.src('app/static/img/**/*')
+    gulp.src(path.from.img)
         .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{
@@ -56,7 +71,7 @@ gulp.task('images', function() {
             use: [pngquant()],
             interlaced: true
         }))
-        .pipe(gulp.dest('public/img/'))
+        .pipe(gulp.dest(path.to.img))
         .pipe(reload({
             stream: true
         }));

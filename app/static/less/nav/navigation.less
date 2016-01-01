@@ -1,13 +1,17 @@
 .navigation {
 	width: 100%;
 	background-color: @nav;
+	&:after {
+		content: '';
+		display: table;
+		clear: both;
+	}
 	&__container {
 		padding-left: @block-padding-horizontal + @wrap-padding-horizontal;
 		box-sizing: border-box;
 	}
 	&__block {
 		display: inline-block;
-		vertical-align: middle;
 		height: 100%;
 		margin-left: @padding-l;
 		line-height: @nav-height;
@@ -15,20 +19,16 @@
 			margin-left: 0;
 		}
 	}
-}
-.navigation {
-	&:after {
-		content: '';
-		display: table;
-		clear: both;
-	}
 	&__logo {
 		font-size: @font-xl;
+		font-family: @font-light;
 		padding-right: @padding-m;
 	}
 	&__item {
-		display: inline-block;
+		font-family: @font-light;
+		font-size: @font-m;
 		padding: 0 @padding-s;
+		display: inline-block;
 		&:hover {
 			background-color: @nav-hover;
 		}
