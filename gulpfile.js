@@ -20,7 +20,7 @@ var config = {
         allless: "app/static/less/**/*.less",
         js: "app/static/js/**/*.js",
         img: "app/static/img/**/*",
-        jade: ["app/views/**/*", "app/pages/**/*"]
+        views: ["app/views/**/*", "app/pages/**/*"]
     },
     to: {
         css: "public/css/",
@@ -33,7 +33,7 @@ gulp.task('w', ['less', 'js', 'images', 'browser-sync'], function() {
     gulp.watch(config.from.allless, ['less']);
     gulp.watch(config.from.js, ['js']);
     gulp.watch(config.from.img, ['images'], reload);
-    gulp.watch(config.from.jade, reload);
+    gulp.watch(config.from.views, reload);
 });
 
 gulp.task('browser-sync', ['nodemon'], function() {

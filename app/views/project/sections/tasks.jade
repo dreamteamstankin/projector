@@ -1,13 +1,32 @@
 mixin project-tasks(tasks)
-	each section in tasks
-		.tasks
-			.tasks__item
-				each blocks in section.header
-					div(class="tasks__cell header__section #{blocks.isRight ? 'task_align_right' : ''} #{blocks.isMain ? 'task__main' : ''}")
-						span.style_gray= blocks.title
-						if blocks.isAdd
-							i.icon.icon__add.icon_padding_left.icon_hover_on
-			each row in section.body
+	.tasks
+		.tasks__item
+			.task__cell.header__section
+				.tasks__cell.task__main
+					span.style_gray Номер релиза
+					i.icon.icon__add.icon_padding_left.icon_hover_on
+				.tasks__cell
+					span.style_gray Задачи
+				.tasks__cell.task_align_right
+					span.style_gray Старт
+				.tasks__cell
+					span.style_gray Релиз
+				.tasks__cell
+		each task in tasks
+			a(href= task.url, class="link style_hover_light tasks__item style_black")
+				.task__cell
+					.tasks__cell.task__main
+						span.style_black= task.title
+					.tasks__cell
+						span.style_green 23
+						span.style_delimiter.style_gray /
+						span.style_black 52
+					.tasks__cell.task_align_right
+						span.style_black 12 сен
+					.tasks__cell
+						span.style_black 21 окт
+					.tasks__cell
+			//- each row in section.body
 				a(href= row.url, class="link style_hover_light tasks__item #{row.isGroup ? 'tasks-group' : ''} #{row.isGroupItem ? 'tasks-group__item' : ''} style_#{row.color}")
 					each cell in row.cells
 						div(class="tasks__cell #{cell.isRight ? 'task_align_right' : ''}")

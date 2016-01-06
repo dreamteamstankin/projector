@@ -1,46 +1,30 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var localeRu = require('../../components/locales/ru.json')
 
-router.get('/groups', function(req, res, next) {
+var Project = require('../../models/project.js')
+
+router.route('/project/:project')
+    .get(function(req, res) {
+        Project
+            .findOne({
+                'name_id': req.params.project
+            })
+            .populate('tasks')
+            .exec(function(err, project) {
+                if (err) return res.send(err);
+                res.render('projects/project', {
+                    pagetitle: project.name_id,
+                    project: project,
+                    sections: localeRu
+                });
+            })
+    })
+
+/*router.get('/groups', function(req, res, next) {
     res.render('projects/groups', {
-        title: 'Группы',
-        sections: {
-            description: 'Описание',
-            attach: 'Прикрепленные файлы'
-        },
-        navigation: {
-            menu: [{
-                name: 'Проекты',
-                url: '#',
-                selected: true
-            }, {
-                name: 'Календарь',
-                url: '#'
-            }, {
-                name: 'Финансы',
-                url: '#'
-            }, {
-                name: 'Риски',
-                url: '#'
-            }, {
-                name: 'Отчеты',
-                url: '#'
-            }, {
-                name: 'Документация',
-                url: '#'
-            }],
-            user: {
-                pic: '/',
-                name: 'Антон Ахатов',
-                access: 1
-            }
-        },
-        description: 'Подробная информация о текущей погоде и детальный прогноз всегда под рукой, где бы вы ни находились.',
-        header: {
-            title: [{
-                name: 'Релиз 2.1'
-            }]
-        },
         project: {
             header: {
                 name: 'Погодный сайт',
@@ -54,34 +38,6 @@ router.get('/groups', function(req, res, next) {
                 color: 'black'
             }]
         },
-        menu: [{
-            name: 'Задачи',
-            url: '#',
-            selected: true
-        }, {
-            name: 'Время',
-            url: '#'
-        }, {
-            name: 'Финансы',
-            url: '#'
-        }, {
-            name: 'Отчеты',
-            url: '#'
-        }, {
-            name: 'Документации',
-            url: '#'
-        }],
-        attach: [{
-            type: 'img',
-            url: '#',
-            src: '/img/attach.png',
-            alt: 'Картинка 1'
-        }, {
-            type: 'img',
-            url: '#',
-            src: '/img/attach.png',
-            alt: 'Картинка 2'
-        }],
         dashboard: [{
             title: 'Руководитель',
             type: 'link',
@@ -215,6 +171,35 @@ router.get('/groups', function(req, res, next) {
                 }, {
                     type: 'menu'
                 }]
+            }, {
+                color: 'black',
+                cells: [{
+                    type: 'main',
+                    title: '1.8'
+                }, {
+                    type: 'nums',
+                    nums: [{
+                        url: '#',
+                        num: '12',
+                        color: 'orange'
+                    }, {
+                        url: '#',
+                        num: '23',
+                        color: 'green'
+                    }, {
+                        url: '#',
+                        num: '92',
+                        color: 'gray'
+                    }]
+                }, {
+                    type: 'text',
+                    title: '12 апр'
+                }, {
+                    type: 'text',
+                    title: 'Завтра'
+                }, {
+                    type: 'menu'
+                }]
             }]
         }],
         tracker: {
@@ -250,6 +235,6 @@ router.get('/groups', function(req, res, next) {
             }]
         }
     });
-});
+});*/
 
 module.exports = router;

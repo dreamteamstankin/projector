@@ -1,6 +1,51 @@
 var express = require('express');
 var router = express.Router();
+// var Group = require('../../models/group.js');
 
+router.route('/group')
+    .get(function(req, res) {
+        // Group.remove({}, function(err, Group) {
+        //     if (err) {
+        //         return res.send(err);
+        //     }
+        //     res.json({
+        //         message: 'Successfully deleted all'
+        //     });
+        // });
+        Group.find(function(err, Groups) {
+            if (err) {
+                return res.send(err);
+            }
+            res.json(Groups);
+        });
+
+        // var newGroup = {
+        //     prefix_id: 'TEST-1',
+        //     user_id: '568954c2a4810f38d329a20e',
+        //     title: 'Тестовая группа',
+        //     description: 'Тестоваое описание',
+        //     start_date: new Date,
+        //     release_date: null,
+        //     status: 0,
+        //     tasks: []
+        // }
+        // var group = new Group(newGroup);
+        // group.save(function(err) {
+        //     if (err) {
+        //         return res.send(err);
+        //     }
+        //     Group.find(function(err, group) {
+        //         if (err) {
+        //             return res.send(err);
+        //         }
+        //         res.json(group);
+        //     });
+        // });
+    })
+
+
+
+/*
 router.get('/group', function(req, res, next) {
     res.render('projects/group', {
         title: 'Группа',
@@ -217,5 +262,5 @@ router.get('/group', function(req, res, next) {
         }
     });
 });
-
+*/
 module.exports = router;

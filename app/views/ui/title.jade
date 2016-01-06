@@ -5,7 +5,7 @@ mixin title(header)
 				a(href= header.header.url).link.style_size_l.style_bold.style_black= header.header.name
 	else
 		.title
-			.title__header					
+			.title__header
 				if header.title
 					each item,i in header.title
 						if i == header.title.length-1

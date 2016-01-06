@@ -1,0 +1,23 @@
+each item in test
+	div
+		span= 'title '+item.title
+		span= ', id'+ item.prefix
+		span= ', desc'+ item.description
+
+		
+
+form(action="/groups" method="post")
+	label
+		div prefix
+		input(type="text", name="prefix") 
+		br
+	label
+		div title
+		input(type="text", name="title") 
+		br
+	label
+		div desc
+		input(type="text", name="description") 
+		br
+		br
+	input(type="submit", value="Добавить", name="")
