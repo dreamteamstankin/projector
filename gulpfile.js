@@ -20,7 +20,7 @@ var config = {
         allless: "app/static/less/**/*.less",
         js: "app/static/js/**/*.js",
         img: "app/static/img/**/*",
-        views: ["app/views/**/*", "app/pages/**/*"]
+        views: ["app/static/views/**/*", "app/pages/**/*"]
     },
     to: {
         css: "public/css/",

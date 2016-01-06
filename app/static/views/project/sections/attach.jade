@@ -1,6 +1,6 @@
 mixin project-attach(attach)
 	.attach
 		.attach__list
-			each item in attach
+			//- each item in attach
 				a(href= item.url).attach__item
 					img(src= item.src, alt= item.alt, class="attach__preview attach_type_" + item.type)

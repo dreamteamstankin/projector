@@ -1,9 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 var localeRu = require('../../components/locales/ru.json')
-
 var Project = require('../../models/project.js')
 
 router.route('/project/:project')
