@@ -1,0 +1,50 @@
+//- include ../../static/views/nav/navigation.jade
+//- include ../../static/views/project/project.jade
+//- include ../../static/views/tracker/tracker.jade
+//- extends ../../static/views/common/layout.jade
+//- block content
+//- 	+navigation(sections.navigation)
+//- 	.grid.wrap
+//- 		section(class="grid__cell grid_size_6 #{project.level ? 'project_level_' + level : ''} ")
+//- 			.title.title__page
+//- 				.title__header
+//- 					a(href= project.url).link.style_size_l.style_bold.style_black= project.title
+//- 			.project
+//- 				section.project__section.project__menu
+//- 					+project-menu(sections.menu)
+//- 				section.project__section.project__title
+//- 					//- +title(project.title)
+//- 					//- BREADCRUMBS!
+//- 					.title
+//- 						.title__header
+//- 							each item,i in breadcrumbs
+//- 								if i == 0
+//- 									a(href=item.url).link
+//- 										i.icon.icon__home.icon_hover_on
+//- 									span.style_delimiter.style_gray /
+//- 								else if i == breadcrumbs.length-1
+//- 									span.style_size_l.style_bold= item.name
+//- 								else 
+//- 									a(href=item.url).link.style_solid.style_gray= item.name
+//- 									span.style_delimiter.style_gray /
+//- 				.grid.project__section.project__info
+//- 					.header__section
+//- 						span.style_gray #{sections.description}
+//- 					section.grid__cell.grid_size_3.project__description= task.description
+//- 					section.grid__cell.grid_size_5.project__dashboard
+//- 						+project-dashboard(task)
+//- 				section.project__section.project__list
+//- 					.header__section
+//- 						span.style_gray #{sections.list}
+//- 					+project-list(list)
+//- 				section.project__section.project__attach
+//- 					.header__section
+//- 						span.style_gray #{sections.attach}
+//- 						i.icon.icon__add.icon_padding_left.icon_hover_on
+//- 					+project-attach(attach)
+//- 				section.project__section.project__comments
+//- 					.header__section
+//- 						span.style_gray #{sections.comments}
+//- 					+project-comments(comments)
+//- 		section.tracker.grid__cell.grid_size_2
+//- 			+tracker(task)
