@@ -1,72 +1,42 @@
 .tasks {
     display: table;
     width: 100%;
-    &__item {
-        display: table-row;
-        box-sizing: border-box;
-        font-size: @font-xs;
-        border: none;
-        &:last-child {
-            .tasks__cell {
-                border-bottom: none;
-            }
-        }
+    box-sizing: border-box;
+    &__header {
+        display: table-header-group;
     }
-    &__cell {
-        display: table-cell;
-        padding: @padding-xs @padding-s;
-        box-sizing: border-box;
-        position: relative;
-        vertical-align: middle;
-        white-space: nowrap;
-        min-width: 40px;
-        border-bottom: 1px solid @darkwhite;
-        &:first-child {
-            padding-left: @block-padding-horizontal;
+    &__group {
+        display: table-row-group;
+        .task__groupheader ~ .task .task__cell:first-child {
+            padding-left: @block-padding-horizontal*2;
         }
-        &:last-child {
-            padding-right: 0;
-        }
-    }
-    &__dropdown {
-        display: inline-block;
-        padding-left: @padding-s;
     }
 }
 
 .task {
-    &__main {
-        width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 0;
+    display: table-row;
+    font-size: @font-xs;
+    &__groupheader {
+        user-select: none;
     }
-    &__menu {
-        padding-right: 20px;
-        &:hover {
-        	opacity: 1;
+    &:last-child .task__cell {
+        border-bottom: none;
+    }
+    &__cell {
+        &:first-child {
+            width: 100%;
+            padding-left: @block-padding-horizontal;
         }
-    }
-    &__title {
+        &:last-child {
+            padding-right: @block-padding-horizontal;
+        }
+        white-space: nowrap;
+        position: relative;
+        display: table-cell;
         vertical-align: middle;
-    }
-    &_align {
-        &_right {
-            text-align: right;
-            & + .tasks__cell {
-                padding-left: @padding-m;
-            }
-        }
-    }
-}
-
-.tasks-group {
-    .task__title {
-        padding-left: 10px;
-    }
-    &__item {
-        .task__title {
-            padding-left: @group-task-padding;
-        }
+        padding: @padding-xs @padding-s;
+        box-sizing: border-box;
+        min-width: 80px;
+        border-bottom: 1px solid @darkwhite;
     }
 }

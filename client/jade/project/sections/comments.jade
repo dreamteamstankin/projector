@@ -1,27 +1,26 @@
-//- mixin project-comments(comments)
-//- 	.comments
-//- 		.comments__list
-//- 			//- each comment in comments.messages
-//- 				.comments__item.comment
-//- 					.comment__message
-//- 						.comment__name= comment.name
-//- 						span.style_delimiter.style_gray –
-//- 						.comment__time= comment.time
-//- 						.comment__text= comment.text
-//- 						if comments.attaches
-//- 							.comment__attaches.attach
-//- 								.attach__list
-//- 									each attach in commetns.attaches
-//- 										case attach.type
-//- 											when 'img'
-//- 												a(href="#{attach.url}").attach__item
-//- 													img(src="#{attach.src}", alt="attach").attach__preview
-//- 					.comment__menu
-//- 						i.icon.icon__more
-//- 		form.comments__form
-//- 			.comments__input
-//- 				textarea(placeholder="Введите сообщение").input
-//- 			.comments__actions
-//- 				.comments__button.button Сказать
-//- 				.comments__button.button.button_no_padding
-//- 					i.icon.icon__attach.icon_size_s
+mixin project-comments(comments)
+	.comments
+		.comments__list
+			.comments__item.comment
+				.comment__message
+					.comment__name Антон
+					span.style_delimiter.style_gray –
+					.comment__time 15 мин назад
+					.comment__text Вот это да
+				.comment__menu
+					i.icon.icon__more
+		.comments__item.comment
+				.comment__message
+					.comment__name Таша
+					span.style_delimiter.style_gray –
+					.comment__time 25 мин назад
+					.comment__text Именно
+				.comment__menu
+					i.icon.icon__more
+		form.comments__form
+			.comments__input
+				textarea(placeholder="Введите сообщение").input
+			.comments__actions
+				.comments__button.button Сказать
+				.comments__button.button.button_no_padding
+					i.icon.icon__attach.icon_size_s

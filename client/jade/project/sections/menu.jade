@@ -1,8 +1,8 @@
-//- mixin project-menu(menu)
-//- 	.menu
-//- 		each item in menu
-//- 			if item.selected
-//- 				a(href="#{item.url}").menu__item.link.style_red= item.name
-//- 			else
-//- 				a(href="#{item.url}").menu__item.link.style_black= item.name
-//- 		.menu__item.style_float_right Настройки
+mixin project-menu(menu)
+	.menu
+		each item in menu
+			if item.selected
+				a(href="#{item.url}").menu__item.link.style_red= item.name
+			else
+				a(href="#{item.url}").menu__item.link.style_black= item.name
+		.menu__item.style_float_right Настройки

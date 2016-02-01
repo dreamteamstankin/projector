@@ -1,31 +1,20 @@
-//- mixin project-dashboard(project)
-//- 	.dashboard
-//- 		.dashboard__item
-//- 			.dashboard__title.style_gray Руководитель
-//- 			.dashboard__content
-//- 				a(href= project.user.url).link.style_bold= project.user.name
-//- 		.dashboard__item
-//- 			.dashboard__title.style_gray Прогресс
-//- 			.dashboard__content
-//- 				span.style_black.style_bold 37
-//- 				span.style_delimiter.style_gray /
-//- 				span.style_black.style_bold 64
-//- 		.dashboard__item
-//- 			.dashboard__title.style_gray Префикс
-//- 			.dashboard__content
-//- 				span.style_bold.style_black= project.name_id
-//- 		//- each section in dashboard
-//- 			.dashboard__item
-//- 				.dashboard__title.style_gray= section.title
-//- 				.dashboard__content
-//- 					case section.type
-//- 						when 'link'
-//- 							a(href= section.value.url).link.style_bold= section.value.name
-//- 						when 'nums'
-//- 							each link, i in section.values
-//- 								a(href= link.url, 
-//- 								  class="link style_bold style_" + link.color)= link.num
-//- 								if i != section.values.length-1
-//- 									span.style_delimiter.style_gray /
-//- 						when 'text'
-//- 							span(class="style_bold style_" + section.values.color)= section.values.name
+mixin project-dashboard(project)
+	.grid
+		section.grid__cell.grid_size_3
+			.dashboard__description= project.description
+		section.grid__cell.grid_size_5
+			.dashboard
+				.dashboard__item
+					.dashboard__title.style_gray Руководитель
+					.dashboard__content
+						a(href='#').link.style_bold Антон Ахатов
+				.dashboard__item
+					.dashboard__title.style_gray Прогресс
+					.dashboard__content
+						span.style_black.style_bold 37
+						span.style_delimiter.style_gray /
+						span.style_black.style_bold 64
+				.dashboard__item
+					.dashboard__title.style_gray Префикс
+					.dashboard__content 
+						.style_bold GIS

@@ -2,4 +2,3 @@ node_modules/
 .DS_Store
 client/bower/
 public/
-fake_node_modules/

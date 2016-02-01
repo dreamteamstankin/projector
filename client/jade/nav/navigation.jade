@@ -1,27 +1,16 @@
-//- mixin navigation(navigation)
-//- 	nav.navigation
-//- 		.wrap.navigation__container
-//- 			a(href="/").style_black.style_no_link.navigation__block.navigation__logo Projector
-//- 			.navigation__block.navigation__menu
-//- 				each item in navigation.menu
-//- 					if item.selected
-//- 						a(href="#{item.url}").link.style_red.navigation__item= item.name
-//- 					else
-//- 						a(href="#{item.url}").link.style_black.navigation__item= item.name
-//- 			.navigation__block 
-//- 				.dropdown.dropdown_on_hover
-//- 					.dropdown__button
-//- 						.navigation__create Создать
-//- 					.dropdown__context
-//- 						.dropdown__list
-//- 							.dropdown__item 1
-//- 			.navigation__block.navigation__userbar
-//- 				.dropdown.dropdown_on_hover 
-//- 					.dropdown__button
-//- 						.userbar
-//- 							.userbar__pic
-//- 								//img(src="navigation.user.pic", alt="#{navigation.user.name}")
-//- 							.userbar__name= navigation.user.name
-//- 					.dropdown__context
-//- 						.dropdown__list
-//- 							.dropdown__item 1
+mixin navigation(navigation)
+	nav.navigation
+		.wrap.navigation__container
+			a(href="/").style_black.style_no_link.navigation__block.navigation__logo Projector
+			.navigation__block.navigation__menu
+				each item in navigation.menu
+					if item.selected
+						a(href="#{item.url}").link.style_red.navigation__item= item.name
+					else
+						a(href="#{item.url}").link.style_black.navigation__item= item.name
+			.navigation__block 
+				.navigation__create Создать	
+			.navigation__block.navigation__userbar
+				.userbar
+					.userbar__pic
+					.userbar__name= navigation.user.name

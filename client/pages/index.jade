@@ -1,20 +1,38 @@
-doctype html
-head
-	meta(charset='utf-8')
-	title Привет
-	link(rel='stylesheet', href='css/style.css')
-body
-	h1 Ну вот
-	//- p We are using node <script>document.write(process.versions.node)</script>,
-	//- p Chrome <script>document.write(process.versions.chrome)</script>,
-	//- p and Electron <script>document.write(process.versions.electron)</script>.
+extends ../jade/common/layout.jade
+block content
+	-var project = { title: 'Задача', url: '#', level: 1, description: 'Цефеиды — класс пульсирующих переменных звёзд с довольно точной зависимостью период—светимость. '}
+	-var sections = { description: 'Описание', attach: 'Прикрепленные файлы', list: 'Связано', comments: 'Комментарии' }
+	-var menu = [{ name: 'Задачи', url: '#', selected: true }, { name: 'Время', url: '#' }, { name: 'Финансы', url: '#' }, { name: 'Отчеты', url: '#' }, { name: 'Документации', url: '#' }]
+	-var breadcrumbs = { title: [{ name: 'Релиз 2.1', url: '#' }, { name: 'Правки по верстке', url: '#' }, { name: 'Верстка радара' }] }
+	-var nav = { menu: [{ name: 'Проекты', url: '#', selected: true }, { name: 'Календарь', url: '#' }, { name: 'Финансы', url: '#' }, { name: 'Риски', url: '#' }, { name: 'Отчеты', url: '#' }, { name: 'Документация', url: '#' }], user: { pic: '/', name: 'Антон Ахатов', } }
+	+navigation(nav)
+	.grid.wrap
+		section.grid__cell.grid_size_6
+			h1.title.title__page
+				.title__header.style_size_l.style_bold
+					a(href= project.url).link.style_black= project.title
+			.project(class="#{project.level ? 'project_level_' + project.level : ''}")
+				section.project__section.project__menu
+					+project-menu(menu)
+				section.project__section.project__breadcrumbs
+					+project-breadcrumbs(breadcrumbs)
+				section.project__section.project__dashboard
+					+project-dashboard(project)
+				section.project__section.project__list
+					.header__section
+						span.style_gray #{sections.list}
+					+project-list(list)
+				section.project__section.project__attach
+					.header__section
+						span.style_gray #{sections.attach}
+						i.icon.icon__add.icon_padding_left.icon_hover_on
+					+project-attach(attach)
+				section.project__section.project__tasks
+					+project-tasks()
+				section.project__section.project__comments
+					.header__section
+						span.style_gray #{sections.comments}
+					+project-comments()
+		section.tracker.grid__cell.grid_size_2
+			+tracker(project.tasks)
 	section#react
-	script(src='js/main.js')
-
-//- include ../views/nav/navigation.jade
-//- include ../views/project/project.jade
-//- include ../views/tracker/tracker.jade
-//- extends ../views/common/layout.jade
-//- block content
-//- 	+navigation(navigation)
-//- 	

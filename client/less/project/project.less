@@ -13,18 +13,11 @@
     position: relative;
     box-sizing: border-box;
     box-shadow: @block-shadow;
-    overflow: hidden;
     &_level {
-        &_1 {
-            &:after {
-                content: ''
-            }
-        }
-        &_2 {
-            &:after,
-            &:before {
-                content: ''
-            }
+        &_1:after,
+        &_2:after,
+        &_2:before {
+            content: ''
         }
     }
     &:after,
@@ -47,7 +40,7 @@
         left: 11px;
     }
     &__section {
-        margin: @padding-s 0 @padding-l 0;
+        margin: @padding-l 0 @padding-l 0;
         padding: 0 @block-padding-horizontal;
         box-sizing: border-box;
         overflow: hidden;
@@ -55,9 +48,6 @@
         &:last-child {
             margin: 0;
         }
-    }
-    &__info {
-        margin-top: @padding-l;
     }
     &__comments {
         .header__section {
@@ -73,9 +63,5 @@
         box-shadow: @menu-shadow;
     }
     &__description {
-        font-size: @font-xs;
-        line-height: @font-xs * 1.5;
-        padding-right: @padding-l;
-        box-sizing: border-box;
     }
 }

@@ -19,8 +19,6 @@ cd projector && bower i && npm i
 ##### Run server
 ```bash
 mongod
-```
-```bash
 gulp server
 ```
 ##### Run client

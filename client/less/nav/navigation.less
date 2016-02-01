@@ -1,5 +1,4 @@
 .navigation {
-	width: 100%;
 	background-color: @nav;
 	&:after {
 		content: '';
@@ -9,6 +8,7 @@
 	&__container {
 		padding-left: @block-padding-horizontal + @wrap-padding-horizontal;
 		box-sizing: border-box;
+		background-color: @nav;
 	}
 	&__block {
 		display: inline-block;
@@ -43,6 +43,7 @@
 	}
 	&__userbar {
 		float: right;
+		padding-right: @block-padding-horizontal;
 	}
 }
 

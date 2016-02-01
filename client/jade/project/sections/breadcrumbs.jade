@@ -1,0 +1,8 @@
+mixin project-breadcrumbs(breadcrumbs)
+	.breadcrumbs
+		each item,i in breadcrumbs.title
+			if i == breadcrumbs.title.length-1
+				span.style_size_l.style_bold= item.name
+			else 
+				a(href=item.url).link.style_solid.style_gray= item.name
+				span.style_delimiter.style_gray /
