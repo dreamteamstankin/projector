@@ -15,12 +15,25 @@ block content
                         .tasks__title.tabs
                             .tabs__item.tabs__item_state_open.header_ui Добавить задачу
                             .tabs__item.header_ui Поиск
-                        .tasksearch
-                            input(placeholder='Название').input.tasksearch__input
-                            input(placeholder='Название').selects.tasksearch__select
-                            input(placeholder='Название').selects.tasksearch__select
-                            input(placeholder='Название').selects.tasksearch__select
-                            input(placeholder='Название').selects.tasksearch__select
+                        .tasksearch.grid
+                            input(placeholder='НАЗВАНИЕ').input.input_with_border.tasksearch__input
+                            .grid_flex_4.grid_padding_s
+                                .grid__cell
+                                    select.header_ui.select
+                                        option(selected, disabled) Автор
+                                        option 1
+                                .grid__cell
+                                    select.header_ui.select
+                                        option(selected, disabled) Тип
+                                        option Привет
+                                .grid__cell
+                                    select.header_ui.select
+                                        option(selected, disabled) С
+                                        option 1
+                                .grid__cell
+                                    select.header_ui.select
+                                        option(selected, disabled) По
+                                        option 1
                         .tasks__title.header_tag Верстка
                         table.tasks
                             tbody.tasks__body

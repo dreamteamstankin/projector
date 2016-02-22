@@ -1,27 +1,48 @@
 .grid {
+    box-sizing: border-box;
 	&:after {
 		content: '';
 		display: table;
 		clear: both;
 	}
+    &_padding_xs .grid__cell:not(:first-child):not(:last-child) {
+        padding: 0 @padding-xs;
+    }
+    &_padding_s .grid__cell:not(:first-child):not(:last-child) {
+        padding: 0 @padding-s;
+    }
+    &_padding_m .grid__cell:not(:first-child):not(:last-child) {
+        padding: 0 @padding-m;
+    }
+    &_padding_l .grid__cell:not(:first-child):not(:last-child) {
+        padding: 0 @padding-l;
+    }
+    &_padding_xl .grid__cell:not(:first-child):not(:last-child) {
+        padding: 0 @padding-xl;
+    }
 	&__cell{
 		float: left;
-		box-sizing: border-box;
+        box-sizing: border-box;
         &_align_right{
             float: right;
         }
 	}
 	.gridGenerator (@index) when (@index > 0) {
     	.grid__cell_size_@{index} {
-    		width: 100% / 8 * @index
+    		width: 100% / 8 * @index;
     	}
     	.grid_flex_@{index}>.grid__cell{
-			width: 100% / @index
+			width: 100% / @index;
     	}
+        &.grid_horizontal-list_@{index} .grid__cell {
+            &:nth-child(@{index}n + @{index}) {
+                padding-right: 0;
+            }
+            &:nth-child(@{index}n+@{index}+1) {
+                clear: left;
+            }
+        }
     	.gridGenerator(@index - 1);
 	}
 	.gridGenerator(8);
-
-    // делать горизонтальный вертикальный список
-    // делать кастомный делимитер
 }

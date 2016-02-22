@@ -1,17 +1,40 @@
 .input {
 	width: 100%;
 	display: block;
-    border: none;
+    border: 1px solid transparent;
     border-bottom: 1px solid @lightgray;
 	outline: none;
 	appearance: none;
 	padding: @padding-s 0;
 	font: @font-root;
 	line-height: 20px;
+    border-radius: 0;
 	transition: border .1s;
+    box-sizing: border-box;
+    &_with_border {
+        border-radius: @border-radius/2;
+        font-size: @font-s;
+        letter-spacing: .5px;
+        padding: @padding-xs;
+        line-height: 1;
+        border: 1px solid @lightgray;
+    }
 	&:focus {
 		border-color: @orange;
 	}
+}
+
+.select {
+    width: 100%;
+    display: block;
+    outline: none;
+    appearance: none;
+    padding: @padding-xs;
+    margin: 0;
+    background: none;
+    border-radius: @border-radius/2;
+    box-sizing: border-box;
+    border: 1px solid @lightgray;
 }
 
 .textarea {
