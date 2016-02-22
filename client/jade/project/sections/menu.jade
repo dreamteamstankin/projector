@@ -2,7 +2,7 @@ mixin project-menu(menu)
     .menu
         a(href="#").menu__item.link.style_black
             i.icon.icon__home.icon_hover_on
-        a(href="/projects.html").menu__item.menu__header.link.style_black Проекты
+        a(href="projects.html").menu__item.menu__header.link.style_black Проекты
         each item in menu
             if item.selected
                 a(href="#{item.url}").menu__item.link.active= item.name
