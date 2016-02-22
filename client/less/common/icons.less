@@ -38,6 +38,9 @@
 			.icon-render(@green, '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill: {{{icon-color}}}"><path d="M 19.28125 5.28125 L 9 15.5625 L 4.71875 11.28125 L 3.28125 12.71875 L 8.28125 17.71875 L 9 18.40625 L 9.71875 17.71875 L 20.71875 6.71875 L 19.28125 5.28125 z"/></svg>');
 		}
 	}
+    &__enter {
+        .icon-render(@gray, '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 11" ><path fill="{{{icon-color}}}" d="M8 7V0h1v7H8zM7 8V7h1v1H7zM3 9v2H2v-1H1L.948 9H0V8h1.015L1 7h1V6h1v2h4v1H3z"/></svg>');
+    }
 	&__cross {
 		.icon-render(@gray, '<svg xmlns="http://www.w3.org/2000/svg" fill="{{{icon-color}}}" viewBox="0 0 50 50"><path d="M7.72 6.28L6.28 7.72 23.563 25 6.282 42.28l1.437 1.44L25 26.437l17.28 17.28 1.44-1.437L26.437 25l17.28-17.28-1.437-1.44L25 23.563 7.72 6.282z"/></svg>');
 		&.icon_color_red{
@@ -59,18 +62,34 @@
 			transform: rotate(180deg);
 		}
 	}
+    &_align {
+        &_vertical {
+            position: absolute;
+            top: 50%;
+            margin-top: -8px;
+        }
+    }
 	&_size {
 		&_xs{
 			width: 10px;
 			height: 10px;
+            &.icon_align_vertical{
+                margin-top: -5px;
+            }
 		}
 		&_s{
 			width: 14px;
 			height: 14px;
+            &.icon_align_vertical{
+                margin-top: -7px;
+            }
 		}
 		&_l{
 			width: 20px;
 			height: 20px;
+            &.icon_align_vertical{
+                margin-top: -10px;
+            }
 		}
 	}
 	&_hover {

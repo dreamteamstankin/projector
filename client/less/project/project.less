@@ -6,31 +6,29 @@
 .project {
     background-color: #fff;
     border-radius: @border-radius;
-    padding-bottom: @padding-l;
-    box-shadow: 0 0 70px 0 rgba(0, 0, 0, .1);
     margin: @block-padding-vertical auto @block-padding-vertical*3;
     border: 1px solid @lightgray;
     position: relative;
     box-sizing: border-box;
     box-shadow: @block-shadow;
-    &_level {
-        &_1:after,
-        &_2:after,
-        &_2:before {
-            content: ''
-        }
-    }
-    &:after,
-    &:before {
-        position: absolute;
-        background-color: @white;
-        border: 1px solid @lightgray;
-        box-sizing: border-box;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        border-radius: @border-radius;
-    }
+    //&_level {
+    //    &_1:after,
+    //    &_2:after,
+    //    &_2:before {
+    //        content: ''
+    //    }
+    //}
+    //&:after,
+    //&:before {
+    //    position: absolute;
+    //    background-color: @white;
+    //    border: 1px solid @lightgray;
+    //    box-sizing: border-box;
+    //    width: 100%;
+    //    height: 100%;
+    //    z-index: -1;
+    //    border-radius: @border-radius;
+    //}
     &:after {
         top: -6px;
         left: 6px;
@@ -58,5 +56,11 @@
     &__comments,
     &__tasks {
         padding: 0;
+    }
+    &__actions {
+        //border-top: 1px solid @border-color;
+        padding-top: @padding-xl;
+        padding-bottom: @padding-s;
+        margin: 0;
     }
 }

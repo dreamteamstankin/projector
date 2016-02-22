@@ -2,14 +2,11 @@
     width: 100%;
     box-sizing: border-box;
     border-spacing: 0;
-    &__header {
-        text-align: left;
-    }
 }
 
 .task {
     &.open .task__cell{
-        box-shadow: 0 -10px 40px 0 #F1F1F1;
+        box-shadow: 0 -10px @opentask-shadow-type;
         border: none;
     }
     &:last-child .task__cell {
@@ -25,10 +22,10 @@
         }
         white-space: nowrap;
         position: relative;
-        padding: @padding-xs @padding-s;
+        padding: @padding-s @padding-s;
         box-sizing: border-box;
         min-width: 80px;
-        border-bottom: 1px solid @darkwhite;
+        border-top: 1px solid @darkwhite;
     }
     &__tag {
         margin: 0 @padding-s;
@@ -36,28 +33,22 @@
             margin-left: 0;
         }
     }
-    &__icon {
-        position: absolute;
-        left: -4px;
-        top: 50%;
-        margin-top: -6px;
+    &__description {
+        font-size:@font-xs;
+        padding-right: @padding-l;
+    }
+    &__time {
+        font-size: @font-xs;
     }
 }
 .opentask {
     &__wrap {
-        box-shadow: 0 10px 40px 0 #F1F1F1;
-        padding: 0 @block-padding-horizontal @padding-l;
+        border-top: 1px solid @border-color;
+        box-shadow: 0 10px @opentask-shadow-type;
+        padding: @padding-m @block-padding-horizontal @padding-l;
     }
     &__title {
-        padding-top: @padding-s;
-    }
-}
-
-li{
-    display: inline-block;
-    &:not(:last-child):after {
-        content: '→';
-        padding: 0 10px;
+        padding-top: @padding-m;
     }
 }
 
@@ -73,8 +64,31 @@ li{
             padding: 0 @padding-s;
         }
     }
-    &__action {
+    &__actions {
         display: inline-block;
+        padding: 1px;
+        background-position: 0 0, 0 100%;
+        background-repeat: no-repeat;
+        background-image: linear-gradient(to right, @green 0%, @red 100%),linear-gradient(to right, @green 0%, @red 100%);
+        border-radius: @border-radius+1;
+        margin-left: @padding-m;
+        position: relative;
+        top: -2px;
+        .button {
+            border: none;
+            width: 25px;
+            &:first-child {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                padding-right: @padding-s + 1;
+            }
+            &:last-child {
+                margin-left: -3px;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                border-right-width: 1px;
+            }
+        }
     }
 }
 .tasksection {
@@ -97,5 +111,17 @@ li{
     &__text {
         padding-left: @padding-xs;
         overflow: hidden;
+    }
+    &__add {
+        position: relative;
+        width: 250px;
+        margin-left: @block-padding-horizontal;
+    }
+    &__input {
+        padding-left: 3px;
+        padding-right: @padding-xl;
+    }
+    &__enter {
+        right: -@padding-xl;
     }
 }

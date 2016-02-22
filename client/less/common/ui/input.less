@@ -1,19 +1,35 @@
 .input {
 	width: 100%;
 	display: block;
-	min-height: 80px;
-	border-radius: @border-radius;
-	border-color: @border-color;
-	background-color: @lightwhite;
+    border: none;
+    border-bottom: 1px solid @lightgray;
 	outline: none;
 	appearance: none;
-	padding: @padding-s;
-	box-sizing: border-box;
-	font-size: @font-s;
-	font-family: @font-light;
-	line-height: 18px;
+	padding: @padding-s 0;
+	font: @font-root;
+	line-height: 20px;
 	transition: border .1s;
 	&:focus {
-		border-color: @lightgray;
+		border-color: @gray;
 	}
+}
+
+.textarea {
+    width: 100%;
+    display: block;
+    min-height: 80px;
+    border-radius: @border-radius;
+    border-color: @border-color;
+    background-color: @lightwhite;
+    outline: none;
+    appearance: none;
+    padding: @padding-s;
+    box-sizing: border-box;
+    font-size: @font-s;
+    font-family: @font-light;
+    line-height: 18px;
+    transition: border .1s;
+    &:focus {
+        border-color: @lightgray;
+    }
 }

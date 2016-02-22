@@ -45,27 +45,4 @@
             }
         }
     }
-    &_group {
-        padding: 1px;
-        background-position: 0 0, 0 100%;
-        background-repeat: no-repeat;
-        background-image: linear-gradient(to right, @green 0%, @red 100%),linear-gradient(to right, @green 0%, @red 100%);
-        border-radius: @border-radius+1;
-        margin-left: 10px;
-        .button {
-            border: none;
-            width: 25px;
-            &:first-child {
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
-                padding-right: @padding-s + 1;
-            }
-            &:last-child {
-                margin-left: -3px;
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-                border-right-width: 1px;
-            }
-        }
-    }
 }
