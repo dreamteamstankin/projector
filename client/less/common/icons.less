@@ -34,10 +34,19 @@
 	}
 	&__done {
 		.icon-render(@gray, '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill: {{{icon-color}}}"><path d="M 19.28125 5.28125 L 9 15.5625 L 4.71875 11.28125 L 3.28125 12.71875 L 8.28125 17.71875 L 9 18.40625 L 9.71875 17.71875 L 20.71875 6.71875 L 19.28125 5.28125 z"/></svg>');
+		&.icon_color_green{
+			.icon-render(@green, '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill: {{{icon-color}}}"><path d="M 19.28125 5.28125 L 9 15.5625 L 4.71875 11.28125 L 3.28125 12.71875 L 8.28125 17.71875 L 9 18.40625 L 9.71875 17.71875 L 20.71875 6.71875 L 19.28125 5.28125 z"/></svg>');
+		}
+	}
+	&__cross {
+		.icon-render(@gray, '<svg xmlns="http://www.w3.org/2000/svg" fill="{{{icon-color}}}" viewBox="0 0 50 50"><path d="M7.72 6.28L6.28 7.72 23.563 25 6.282 42.28l1.437 1.44L25 26.437l17.28 17.28 1.44-1.437L26.437 25l17.28-17.28-1.437-1.44L25 23.563 7.72 6.282z"/></svg>');
+		&.icon_color_red{
+			.icon-render(@red, '<svg xmlns="http://www.w3.org/2000/svg" fill="{{{icon-color}}}" viewBox="0 0 50 50"><path d="M7.72 6.28L6.28 7.72 23.563 25 6.282 42.28l1.437 1.44L25 26.437l17.28 17.28 1.44-1.437L26.437 25l17.28-17.28-1.437-1.44L25 23.563 7.72 6.282z"/></svg>');
+		}
 	}
 	&__home {
 		@code: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="{{{icon-color}}}" d="M20 20v-8h2L12 3 2 12h2v8c0 .6.4 1 1 1h5v-7h4v7h5c.6 0 1-.4 1-1z"/></svg>';
-		.icon-render(@gray, @code);
+		.icon-render(@black, @code);
 		&.icon_hover_on:hover {
 			.icon-render(@red, @code);
 		}

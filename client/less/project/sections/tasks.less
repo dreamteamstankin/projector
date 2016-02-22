@@ -1,23 +1,16 @@
 .tasks {
-    display: table;
     width: 100%;
     box-sizing: border-box;
+    border-spacing: 0;
     &__header {
-        display: table-header-group;
-    }
-    &__group {
-        display: table-row-group;
-        .task__groupheader ~ .task .task__cell:first-child {
-            padding-left: @block-padding-horizontal*2;
-        }
+        text-align: left;
     }
 }
 
 .task {
-    display: table-row;
-    font-size: @font-xs;
-    &__groupheader {
-        user-select: none;
+    &.open .task__cell{
+        box-shadow: 0 -10px 40px 0 #F1F1F1;
+        border: none;
     }
     &:last-child .task__cell {
         border-bottom: none;
@@ -32,11 +25,77 @@
         }
         white-space: nowrap;
         position: relative;
-        display: table-cell;
-        vertical-align: middle;
         padding: @padding-xs @padding-s;
         box-sizing: border-box;
         min-width: 80px;
         border-bottom: 1px solid @darkwhite;
+    }
+    &__tag {
+        margin: 0 @padding-s;
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+    &__icon {
+        position: absolute;
+        left: -4px;
+        top: 50%;
+        margin-top: -6px;
+    }
+}
+.opentask {
+    &__wrap {
+        box-shadow: 0 10px 40px 0 #F1F1F1;
+        padding: 0 @block-padding-horizontal @padding-l;
+    }
+    &__title {
+        padding-top: @padding-s;
+    }
+}
+
+li{
+    display: inline-block;
+    &:not(:last-child):after {
+        content: '→';
+        padding: 0 10px;
+    }
+}
+
+.tasksteps {
+    padding-right: @padding-xl;
+    &__list {
+        padding: @padding-s 0;
+    }
+    &__item {
+        display: inline-block;
+        &:not(:last-child):after {
+            content: '→';
+            padding: 0 @padding-s;
+        }
+    }
+    &__action {
+        display: inline-block;
+    }
+}
+.tasksection {
+    &__list {
+        padding-top: @padding-xs;
+        &:after{
+            content: '';
+            display: table;
+            clear: both;
+        }
+    }
+    &__item {
+        display: block;
+        line-height: 20px;
+        padding: @padding-xs 0;
+    }
+    &__checkbox {
+        float: left;
+    }
+    &__text {
+        padding-left: @padding-xs;
+        overflow: hidden;
     }
 }

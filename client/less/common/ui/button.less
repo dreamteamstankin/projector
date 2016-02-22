@@ -1,15 +1,13 @@
 .button {
     display: inline-block;
-    border-radius: @border-radius-rounded;
+    border-radius: @border-radius;
     border-width: 1px;
     border-style: solid;
     border-color: @lightgray;
     color: @darkgray;
     font-size: @font-xs;
-    padding: 0 @padding-l;
+    padding: 0 @padding-s;
     background-color: @white;
-    b height: 25px;
-    line-height: 25px;
     text-align: center;
     user-select: none;
     cursor: pointer;
@@ -31,15 +29,11 @@
         }
         &_padding {
             padding: 0;
-            width: 25px;
-        }
-        &_hover {
-            background-color: @white;
         }
     }
     &_hover {
         &_icon {
-        	cursor: pointer;
+            cursor: pointer;
             .icon {
                 opacity: .6;
             }
@@ -48,6 +42,29 @@
                 .icon {
                     opacity: 1;
                 }
+            }
+        }
+    }
+    &_group {
+        padding: 1px;
+        background-position: 0 0, 0 100%;
+        background-repeat: no-repeat;
+        background-image: linear-gradient(to right, @green 0%, @red 100%),linear-gradient(to right, @green 0%, @red 100%);
+        border-radius: @border-radius+1;
+        margin-left: 10px;
+        .button {
+            border: none;
+            width: 25px;
+            &:first-child {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                padding-right: @padding-s + 1;
+            }
+            &:last-child {
+                margin-left: -3px;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                border-right-width: 1px;
             }
         }
     }

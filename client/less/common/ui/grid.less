@@ -8,13 +8,19 @@
 		float: left;
 		box-sizing: border-box;
 	}
-	
+	.gridGenerator (@index) when (@index > 0) {
+    	.grid_size_@{index} {
+    		width: 100% / 8 * @index
+    	}
+    	.grid_flex_@{index}>.grid__cell{
+			width: 100% / @index
+    	}
+    	.gridGenerator(@index - 1);
+	}
 	.gridGenerator(8);
-	
-	&_align {
-		&_right {
-			text-align: right;
-		}
+
+	&__line {
+		// делать горизонтальный вертикальный список
+		// делать кастомный делимитер
 	}
 }
-

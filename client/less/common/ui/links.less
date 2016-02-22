@@ -22,6 +22,10 @@
 		color: @black;
 		border-color: fade(@black, 20%);
 	}
+	&_lightblack {
+		color: @lightblack;
+		border-color: fade(@lightblack, 20%);
+	}
 	&_brown {
 		color: @brown;
 		border-color: fade(@brown, 20%);
@@ -92,10 +96,10 @@
 	}
 	&_align {
 		&_left {
-			align: left;
+			text-align: left;
 		}
 		&_right {
-			align: right;
+			text-align: right;
 		}
 	}
 	&_no {
@@ -113,9 +117,6 @@
 				border-color: inherit;
 			}
 		}
-	}
-	&_upper {
-		text-transform: uppercase;
 	}
 	&_delimiter {
 		padding: 0 7px;

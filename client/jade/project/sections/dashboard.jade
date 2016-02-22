@@ -5,16 +5,17 @@ mixin project-dashboard(project)
 		section.grid__cell.grid_size_5
 			.dashboard
 				.dashboard__item
-					.dashboard__title.style_gray Руководитель
-					.dashboard__content
-						a(href='#').link.style_bold Антон Ахатов
+					.header_title.style_gray Старт
+					.dashboard__content 11 авг
 				.dashboard__item
-					.dashboard__title.style_gray Прогресс
+					.header_title.style_gray Сегодня
+					.dashboard__content 13 авг
+				.dashboard__item
+					.header_title.style_gray Релиз
+					.dashboard__content.style_red 15 авг
+				.dashboard__item
+					.header_title.style_gray Прогресс
 					.dashboard__content
-						span.style_black.style_bold 37
+						span.style_black 1
 						span.style_delimiter.style_gray /
-						span.style_black.style_bold 64
-				.dashboard__item
-					.dashboard__title.style_gray Префикс
-					.dashboard__content 
-						.style_bold GIS
+						span.style_black 7

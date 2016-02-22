@@ -1,16 +1,25 @@
 .menu {
     padding: 0 @block-padding-horizontal;
     line-height: @project-menu-height;
+    border-bottom: 1px solid @darkwhite;
     &__item {
         padding: 0 @padding-s;
         text-decoration: none;
         display: inline-block;
         cursor: pointer;
+        &.active {
+            color: @orange;
+            box-shadow: 0 1px 0 0 @orange;
+        }
         &:first-child {
             padding-left: 0;
         }
         &:last-child {
             padding-right: 0;
         }
+    }
+    &__header {
+        font-size: @font-xl;
+        font-family: @font-light;
     }
 }

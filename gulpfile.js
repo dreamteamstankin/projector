@@ -31,7 +31,7 @@ var config = {
     from: {
         less: "./client/less/*.less",
         allless: "./client/less/**/*.less",
-        js: "./client/js/**/*.js",
+        js: ["./client/js/**/*.js"],
         img: "./client/img/**/*",
         jade: "./client/pages/**/*.jade",
         alljade: ["./client/pages/**/*.jade", "./client/jade/**/*.jade"]
@@ -50,7 +50,7 @@ gulp.task('client', ['jade', 'less', 'js', 'images', 'client-sync'], function() 
     gulp.watch(config.from.allless, ['less']);
     gulp.watch(config.from.js, ['js']);
     gulp.watch(config.from.img, ['images']);
-    return shell.task(['electron .'])()
+    // return shell.task(['electron .'])()
 });
 
 gulp
@@ -67,7 +67,7 @@ gulp
     })
     .task('client-sync', function() {
         browserSync.init(null, {
-            open: false,
+            // open: false,
             notify: false,
             server: config.client.server,
             files: config.client.files,
@@ -106,12 +106,6 @@ gulp
     })
     .task('js', function() {
         gulp.src(config.from.js)
-            .pipe(
-                browserify({
-                    transform: 'reactify',
-                    debug: !gulp.env.production
-                })
-            )
             .pipe(concat('main.js'))
             .pipe(uglify())
             .pipe(gulp.dest(config.to.js))
