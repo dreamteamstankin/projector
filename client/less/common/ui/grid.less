@@ -1,48 +1,52 @@
-.grid {
-    box-sizing: border-box;
-	&:after {
-		content: '';
-		display: table;
-		clear: both;
-	}
-    &_padding_xs .grid__cell:not(:first-child):not(:last-child) {
-        padding: 0 @padding-xs;
-    }
-    &_padding_s .grid__cell:not(:first-child):not(:last-child) {
-        padding: 0 @padding-s;
-    }
-    &_padding_m .grid__cell:not(:first-child):not(:last-child) {
-        padding: 0 @padding-m;
-    }
-    &_padding_l .grid__cell:not(:first-child):not(:last-child) {
-        padding: 0 @padding-l;
-    }
-    &_padding_xl .grid__cell:not(:first-child):not(:last-child) {
-        padding: 0 @padding-xl;
-    }
-	&__cell{
-		float: left;
+.make-grid (@prefix, @columns) {
+    .@{prefix} {
         box-sizing: border-box;
-        &_align_right{
-            float: right;
+        &:after {
+            content: '';
+            display: table;
+            clear: both;
         }
-	}
-	.gridGenerator (@index) when (@index > 0) {
-    	.grid__cell_size_@{index} {
-    		width: 100% / 8 * @index;
-    	}
-    	.grid_flex_@{index}>.grid__cell{
-			width: 100% / @index;
-    	}
-        &.grid_horizontal-list_@{index} .grid__cell {
-            &:nth-child(@{index}n + @{index}) {
-                padding-right: 0;
-            }
-            &:nth-child(@{index}n+@{index}+1) {
-                clear: left;
+        &_padding_xs @{prefix}__cell:not(:first-child):not(:last-child) {
+            padding: 0 @padding-xs;
+        }
+        &_padding_s @{prefix}__cell:not(:first-child):not(:last-child) {
+            padding: 0 @padding-s;
+        }
+        &_padding_m @{prefix}__cell:not(:first-child):not(:last-child) {
+            padding: 0 @padding-m;
+        }
+        &_padding_l @{prefix}__cell:not(:first-child):not(:last-child) {
+            padding: 0 @padding-l;
+        }
+        &_padding_xl @{prefix}__cell:not(:first-child):not(:last-child) {
+            padding: 0 @padding-xl;
+        }
+        &__cell {
+            float: left;
+            box-sizing: border-box;
+            &_align_right {
+                float: right;
             }
         }
-    	.gridGenerator(@index - 1);
-	}
-	.gridGenerator(8);
+        .gridGenerator (@index) when (@index > 0) {
+            .@{prefix}__cell_size_@{index} {
+                width: 100% / 8 * @index;
+            }
+            .@{prefix}_flex_@{index} > .@{prefix}__cell {
+                width: 100% / @index;
+            }
+            //&.@{prefix}_horizontal-list_@{index} .@{prefix}__cell {
+            //    &:nth-child(@{index}n + @{index}) {
+            //        padding-right: 0;
+            //    }
+            //    &:nth-child(@{index}n+@{index}+1) {
+            //        clear: left;
+            //    }
+            //}
+            .gridGenerator(@index - 1);
+        }
+        .gridGenerator(@columns);
+    }
 }
+@classname: grid;
+.make-grid (@classname, 8);
