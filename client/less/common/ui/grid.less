@@ -12,7 +12,7 @@
         }
 	}
 	.gridGenerator (@index) when (@index > 0) {
-    	.grid_size_@{index} {
+    	.grid__cell_size_@{index} {
     		width: 100% / 8 * @index
     	}
     	.grid_flex_@{index}>.grid__cell{
@@ -22,8 +22,6 @@
 	}
 	.gridGenerator(8);
 
-	&__line {
-		// делать горизонтальный вертикальный список
-		// делать кастомный делимитер
-	}
+    // делать горизонтальный вертикальный список
+    // делать кастомный делимитер
 }

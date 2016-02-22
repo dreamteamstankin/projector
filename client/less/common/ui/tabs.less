@@ -1,7 +1,18 @@
-.tabs {}
+.tabs {
+    &__item{
+        display: inline-block;
+        color: @blue;
+        cursor: pointer;
+        &:hover {
+            color: @black;
+        }
+        &_state_open {
+            color: @black;
+            cursor: default;
+        }
+        &:not(:last-child) {
+            padding-right: @padding-m;
+        }
+    }
 
-.tab {
-    text-transform: uppercase;
-    font-size: @font-xxs;
-    margin: @padding-xs 0;
 }

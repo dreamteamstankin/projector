@@ -2,30 +2,63 @@
     width: 100%;
     box-sizing: border-box;
     border-spacing: 0;
+    &__title {
+        padding: @padding-s @block-padding-horizontal @padding-s;
+    }
+    &:last-child {
+        padding-bottom: @padding-s;
+    }
+}
+
+.grouptask {
+    &.grouptask_no_padding .task:not(.grouptask__header) .task__cell:first-child {
+        padding-left: @block-padding-horizontal;
+    }
+    &.grouptask_active_true .grouptask__header .task__cell {
+        background-color: transparent;
+    }
+    &__header {
+        .task__cell {
+            background-color: @lightwhite;
+            cursor: pointer;
+            &:hover {
+                background-color: darken(@lightwhite, 3%);
+            }
+        }
+    }
+    .task:not(.grouptask__header) .task__cell:first-child {
+        padding-left: @block-padding-horizontal*2;
+    }
 }
 
 .task {
-    &.open .task__cell{
+    &.open .task__cell {
         box-shadow: 0 -10px @opentask-shadow-type;
         border: none;
+        & + .opentask {
+            display: block;
+        }
     }
     &:last-child .task__cell {
         border-bottom: none;
     }
     &__cell {
-        &:first-child {
+        white-space: nowrap;
+        position: relative;
+        padding: @padding-xs @padding-s;
+        box-sizing: border-box;
+        min-width: 80px;
+        border-top: 1px solid @darkwhite;
+        transition: background .2s;
+        &_type_main {
             width: 100%;
+        }
+        &:first-child {
             padding-left: @block-padding-horizontal;
         }
         &:last-child {
             padding-right: @block-padding-horizontal;
         }
-        white-space: nowrap;
-        position: relative;
-        padding: @padding-s @padding-s;
-        box-sizing: border-box;
-        min-width: 80px;
-        border-top: 1px solid @darkwhite;
     }
     &__tag {
         margin: 0 @padding-s;
@@ -34,13 +67,14 @@
         }
     }
     &__description {
-        font-size:@font-xs;
+        font-size: @font-xs;
         padding-right: @padding-l;
     }
     &__time {
         font-size: @font-xs;
     }
 }
+
 .opentask {
     &__wrap {
         border-top: 1px solid @border-color;
@@ -69,7 +103,7 @@
         padding: 1px;
         background-position: 0 0, 0 100%;
         background-repeat: no-repeat;
-        background-image: linear-gradient(to right, @green 0%, @red 100%),linear-gradient(to right, @green 0%, @red 100%);
+        background-image: linear-gradient(to right, @green 0%, @red 100%), linear-gradient(to right, @green 0%, @red 100%);
         border-radius: @border-radius+1;
         margin-left: @padding-m;
         position: relative;
@@ -91,10 +125,11 @@
         }
     }
 }
+
 .tasksection {
     &__list {
         padding-top: @padding-xs;
-        &:after{
+        &:after {
             content: '';
             display: table;
             clear: both;
@@ -111,6 +146,7 @@
     &__text {
         padding-left: @padding-xs;
         overflow: hidden;
+        max-width: 400px;
     }
     &__add {
         position: relative;

@@ -4,7 +4,7 @@ block content
     -var sections = { description: 'Описание', attach: 'Прикрепленные файлы', list: 'Связано', comments: 'Комментарии' }
     -var breadcrumbs = { title: [{ name: 'Погодный сайт', url: '/projects.html' }, { name: 'Релиз 1.0'}] }
     .grid.wrap
-        section.grid__cell.grid_size_8
+        section.grid__cell.grid__cell_size_8
             .project
                 section.project__section.project__menu
                     +project-menu(menu)
@@ -12,9 +12,9 @@ block content
                     +project-breadcrumbs(breadcrumbs)
                 section.project__section.project__dashboard
                     .grid
-                        section.grid__cell.grid_size_3
+                        section.grid__cell.grid__cell_size_3
                             .dashboard__description= project.description
-                        section.grid__cell.grid_size_5
+                        section.grid__cell.grid__cell_size_5
                             .dashboard
                                 .dashboard__item
                                     .header_title.style_gray Старт
@@ -36,13 +36,13 @@ block content
                         span.style_black Задача
                             i.icon.icon__add.icon_padding_left.icon_hover_on
                     .grid__cell.grid__cell_align_right
-                        span.style_black Без сортировки
-                            i.icon.icon__chevron.icon_rotate_180.icon_size_xs.icon_padding_left.icon_hover_on
+                        span.style_black Сортировка и поиск
+                            i.icon.icon__chevron.icon_rotate_180.icon_size_xs.icon_padding_left
                 section.project__section.project__tasks
                     table.tasks
-                        tbody
+                        tbody.tasks__body
                             tr.task
-                                td.task__cell
+                                td.task__cell.task__cell_type_main
                                     .task__tags
                                         a(href="#").link.header_tag.style_gray.task__tag Программирование
                                         a(href="#").link.header_tag.style_gray.task__tag GIS-57
@@ -52,7 +52,7 @@ block content
                                         .header_tag Взять
                                 td.task__cell.task__time 23 мин
                             tr.task
-                                td.task__cell
+                                td.task__cell.task__cell_type_main
                                     .task__tags
                                         a(href="#").link.header_tag.style_gray.task__tag Дизайн
                                         a(href="#").link.header_tag.style_gray.task__tag GIS-311
@@ -61,7 +61,6 @@ block content
                                     .label.label_type_progress
                                         .header_tag 10 / 11
                                 td.task__cell.task__time 1 д 2 часа
-                        tbody.tasks__group
                             tr.task.open
                                 td.task__cell
                                     .task__tags
@@ -90,7 +89,7 @@ block content
                                             .tasksteps__item.header_ui.style_gray Дизайн-ревью
                                             .tasksteps__item.header_ui.style_gray Согласование
                                     .grid
-                                        .grid__cell.grid_size_5
+                                        .grid__cell.grid__cell_size_5
                                             .opentask__section.tasksection
                                                 .opentask__title.header_section Задачи (0 / 4)
                                                 .tasksection__list
@@ -98,6 +97,7 @@ block content
                                                         .tasksection__checkbox
                                                             input(type="checkbox")
                                                         .tasksection__text Звезда – серая, когда нажата
+                                                            .style_gray Ахатов
                                                     label.tasksection__item
                                                         .tasksection__checkbox
                                                             input(type="checkbox")
@@ -113,7 +113,7 @@ block content
                                                 .tasksection__add
                                                     input(placeholder="Добавить новую задачу").input.tasksection__input
                                                     i.icon.icon__enter.icon_align_vertical.tasksection__enter
-                                        .grid__cell.grid_size_3
+                                        .grid__cell.grid__cell_size_3
                                             .opentask__section
                                                 .opentask__title.header_section Описание
                                                 .opentask__text Нужно сверстать под все браузере страницу геометрического виджета для сайта планетария
@@ -133,9 +133,8 @@ block content
                                             .opentask__section
                                                 .opentask__title.header_section Файлы
                                                 +project-attach(attach)
-                        tbody
                             tr.task
-                                td.task__cell
+                                td.task__cell.task__cell_type_main
                                     .task__tags
                                         a(href="#").link.header_tag.style_gray.task__tag Программирование
                                         a(href="#").link.header_tag.style_gray.task__tag GIS-57
@@ -145,7 +144,7 @@ block content
                                         .header_tag Взять
                                 td.task__cell.task__time 23 мин
                             tr.task
-                                td.task__cell
+                                td.task__cell.task__cell_type_main
                                     .task__tags
                                         a(href="#").link.header_tag.style_gray.task__tag Дизайн
                                         a(href="#").link.header_tag.style_gray.task__tag GIS-311
@@ -155,7 +154,7 @@ block content
                                         .header_tag Ревью
                                 td.task__cell.task__time.style_red 2 д 4 часа
                             tr.task
-                                td.task__cell
+                                td.task__cell.task__cell_type_main
                                     .task__tags
                                         a(href="#").link.header_tag.style_gray.task__tag Верстка
                                         a(href="#").link.header_tag.style_gray.task__tag GIS-180

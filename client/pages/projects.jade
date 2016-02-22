@@ -4,7 +4,7 @@ block content
     -var sections = { description: 'Описание', attach: 'Прикрепленные файлы', list: 'Связано', comments: 'Комментарии' }
     -var breadcrumbs = { title: [{ name: 'Погодный сайт', url: '#' }] }
     .grid.wrap
-        section.grid__cell.grid_size_8
+        section.grid__cell.grid__cell_size_8
             .project
                 section.project__section.project__menu
                     +project-menu(menu)
@@ -12,9 +12,9 @@ block content
                     +project-breadcrumbs(breadcrumbs)
                 section.project__section.project__dashboard
                     .grid
-                        section.grid__cell.grid_size_3
+                        section.grid__cell.grid__cell_size_3
                             .dashboard__description= project.description
-                        section.grid__cell.grid_size_5
+                        section.grid__cell.grid__cell_size_5
                             .dashboard
                                 .dashboard__item
                                     .header_title.style_gray Проект
@@ -33,13 +33,13 @@ block content
                         span.style_black Задача
                             i.icon.icon__add.icon_padding_left.icon_hover_on
                     .grid__cell.grid__cell_align_right
-                        span.style_black Без сортировки
+                        span.style_black Сортировка и поиск
                             i.icon.icon__chevron.icon_rotate_180.icon_size_xs.icon_padding_left
                 section.project__section.project__tasks
                     table.tasks
-                        tbody
+                        tbody.tasks__body
                             tr.task
-                                td.task__cell
+                                td.task__cell.task__cell_type_main
                                     .task__tags
                                         .header_tag.style_gray.task__tag 18 ноя
                                     .task__text Релиз 1.3
@@ -48,7 +48,7 @@ block content
                                     .link.style_solid.task__label.label.label_type_open
                                         .header_tag Взять в работу
                             tr.task
-                                td.task__cell
+                                td.task__cell.task__cell_type_main
                                     .task__tags
                                         .header_tag.style_gray.task__tag 4 ноя
                                     .task__text Релиз 1.2
@@ -59,7 +59,7 @@ block content
                                     .label.label_type_progress
                                         .header_tag 42 / 73
                             tr.task
-                                td.task__cell
+                                td.task__cell.task__cell_type_main
                                     .task__tags
                                         .header_tag.task__tag
                                             span.style_gray 26 окт –&nbsp;
@@ -70,7 +70,7 @@ block content
                                     .label.label_type_progress
                                         .header_tag 95 / 122
                             tr.task
-                                td.task__cell
+                                td.task__cell.task__cell_type_main
                                     .task__tags
                                         .header_tag.style_gray.task__tag 19 окт – 26 окт
                                     .task__text.style_gray Релиз 1.1
@@ -79,7 +79,7 @@ block content
                                     .label.label_type_done
                                         .header_tag Успешный релиз
                             tr.task
-                                td.task__cell
+                                td.task__cell.task__cell_type_main
                                     .task__tags
                                         .header_tag.style_gray.task__tag 12 окт – 19 окт
                                     .task__text.style_gray Релиз 1.0
