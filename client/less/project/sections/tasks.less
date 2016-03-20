@@ -82,7 +82,23 @@
         padding: @padding-m @block-padding-horizontal @padding-l;
     }
     &__title {
-        padding-top: @padding-m;
+        padding-top: @padding-s;
+        padding-bottom: @padding-xs;
+    }
+}
+.opendescription {
+    border: none;
+    border-spacing: 0;
+    font-size: @font-s;
+    line-height: 20px;
+    &__cell {
+        padding: @padding-xs 0;
+    }
+    &__header{
+        width: 100px;
+        font-size: 10px;
+        vertical-align: top;
+        color: @gray;
     }
 }
 
@@ -95,34 +111,17 @@
         display: inline-block;
         &:not(:last-child):after {
             content: '→';
-            padding: 0 @padding-s;
+            padding: 0 @padding-xs;
         }
     }
     &__actions {
         display: inline-block;
-        padding: 1px;
-        background-position: 0 0, 0 100%;
-        background-repeat: no-repeat;
-        background-image: linear-gradient(to right, @green 0%, @red 100%), linear-gradient(to right, @green 0%, @red 100%);
-        border-radius: @border-radius+1;
-        margin-left: @padding-m;
-        position: relative;
-        top: -2px;
-        .button {
-            border: none;
-            width: 25px;
-            &:first-child {
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
-                padding-right: @padding-s + 1;
-            }
-            &:last-child {
-                margin-left: -3px;
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-                border-right-width: 1px;
-            }
-        }
+    }
+}
+.taskstep{
+    &__description{
+        display: inline-block;
+        text-transform: none;
     }
 }
 
@@ -135,30 +134,9 @@
             clear: both;
         }
     }
-    &__item {
-        display: block;
-        line-height: 20px;
-        padding: @padding-xs 0;
-    }
-    &__checkbox {
-        float: left;
-    }
-    &__text {
-        padding-left: @padding-xs;
-        overflow: hidden;
-        max-width: 400px;
-    }
-    &__add {
-        position: relative;
-        width: 250px;
-        margin-left: @block-padding-horizontal;
-    }
-    &__input {
-        padding-left: 3px;
-        padding-right: @padding-xl;
-    }
-    &__enter {
-        right: -@padding-xl;
+    &__description {
+        white-space: nowrap;
+        font-size: @font-xs;
     }
 }
 

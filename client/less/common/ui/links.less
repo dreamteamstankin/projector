@@ -1,13 +1,16 @@
 .link {
 	text-decoration: none;
 	color: @blue;
-	border-bottom-width: 0px;
-	border-bottom-style: solid;
-	border-color: fade(@blue, 20%);
+	border-bottom-width: 0 solid fade(@blue, 30%);
+    cursor: pointer;
 	&:hover {
 		color: @red;
-		border-color: fade(@red, 20%)
+		border-color: fade(@red, 30%)
 	}
+    &:active {
+        color: @black;
+        border-color: fade(@black, 30%)
+    }
 }
 .style {
 	&_red {

@@ -10,24 +10,24 @@
     cursor: default;
     &_type {
         &_open {
-            border-color: @blue;
+            border-color: fade(@blue, 20%);
             color: @blue;
         }
         &_wait {
-            border-color: @orange;
+            border-color: fade(@orange, 50%);
             color: @orange;
         }
         &_close,
         &_cancel {
-            border-color: @red;
+            border-color: fade(@red, 20%);
             color: @red;
         }
         &_progress {
-            border-color: @darkgreen;
+            border-color: fade(@darkgreen, 20%);
             color: @darkgreen;
         }
         &_done {
-            border-color: @gray;
+            border-color: fade(@gray, 20%);
             color: @gray;
         }
     }

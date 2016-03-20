@@ -1,61 +1,9 @@
 .comments {
-	&__item {
-		border-top: 1px solid @border-color;
-		padding: @padding-s @padding-m @padding-s @block-padding-horizontal;
-		box-sizing: border-box;
-	}
-	&__form {
-		padding: @padding-l @block-padding-horizontal;
-	}
-	&__input {
-	}
-	&__actions {
-		margin-top: @padding-l;
-	}
-	&__button {
-		margin-right: @padding-s;
-	}
+    margin-top: @padding-l;
 }
-
 .comment {
-	display: table;
-	width: 100%;
-	&__info {
-		display: table-row;
-	}
-	&__message,
-	&__menu {
-		display: table-cell;
-		vertical-align: middle;
-	}
-	&__message {
-		width: 100%;
-	}
-	&__name {
-		display: inline-block;
-		font-size: @font-xs;
-		font-family: @font-bold;
-	}
-	&__time {
-		display: inline-block;
-		font-size: @font-xxs;
-		font-family: @font-light;
-	}
-	&__text {
-		display: block;
-		font-size: @font-s;
-		padding-top: @padding-xs;
-		padding-right: @padding-l;
-		box-sizing: border-box;
-	}
-	&__attaches {
-		margin-top: 10px;
-	}
-	&__menu {
-		opacity: .2;
-		cursor: pointer;
-		&:hover {
-			opacity: 1;
-		}
-	}
+    &__header {
+        white-space: nowrap;
+        font-size: @font-xs;
+    }
 }

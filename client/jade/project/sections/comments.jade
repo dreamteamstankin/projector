@@ -1,26 +1,11 @@
 mixin project-comments(comments)
-	.comments
-		.comments__list
-			.comments__item.comment
-				.comment__message
-					.comment__name Антон
-					span.style_delimiter.style_gray –
-					.comment__time 15 мин назад
-					.comment__text Вот это да
-				.comment__menu
-					i.icon.icon__more
-		.comments__item.comment
-				.comment__message
-					.comment__name Таша
-					span.style_delimiter.style_gray –
-					.comment__time 25 мин назад
-					.comment__text Именно
-				.comment__menu
-					i.icon.icon__more
-		form.comments__form
-			.comments__input
-				textarea(placeholder="Введите сообщение").input
-			.comments__actions
-				.comments__button.button Сказать
-				.comments__button.button.button_no_padding
-					i.icon.icon__attach.icon_size_s
+    .list.list_type_todo
+        .list__item
+            .list__content_align_left
+                .comment__photo 1
+            .list__content_align_right
+                .comment__header.style_gray Ахатов
+                .comment__text Не могу связаться по телефону
+        .form__add
+            input(placeholder="Комментарий").input
+            i.icon.i.icon.icon_size_s.icon__enter.icon_align_vertical

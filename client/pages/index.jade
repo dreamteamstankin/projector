@@ -1,6 +1,6 @@
 extends ../jade/common/layout.jade
 block content
-    -var project = { title: 'Погодный сайт', url: '#', level: 0, description: 'Цефеиды — класс пульсирующих переменных звёзд с довольно точной зависимостью период—светимость. '}
+    -var project = { title: 'Погодный сайт', url: '#', level: 0, description: 'Цефеиды — класс пульсирующих переменных звёзд с довольно точной зависимостью период—светимость. Пульсирующих переменных звёзд с довольно точной зависимостью период—светимость. '}
     -var sections = { description: 'Описание', attach: 'Прикрепленные файлы', list: 'Связано', comments: 'Комментарии' }
     -var breadcrumbs = { title: [{ name: 'Погодный сайт', url: 'projects.html' }, { name: 'Релиз 1.0'}] }
     .grid.wrap
@@ -17,149 +17,27 @@ block content
                         section.grid__cell.grid__cell_size_5
                             .dashboard
                                 .dashboard__item
-                                    .header_title.style_gray Старт
+                                    .header_section.style_black Старт
                                     .dashboard__content 11 авг
                                 .dashboard__item
-                                    .header_title.style_gray Сегодня
-                                    .dashboard__content 13 авг
+                                    .header_section.style_black Релиз
+                                    .dashboard__content.style_red 13 авг
                                 .dashboard__item
-                                    .header_title.style_gray Релиз
-                                    .dashboard__content.style_red 15 авг
+                                    .header_section.style_black Ветка GIT
+                                    .dashboard__content Master
                                 .dashboard__item
-                                    .header_title.style_gray Прогресс
+                                    .header_section.style_black Прогресс
                                     .dashboard__content
                                         span.style_black 1
                                         span.style_delimiter.style_gray /
                                         span.style_black 7
-                section.project__section.project__actions.grid.header_ui
-                    .grid__cell
-                        span.style_black Задача
+                section.project__section.project__actions.grid
+                    .grid__cell.header_title.tabs
+                        .tabs__item.tabs__item_state_open.style_black Все задачи
                             i.icon.icon__add.icon_padding_left.icon_hover_on
-                    .grid__cell.grid__cell_align_right
-                        span.style_black Сортировка и поиск
+                        .tabs__item.link.style_blue Только мои
+                    .grid__cell.grid__cell_align_right.header_title
+                        span.style_black Настройка вида
                             i.icon.icon__chevron.icon_rotate_180.icon_size_xs.icon_padding_left
                 section.project__section.project__tasks
-                    table.tasks
-                        tbody.tasks__body
-                            tr.task
-                                td.task__cell.task__cell_type_main
-                                    .task__tags
-                                        a(href="#").link.header_tag.style_gray.task__tag Программирование
-                                        a(href="#").link.header_tag.style_gray.task__tag GIS-57
-                                    .task__text Шаринг в монге
-                                td.task__cell.style_align_right
-                                    a(href="#").link.style_solid.label.label_type_open
-                                        .header_tag Взять
-                                td.task__cell.task__time 23 мин
-                            tr.task
-                                td.task__cell.task__cell_type_main
-                                    .task__tags
-                                        a(href="#").link.header_tag.style_gray.task__tag Дизайн
-                                        a(href="#").link.header_tag.style_gray.task__tag GIS-311
-                                    .task__text Верстка макета радара
-                                td.task__cell.style_align_right
-                                    .label.label_type_progress
-                                        .header_tag 10 / 11
-                                td.task__cell.task__time 1 д 2 часа
-                            tr.task.open
-                                td.task__cell
-                                    .task__tags
-                                        a(href="#").link.header_tag.style_gray.task__tag Верстка
-                                        a(href="#").link.header_tag.style_red.task__tag
-                                            i.icon.icon_size_xs.icon__problem.task__icon
-                                            | GIS-489
-                                    .task__text Карта сайта
-                                td.task__cell.style_align_right
-                                    .label.label_type_progress
-                                        .header_tag 0 / 4
-                                    .label.label_type_wait
-                                        .header_tag Ждет GIS-22
-                                td.task__cell.task__time 12 мин
-                            tr.opentask
-                                td(colspan=4).opentask__wrap
-                                    .opentask__steps.tasksteps
-                                        .tasksteps__list
-                                            .tasksteps__item.header_ui.style_black В работе
-                                                .tasksteps__actions
-                                                    .button
-                                                        i.icon.icon__done.icon_color_green
-                                                    .button
-                                                        i.icon.icon__cross.icon_color_red
-                                            .tasksteps__item.header_ui.style_gray Код-ревью
-                                            .tasksteps__item.header_ui.style_gray Дизайн-ревью
-                                            .tasksteps__item.header_ui.style_gray Согласование
-                                    .grid
-                                        .grid__cell.grid__cell_size_5
-                                            .opentask__section.tasksection
-                                                .opentask__title.header_section Задачи (0 / 4)
-                                                .tasksection__list
-                                                    label.tasksection__item
-                                                        .tasksection__checkbox
-                                                            input(type="checkbox")
-                                                        .tasksection__text Звезда – серая, когда нажата
-                                                            .style_gray Ахатов
-                                                    label.tasksection__item
-                                                        .tasksection__checkbox
-                                                            input(type="checkbox")
-                                                        .tasksection__text Отступ между избранными и поиском
-                                                    label.tasksection__item
-                                                        .tasksection__checkbox
-                                                            input(type="checkbox")
-                                                        .tasksection__text Обводка поиска и фокус
-                                                    label.tasksection__item
-                                                        .tasksection__checkbox
-                                                            input(type="checkbox")
-                                                        .tasksection__text Кегль очистить историю
-                                                .tasksection__add
-                                                    input(placeholder="Добавить новую задачу").input.tasksection__input
-                                                    i.icon.icon__enter.icon_align_vertical.tasksection__enter
-                                        .grid__cell.grid__cell_size_3
-                                            .opentask__section
-                                                .opentask__title.header_section Описание
-                                                .opentask__text Нужно сверстать под все браузере страницу геометрического виджета для сайта планетария
-                                            .grid.grid_flex_3
-                                                .grid__cell
-                                                    .opentask__section
-                                                        .opentask__title.header_section Старт
-                                                        .opentask__text 27 ноя
-                                                .grid__cell
-                                                    .opentask__section
-                                                        .opentask__title.header_section Прошло
-                                                        .opentask__text 1 день 2 ч
-                                                .grid__cell
-                                                    .opentask__section
-                                                        .opentask__title.header_section Дэдлайн
-                                                        .opentask__text 28 ноя
-                                            .opentask__section
-                                                .opentask__title.header_section Файлы
-                                                +project-attach(attach)
-                            tr.task
-                                td.task__cell.task__cell_type_main
-                                    .task__tags
-                                        a(href="#").link.header_tag.style_gray.task__tag Программирование
-                                        a(href="#").link.header_tag.style_gray.task__tag GIS-57
-                                    .task__text Шаринг в монге
-                                td.task__cell.style_align_right
-                                    a(href="#").link.style_solid.label.label_type_open
-                                        .header_tag Взять
-                                td.task__cell.task__time 23 мин
-                            tr.task
-                                td.task__cell.task__cell_type_main
-                                    .task__tags
-                                        a(href="#").link.header_tag.style_gray.task__tag Дизайн
-                                        a(href="#").link.header_tag.style_gray.task__tag GIS-311
-                                    .task__text Верстка макета радара
-                                td.task__cell.style_align_right
-                                    .label.label_type_progress
-                                        .header_tag Ревью
-                                td.task__cell.task__time.style_red 2 д 4 часа
-                            tr.task
-                                td.task__cell.task__cell_type_main
-                                    .task__tags
-                                        a(href="#").link.header_tag.style_gray.task__tag Верстка
-                                        a(href="#").link.header_tag.style_gray.task__tag GIS-180
-                                    .task__text Сделанная задача
-                                td.task__cell.style_align_right
-                                    .label.label_type_wait
-                                        .header_tag Ждет уточнения
-                                td.task__cell.task__time 9 часов
+                    +project-tasks()

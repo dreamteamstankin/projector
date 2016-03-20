@@ -1,132 +1,120 @@
 mixin project-tasks(tasks)
     table.tasks
-        //thead.tasks__header.header_section
-            th.task__cell
-                span.style_lightblack Номер релиза
-                    i.icon.icon__add.icon_padding_left.icon_hover_on
-            th.task__cell
-                span.style_lightblack Состояние
-            th.task__cell
-                span.style_lightblack Прошло
-        tbody
+        tbody.tasks__body
             tr.task
-                td.task__cell
-                    .task__tags
-                        a(href="#").link.header_tag.style_gray.task__tag Программирование
-                        a(href="#").link.header_tag.style_gray.task__tag GIS-57
+                td.task__cell.header_tag.style_gray GIS-42
+                td.task__cell.task__cell_type_main
                     .task__text Шаринг в монге
-                td.task__cell
-                    a(href="#").link.style_solid.task__label.label.label_type_open
+                td.task__cell.task__time Ахатов
+                td.task__cell.style_align_right
+                    a(href="#").link.style_solid.label.label_type_open
                         .header_tag Взять
                 td.task__cell.task__time 23 мин
-            tr.task
-                td.task__cell
-                    .task__tags
-                        a(href="#").link.header_tag.style_gray.task__tag Дизайн
-                        a(href="#").link.header_tag.style_gray.task__tag GIS-311
-                    .task__text Верстка макета радара
-                td.task__cell
-                    .task__label.label.label_type_progress
-                        .header_tag 10 / 11
-                td.task__cell.task__time 1 д 2 часа
-        //tbody.tasks__group
             tr.task.open
-                td.task__cell
-                    .task__tags
-                        a(href="#").link.header_tag.style_gray.task__tag Верстка
-                        a(href="#").link.header_tag.style_red.task__tag
-                            i.icon.icon_size_xs.icon__problem.task__icon
-                            | GIS-489
-                    .task__text Карта сайта 1
-                td.task__cell
-                    .task__label.label.label_type_progress
+                td.task__cell.header_tag.style_gray GIS-68
+                td.task__cell.task__cell_type_main
+                    .task__text Карта сайта
+                td.task__cell.task__time Ахатов
+                td.task__cell.style_align_right
+                    .label.label_type_progress
                         .header_tag 0 / 4
                 td.task__cell.task__time 12 мин
             tr.opentask
-                td(colspan=4).opentask__wrap
+                td(colspan=5).opentask__wrap
                     .opentask__steps.tasksteps
                         .tasksteps__list
-                            .tasksteps__item.header_ui.style_black В работе
+                            .tasksteps__item.taskstep.header_ui.style_gray Открыто
+                                .taskstep__description (12.04)
+                            .tasksteps__item.taskstep.header_ui.style_black В работе
+                                .taskstep__description (Ахатов, до 16.04)
                                 .tasksteps__actions
-                                    .button
-                                        i.icon.icon__done.icon_color_green
-                                    .button
-                                        i.icon.icon__cross.icon_color_red
-                            .tasksteps__item.header_ui.style_gray Код-ревью
-                            .tasksteps__item.header_ui.style_gray Дизайн-ревью
-                            .tasksteps__item.header_ui.style_gray Согласование
+                            .tasksteps__item.taskstep.header_ui.style_gray Код-ревью
+                                .taskstep__description (Лунин)
+                            .tasksteps__item.taskstep.header_ui.style_gray Дизайн-ревью
+                                .taskstep__description (Синельников)
+                            .tasksteps__item.taskstep.header_ui.style_gray Согласование
+                                .taskstep__description (до 20.04)
                     .grid
-                        .grid__cell.grid_size_5
+                        .grid__cell.grid__cell_size_5
                             .opentask__section.tasksection
-                                .opentask__title.header_section Задачи (0 / 4)
-                                .tasksection__list
-                                    label.tasksection__item
-                                        .tasksection__checkbox
+                                .opentask__title.header_section Задачи (0/4, 32 часа, 123 ₽)
+                                .list.list_type_todo
+                                    .list__item
+                                        .list__content_align_left
                                             input(type="checkbox")
-                                        .tasksection__text Звезда – серая, когда нажата
-                                    label.tasksection__item
-                                        .tasksection__checkbox
+                                        .list__content_align_right
+                                            .tasksection__description.style_gray Синельников, 24 марта
+                                            .tasksection__text Обводка поиска и фокус
+                                        .list.list_type_todo
+                                            .list__item
+                                                .list__content_align_left
+                                                    input(type="checkbox")
+                                                .list__content_align_right
+                                                    .tasksection__description.style_gray Лунин, 22 ч
+                                                    .tasksection__text Звезда – серая, когда нажата
+                                            .list__item
+                                                .list__content_align_left
+                                                    input(type="checkbox")
+                                                .list__content_align_right
+                                                    .tasksection__description.style_gray Ахатов, 100 ₽
+                                                    .tasksection__text Отступ между избранными и поиском
+                                    .list__item
+                                        .list__content_align_left
                                             input(type="checkbox")
-                                        .tasksection__text Отступ между избранными и поиском
-                                    label.tasksection__item
-                                        .tasksection__checkbox
-                                            input(type="checkbox")
-                                        .tasksection__text Обводка поиска и фокус
-                                    label.tasksection__item
-                                        .tasksection__checkbox
-                                            input(type="checkbox")
-                                        .tasksection__text Кегль очистить историю
-                                .tasksection__add
-                                    input(placeholder="Добавить новую задачу").input.tasksection__input
-                                    i.icon.icon__enter.icon_align_vertical.tasksection__enter
-                        .grid__cell.grid_size_3
+                                        .list__content_align_right
+                                            .tasksection__text Кегль очистить историю
+                                .form__add
+                                    input(placeholder="Добавить новую задачу").input
+                                    i.icon.icon_size_s.icon__enter.icon_align_vertical
+                            .opentask__section.tasksection
+                                .opentask__title.comments.header_section Комментарии
+                                +project-comments()
+                        .grid__cell.grid__cell_size_3
+                            .opentask__title.tabs.header_section
+                                .tabs__item.tabs__item_state_open Основное
+                                .tabs__item Файлы (2)
+                                .tabs__item Настройки
                             .opentask__section
-                                .opentask__title.header_section Описание
-                                .opentask__text Нужно сверстать под все браузере страницу геометрического виджета для сайта планетария
-                            .grid.grid_flex_3
-                                .grid__cell
-                                    .opentask__section
-                                        .opentask__title.header_section Старт
-                                        .opentask__text 27 ноя
-                                .grid__cell
-                                    .opentask__section
-                                        .opentask__title.header_section Прошло
-                                        .opentask__text 1 день 2 ч
-                                .grid__cell
-                                    .opentask__section
-                                        .opentask__title.header_section Дэдлайн
-                                        .opentask__text 28 ноя
-                            .opentask__section
-                                .opentask__title.header_section Файлы
-                                +project-attach(attach)
-        tbody
+                                table.opentask__description.opendescription
+                                    tr
+                                        td(colspan=2).opendescription__cell
+                                            .header_section.opendescription__header Описание
+                                            .opentask__text Как легко получить из самых общих соображений, сверхновая накладывает знак. Прямоугольная матрица поддерживает разрыв. Зеркало нейтрализует гамма-квант. Бамбук отнюдь не очевиден. Нужно сверстать под все браузере страницу геометрического виджета для сайта планетария
+                                    tr
+                                        td.opendescription__cell.header_section.opendescription__header Приоритет
+                                        td.opendescription__cell Верстка
+                                    tr
+                                        td.opendescription__cell.header_section.opendescription__header Компонент
+                                        td.opendescription__cell API
+                                    tr
+                                        td.opendescription__cell.header_section.opendescription__header Тип
+                                        td.opendescription__cell Верстка
+                                    tr
+                                        td.opendescription__cell.header_section.opendescription__header Ветки
+                                        td.opendescription__cell
+                                            div Начало с
+                                                a(href="#").link  GIS-281
+                                            div Окончание с
+                                                a(href="#").link  GIS-900
+                                            div После с
+                                                a(href="#").link  GIS-522
+                                            div До с
+                                                a(href="#").link  GIS-467
             tr.task
-                td.task__cell
-                    .task__tags
-                        a(href="#").link.header_tag.style_gray.task__tag Программирование
-                        a(href="#").link.header_tag.style_gray.task__tag GIS-57
-                    .task__text Шаринг в монге
-                td.task__cell
-                    a(href="#").link.style_solid.task__label.label.label_type_open
-                        .header_tag Взять
-                td.task__cell.task__time 23 мин
-            tr.task
-                td.task__cell
-                    .task__tags
-                        a(href="#").link.header_tag.style_gray.task__tag Дизайн
-                        a(href="#").link.header_tag.style_gray.task__tag GIS-311
+                td.task__cell.header_tag.style_gray GIS-235
+                td.task__cell.task__cell_type_main
                     .task__text Верстка макета радара
-                td.task__cell
-                    .task__label.label.label_type_progress
-                        .header_tag Ревью
-                td.task__cell.task__time.style_red 2 д 4 часа
+                td.task__cell.task__time Ахатов
+                td.task__cell.style_align_right
+                    .label.label_type_progress
+                        .header_tag 10 / 11
+                td.task__cell.task__time 1 д 2 часа
             tr.task
-                td.task__cell
-                    .task__tags
-                        a(href="#").link.header_tag.style_gray.task__tag Верстка
-                        a(href="#").link.header_tag.style_gray.task__tag GIS-180
-                    .task__text Сделанная задача
-                td.task__cell
-                    .task__label.label.label_type_wait
-                        .header_tag Ждет уточнения
-                td.task__cell.task__time 9 часов
+                td.task__cell.header_tag.style_gray GIS-68
+                td.task__cell.task__cell_type_main
+                    .task__text Карта сайта
+                td.task__cell.task__time Ахатов
+                td.task__cell.style_align_right
+                    .label.label_type_progress
+                        .header_tag 0 / 4
+                td.task__cell.task__time 12 мин
