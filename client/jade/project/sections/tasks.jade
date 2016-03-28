@@ -22,6 +22,7 @@ mixin project-tasks(tasks)
             tr.opentask
                 td(colspan=5).opentask__wrap
                     .opentask__steps.tasksteps
+                        +ui-dropdown("asdasd",['текст 1','текст 2', 'текст 3'])
                         .tasksteps__list
                             .tasksteps__item.taskstep.header_ui.style_gray Открыто
                                 .taskstep__description (12.04)

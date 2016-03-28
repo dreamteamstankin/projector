@@ -1,36 +1,55 @@
 .dropdown {
-	position: relative;
-	&__button {
-		user-select: none;
-		cursor: pointer;
-	}
-	&__context {
-		top: 100%;
-		right: -10px;
-		position: absolute;
-		line-height: 1;
-		width: 200px;
-		border: 1px solid @lightgray;
-		border-radius: @border-radius;
-		box-shadow: 0 10px 30px 0 rgba(0,0,0,0.15);
-		background-color: @white;
-		visibility: hidden;
-		opacity: 0;
-		transition: opacity .3s;
-	}
-	&__list {
-	}
-	&__item {
-		padding: @padding-m;
-	}
+    position: relative;
+    display: inline-block;
+    &__trigger {
+        display: block;
+        user-select: none;
+        cursor: pointer;
+        border: 1px solid #DDD;
+        border-radius: 5px;
+        padding: 5px 20px;
+    }
+    &__context {
+        top: 115%;
+        position: absolute;
+        line-height: 1;
+        width: 200px;
+        border: 1px solid #DDD;
+        border-radius: 5px;
+        box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);
+        background-color: white;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity .3s, top .3s;
+        &_position_right{
+            right: 0;
+        }
+        &_position_left{
+            left: 0;
+        }
+    }
+    &__item {
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background .2s;
+        &:hover {
+            background-color: @lightwhite;
+        }
+        &:active {
+            background-color: @darkwhite;
+        }
+    }
 }
 
-.dropdown {
-	&_on_hover {
-		.dropdown__context:hover,
-		.dropdown__button:hover + .dropdown__context {
-			visibility: visible;
-			opacity: 1;
-		}
-	}
+
+.dropdown_on_hover .dropdown__context:hover,
+.dropdown_on_hover .dropdown__trigger:hover + .dropdown__context,
+.dropdown_on_click .dropdown__checkbox:checked ~ .dropdown__context {
+    visibility: visible;
+    opacity: 1;
+    top: 95%;
+    z-index: 1;
+}
+.dropdown_on_click .dropdown__checkbox:checked + .dropdown__trigger {
+    background-color: #EFEFEF;
 }
