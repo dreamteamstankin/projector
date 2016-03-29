@@ -15,6 +15,7 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync').create(),
     reload = browserSync.reload;
 
+
 var config = {
     server: {
         files: "./server/**/*.*",
@@ -106,7 +107,7 @@ gulp
     })
     .task('js', function() {
         gulp.src(config.from.js)
-            .pipe(concat('main.js'))
+            .pipe(concat('app.js'))
             .pipe(uglify())
             .pipe(gulp.dest(config.to.js))
             .pipe(reload({
