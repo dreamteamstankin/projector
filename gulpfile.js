@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     csso = require('gulp-csso'),
     jade = require('gulp-jade'),
     shell = require('gulp-shell'),
+    babel = require('gulp-babel'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     nodemon = require('gulp-nodemon'),
@@ -43,7 +44,7 @@ var config = {
         img: "./public/img/",
         html: "./public/"
     }
-}
+};
 
 gulp.task('server', ['server-sync']);
 gulp.task('client', ['jade', 'less', 'js', 'images', 'client-sync'], function() {
@@ -107,8 +108,11 @@ gulp
     })
     .task('js', function() {
         gulp.src(config.from.js)
+            //.pipe(babel({
+            //    presets: ['es2015']
+            //}))
             .pipe(concat('app.js'))
-            .pipe(uglify())
+            //.pipe(uglify())
             .pipe(gulp.dest(config.to.js))
             .pipe(reload({
                 stream: true
