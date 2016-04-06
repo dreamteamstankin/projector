@@ -15,6 +15,8 @@ html
     body
         -var menu = [{ name: 'Релизы', url: 'index.html', selected: true }, { name: 'Бэклог', url: 'bytype.html' }, { name: 'Обсуждения', url: 'bygroup.html' }, { name: 'Статистика', url: 'backlog.html' }, { name: 'Поиск', url: 'opentask.html' }]
         block content
+        script(src='js/bower/moment/moment.js')
+        script(src='js/bower/moment/locale/ru.js')
         script(src='js/bower/underscore/underscore-min.js')
         script(src='js/bower/zepto/zepto.min.js')
         script(src='js/bower/handlebars/handlebars.min.js')
