@@ -3,7 +3,7 @@
   "description": "",
   "main": "client/electron.js",
   "authors": [
-    "Anton Ahatov <ahatov@gismeteo.ru>"
+    "Anton Ahatov <anton@ahatov.com>"
   ],
   "license": "MIT",
   "homepage": "https://github.com/gcor/projector",
@@ -20,7 +20,8 @@
     "handlebars": "^4.0.5",
     "underscore": "^1.8.3",
     "zepto": "^1.1.6",
-    "backbone": "^1.3.2"
+    "backbone": "^1.3.2",
+    "system.js": "^0.19.25"
   },
   "dependencies": {
     "moment": "^2.12.0"

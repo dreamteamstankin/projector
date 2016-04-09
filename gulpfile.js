@@ -36,22 +36,25 @@ var config = {
         js: ["./client/js/**/*.js"],
         img: "./client/img/**/*",
         jade: "./client/pages/**/*.jade",
+        templates: "./client/templates/**/*",
         alljade: ["./client/pages/**/*.jade", "./client/jade/**/*.jade"]
     },
     to: {
         css: "./public/css/",
         js: "./public/js/",
         img: "./public/img/",
-        html: "./public/"
+        html: "./public/",
+        templates: "./public/templates/"
     }
 };
 
 gulp.task('server', ['server-sync']);
-gulp.task('client', ['jade', 'less', 'js', 'images', 'client-sync'], function() {
+gulp.task('client', ['jade', 'less', 'js', 'images', 'templates', 'client-sync'], function() {
     gulp.watch(config.from.alljade, ['jade']);
     gulp.watch(config.from.allless, ['less']);
     gulp.watch(config.from.js, ['js']);
     gulp.watch(config.from.img, ['images']);
+    gulp.watch(config.from.templates, ['templates']);
     // return shell.task(['electron .'])()
 });
 
@@ -129,6 +132,13 @@ gulp
                 interlaced: true
             }))
             .pipe(gulp.dest(config.to.img))
+            .pipe(reload({
+                stream: true
+            }));
+    })
+    .task('templates', function() {
+        gulp.src(config.from.templates)
+            .pipe(gulp.dest(config.to.templates))
             .pipe(reload({
                 stream: true
             }));

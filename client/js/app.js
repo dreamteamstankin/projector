@@ -1,6 +1,6 @@
 const { Model, View, Collection, Router } = Backbone;
 
-const milestone = [{
+const milestone = {
     id: 1,
     name_id: 'GIS-0',
     title: 'Релиз 2.1',
@@ -36,7 +36,7 @@ const milestone = [{
         status: 5,
         completed: false
     }]
-}];
+};
 const task = {
     id: 1,
     name_id: 'GIS-1',
@@ -130,26 +130,26 @@ class MilestoneView extends View {
 class TodoView extends View {
     constructor() {
         super();
-        this.tagName = 'li';
-        this.template = _.template($('#item-template').html());
-        this.input = '';
-        this.events = {
-            'click .toggle': 'toggleCompleted',
-            'dblclick label': 'edit',
-            'click .destroy': 'clear',
-            'keypress .edit': 'updateOnEnter',
-            'blur .edit': 'close'
-        };
-
-        this.listenTo(this.model, 'change', this.render);
-        this.listenTo(this.model, 'destroy', this.remove);
-        this.listenTo(this.model, 'visible', this.toggleVisible);
+        //this.tagName = 'li';
+        //this.template = _.template($('#item-template').html());
+        //this.input = '';
+        //this.events = {
+        //    'click .toggle': 'toggleCompleted',
+        //    'dblclick label': 'edit',
+        //    'click .destroy': 'clear',
+        //    'keypress .edit': 'updateOnEnter',
+        //    'blur .edit': 'close'
+        //};
+        //
+        //this.listenTo(this.model, 'change', this.render);
+        //this.listenTo(this.model, 'destroy', this.remove);
+        //this.listenTo(this.model, 'visible', this.toggleVisible);
     }
     render() {
-        this.$el.html(this.template(this.model.toJSON()));
-        this.$el.toggleClass('completed', this.model.get('completed'));
-        this.toggleVisible();
-        this.input = this.$('.edit');
+        //this.$el.html(this.template(this.model.toJSON()));
+        //this.$el.toggleClass('completed', this.model.get('completed'));
+        //this.toggleVisible();
+        //this.input = this.$('.edit');
         return this;
     }
 
@@ -159,47 +159,55 @@ class TodoView extends View {
 class AppView extends View {
     constructor() {
         super();
-        this.setElement($('#todoapp'), true);
-        this.statsTemplate = _.template($('#stats-template').html());
-        this.events = {
-            'keypress #new-todo': 'createOnEnter',
-            'click #clear-completed': 'clearCompleted',
-            'click #toggle-all': 'toggleAllComplete'
-        };
-        this.allCheckbox = this.$('#toggle-all')[0];
-        this.$input = this.$('#new-todo');
-        this.$footer = this.$('#footer');
-        this.$main = this.$('#main');
-
-        this.listenTo(Todos, 'add', this.addOne);
-        this.listenTo(Todos, 'reset', this.addAll);
-        this.listenTo(Todos, 'change:completed', this.filterOne);
-        this.listenTo(Todos, 'filter', this.filterAll);
-        this.listenTo(Todos, 'all', this.render);
-
-        Todos.fetch();
+        this.el = $('#page');
+        //System.import('./templates/project/milestone.hbs!text')
+        this.template =  Handlebars.compile();
+        this.render();
+        //this.setElement($('#todoapp'), true);
+        //this.statsTemplate = _.template($('#stats-template').html());
+        //this.events = {
+        //    'keypress #new-todo': 'createOnEnter',
+        //    'click #clear-completed': 'clearCompleted',
+        //    'click #toggle-all': 'toggleAllComplete'
+        //};
+        //this.allCheckbox = this.$('#toggle-all')[0];
+        //this.$input = this.$('#new-todo');
+        //this.$footer = this.$('#footer');
+        //this.$main = this.$('#main');
+        //
+        //this.listenTo(Todos, 'add', this.addOne);
+        //this.listenTo(Todos, 'reset', this.addAll);
+        //this.listenTo(Todos, 'change:completed', this.filterOne);
+        //this.listenTo(Todos, 'filter', this.filterAll);
+        //this.listenTo(Todos, 'all', this.render);
+        //
+        //Todos.fetch();
     }
     render() {
-        var completed = Todos.completed().length;
-        var remaining = Todos.remaining().length;
+        this.el.html(this.template({
+            title: "Привет"
+        }));
 
-        if (Todos.length) {
-            this.$main.show();
-            this.$footer.show();
-            this.$footer.html(
-                this.statsTemplate({
-                    completed, remaining
-                })
-            );
-            this.$('#filters li a')
-                .removeClass('selected')
-                .filter('[href="#/' + (TodoFilter || '') + '"]')
-                .addClass('selected');
-        } else {
-            this.$main.hide();
-            this.$footer.hide();
-        }
-        this.allCheckbox.checked = !remaining;
+        //var completed = Todos.completed().length;
+        //var remaining = Todos.remaining().length;
+        //
+        //if (Todos.length) {
+        //    this.$main.show();
+        //    this.$footer.show();
+        //    this.$footer.html(
+        //        this.statsTemplate({
+        //            completed, remaining
+        //        })
+        //    );
+        //    this.$('#filters li a')
+        //        .removeClass('selected')
+        //        .filter('[href="#/' + (TodoFilter || '') + '"]')
+        //        .addClass('selected');
+        //} else {
+        //    this.$main.hide();
+        //    this.$footer.hide();
+        //}
+        //this.allCheckbox.checked = !remaining;
     }
 }
 
@@ -251,5 +259,10 @@ $(() => {
     const App = {};
     App.Router = new AppRouter();
     App.MilestoneCollection = new MilestoneCollection();
+    App.MilestoneCollection.add(milestone);
+
+
+    App.AppView = new AppView();
+
     Backbone.history.start();
 });
