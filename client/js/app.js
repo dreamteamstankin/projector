@@ -1,5 +1,6 @@
-const { Model, View, Collection, Router } = Backbone;
+var MilestoneTemplate = require('../templates/project/milestone.hbs');
 
+const { Model, View, Collection, Router } = Backbone;
 const milestone = {
     id: 1,
     name_id: 'GIS-0',
@@ -161,7 +162,7 @@ class AppView extends View {
         super();
         this.el = $('#page');
         //System.import('./templates/project/milestone.hbs!text')
-        this.template =  Handlebars.compile();
+        this.template =  MilestoneTemplate;
         this.render();
         //this.setElement($('#todoapp'), true);
         //this.statsTemplate = _.template($('#stats-template').html());
