@@ -1,0 +1,66 @@
+<section class="page__section project__breadcrumbs">
+    <div class="breadcrumbs">
+        <span class="style_size_l style_bold">{{title}}</span>
+    </div>
+</section>
+<section class="page__section project__dashboard grid">
+    <section class="grid__cell grid__cell_size_3">
+        <div class="dashboard__description">{{description}}</div>
+    </section>
+    <section class="grid__cell grid__cell_size_5">
+        <div class="dashboard">
+            <div class="dashboard__item">
+                <div class="header_section style_black">Старт</div>
+                <div class="dashboard__content">
+                    {{[../../js/hbs/dateFormat] 'DD MMM' start}}
+                </div>
+            </div>
+            <div class="dashboard__item">
+                <div class="header_section style_black">Релиз</div>
+                <div class="dashboard__content style_red">
+                    {{[../../js/hbs/dateFormat] 'DD MMM' finish}}
+                </div>
+            </div>
+            <div class="dashboard__item">
+                <div class="header_section style_black">Ветка GIT</div>
+                <div class="dashboard__content">{{name_id}}</div>
+            </div>
+            <div class="dashboard__item">
+                <div class="header_section style_black">Прогресс</div>
+                <div class="dashboard__content">
+                    <span class="style_black">1</span>
+                    <span class="style_delimiter style_gray">/</span>
+                    <span class="style_black">7</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+<section class="page__section project__actions grid">
+    <div class="grid__cell header_title tabs">
+        <div class="tabs__item tabs__item_state_open style_black">Все задачи<i
+                class="icon icon__add icon_padding_left icon_hover_on"></i></div>
+        <div class="tabs__item link style_blue">Только мои</div>
+    </div>
+    <div class="grid__cell grid__cell_align_right header_title"><span class="style_black">Настройка вида<i
+            class="icon icon__chevron icon_rotate_180 icon_size_xs icon_padding_left"></i></span></div>
+</section>
+<section class="page__section project__tasks">
+    <table class="tasks">
+        <tbody class="tasks__body">
+        {{#each tasks}}
+            <tr class="task">
+                <td class="task__cell header_tag style_gray">{{name_id}}</td>
+                <td class="task__cell task__cell_type_main">
+                    <div class="task__text">{{title}}</div>
+                </td>
+                <td class="task__cell task__time">Ахатов</td>
+                <td class="task__cell style_align_right"><a href="#" class="link style_solid label label_type_open">
+                    <div class="header_tag">Статус {{status}}</div>
+                </a></td>
+                <td class="task__cell task__time">23 мин</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</section>

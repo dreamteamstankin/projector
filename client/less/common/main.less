@@ -12,3 +12,49 @@ body {
     padding: 0 @wrap-padding-horizontal;
     box-sizing: border-box;
 }
+
+.page {
+    background-color: #fff;
+    border-radius: @border-radius;
+    margin: @block-padding-vertical auto @block-padding-vertical*3;
+    border: 1px solid @lightgray;
+    position: relative;
+    box-sizing: border-box;
+    box-shadow: @block-shadow;
+    //&_level {
+    //    &_1:after,
+    //    &_2:after,
+    //    &_2:before {
+    //        content: ''
+    //    }
+    //}
+    //&:after,
+    //&:before {
+    //    position: absolute;
+    //    background-color: @white;
+    //    border: 1px solid @lightgray;
+    //    box-sizing: border-box;
+    //    width: 100%;
+    //    height: 100%;
+    //    z-index: -1;
+    //    border-radius: @border-radius;
+    //}
+    //&:after {
+    //    top: -6px;
+    //    left: 6px;
+    //}
+    //&:before {
+    //    top: -11px;
+    //    left: 11px;
+    //}
+    &__section {
+        margin: @padding-l 0 @padding-l 0;
+        padding: 0 @block-padding-horizontal;
+        box-sizing: border-box;
+        overflow: hidden;
+        &:first-child,
+        &:last-child {
+            margin: 0;
+        }
+    }
+}
