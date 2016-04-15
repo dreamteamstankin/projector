@@ -2,7 +2,7 @@
 Project management system
 
 #### Frontend
-- React
+- Backbone
 - Electron
 
 #### Backend
@@ -18,7 +18,6 @@ cd projector && bower i && npm i
 ```
 ##### Run server
 ```bash
-mongod
 gulp server
 ```
 ##### Run client

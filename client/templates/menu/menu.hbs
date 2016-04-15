@@ -1,1 +1,13 @@
-<section class="page__section project__menu"></section>
+<section class="page__section project__menu">
+    <div class="menu">
+        <a href="#" class="menu__item link style_black">
+            <i class="icon icon__home icon_hover_on"></i>
+            <a href="projects.html" class="menu__item menu__header link style_black">Проекты</a>
+        </a>
+        {{#each links}}
+            <a href="{{url}}" class="menu__item link style_black">{{name}}</a>
+        {{/each}}
+        <a href="#" class="link style_black menu__item style_float_right">Таша</a>
+        <a href="#" class="link style_black menu__item style_float_right">Мои задачи</a>
+    </div>
+</section>

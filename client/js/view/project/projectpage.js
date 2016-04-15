@@ -1,4 +1,4 @@
-var ProjectTemplate = require('../../templates/project/page.hbs');
+var ProjectTemplate = require('../../../templates/project/page.hbs');
 
 const { View } = Backbone;
 
@@ -108,7 +108,7 @@ const task = {
 };
 
 
-class AppView extends View {
+class ProjectPageView extends View {
     constructor() {
         super();
         this.el = $('#page');
@@ -120,4 +120,4 @@ class AppView extends View {
     }
 }
 
-export { AppView }
+export { ProjectPageView }
