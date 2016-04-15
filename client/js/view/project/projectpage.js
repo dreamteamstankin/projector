@@ -1,4 +1,6 @@
 var ProjectTemplate = require('../../../templates/project/page.hbs');
+var ListViewTemplate = require('../../../templates/project/listview.hbs');
+var BoardViewTemplate = require('../../../templates/project/boardview.hbs');
 
 const { View } = Backbone;
 
@@ -10,6 +12,7 @@ const milestone = {
     description: 'Жизненный цикл продукции, несмотря на внешние воздействия, притягивает из ряда вон выходящий критерий сходимости Коши, что и требовалось доказать',
     start: (new Date()),
     finish: (new Date()),
+    viewtype: 1,
     tasks: [{
         name_id: 'GIS-2',
         title: 'Логирование',
@@ -114,10 +117,54 @@ class ProjectPageView extends View {
         this.el = $('#page');
         this.template = ProjectTemplate;
         this.render();
+        View.apply(this);
     }
+    events() {
+        return {
+            'click .task': 'openTask'
+        };
+    }
+    render() {
+        this.el.html(this.template(milestone));
+        switch (milestone.viewtype) {
+            case 1:
+                new ProjectTasksView(ListViewTemplate);
+                break;
+            default:
+                console.warn()
+        }
+    }
+
+    openTask() {
+        console.log(1);
+    }
+}
+
+class ProjectTasksView extends View {
+    constructor(template) {
+        super();
+        this.el = $('#tasks');
+        this.template = template;
+        this.render();
+    }
+
     render() {
         this.el.html(this.template(milestone));
     }
 }
+
+class ProjectTaskView extends View {
+    constructor(template) {
+        super();
+        this.el = $('#tasks');
+        this.template = template;
+        this.render();
+    }
+
+    render() {
+        this.el.html(this.template(task));
+    }
+}
+
 
 export { ProjectPageView }
