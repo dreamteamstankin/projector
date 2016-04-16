@@ -1,6 +1,7 @@
 var ProjectTemplate = require('../../../templates/project/page.hbs');
 var ListViewTemplate = require('../../../templates/project/listview.hbs');
 var BoardViewTemplate = require('../../../templates/project/boardview.hbs');
+var InnerTasksTemplate = require('../../../templates/project/innertasks.hbs');
 
 const { View } = Backbone;
 
@@ -117,13 +118,8 @@ class ProjectPageView extends View {
         this.el = $('#page');
         this.template = ProjectTemplate;
         this.render();
-        View.apply(this);
     }
-    events() {
-        return {
-            'click .task': 'openTask'
-        };
-    }
+
     render() {
         this.el.html(this.template(milestone));
         switch (milestone.viewtype) {
@@ -134,35 +130,47 @@ class ProjectPageView extends View {
                 console.warn()
         }
     }
-
-    openTask() {
-        console.log(1);
-    }
 }
 
 class ProjectTasksView extends View {
     constructor(template) {
         super();
         this.el = $('#tasks');
+        this.events = {
+            'click .js_task_header': 'openTask'
+        };
         this.template = template;
         this.render();
+        View.apply(this);
     }
 
     render() {
         this.el.html(this.template(milestone));
     }
+
+    openTask(e) {
+        let opentaskBlock = e.currentTarget.nextElementSibling;
+        let opentask = new ProjectTaskView();
+        $(opentaskBlock).html(opentask.render().el);
+        console.log(opentask.render().el)
+    }
 }
 
 class ProjectTaskView extends View {
-    constructor(template) {
-        super();
-        this.el = $('#tasks');
-        this.template = template;
-        this.render();
+    constructor() {
+        super({
+            tagName: 'td',
+            className: 'opentask__wrap',
+            attributes: {
+                'colspan': 5
+            }
+        });
+        this.template = InnerTasksTemplate;
     }
 
     render() {
-        this.el.html(this.template(task));
+        this.$el.html(this.template(task));
+        return this;
     }
 }
 
