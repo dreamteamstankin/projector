@@ -1,11 +1,11 @@
 import { AppRouter } from './router/router'
-import { ProjectPageView } from './view/project/projectpage'
+import { ProjectLayoutView } from './view/project/projectLayout'
 import { MenuView } from './view/menu'
 
 $(() => {
     const App = {};
     App.Router = new AppRouter();
-    App.ProjectPageView = new ProjectPageView();
+    App.ProjectLayoutView = new ProjectLayoutView();
     App.MenuView = new MenuView();
 
     Backbone.history.start();

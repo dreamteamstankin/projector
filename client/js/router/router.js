@@ -5,23 +5,28 @@ class AppRouter extends Router {
         super({
             routes: {
                 "": "index",
-                "/projects": "projects",
-                "/project/:projectId/": "project",
-                "/task/:taskId/": "task",
-                "/project/:projectId/task/:taskId/": "task",
-                "/docs/": "docs",
-                "/article/:articleId": "article",
-                "/profile/": "profile"
+                "projects": "projects",
+                "project/:projectId/": "project",
+                "task/:taskId/": "task",
+                "project/:projectId/task/:taskId/": "task",
+                "docs/": "docs",
+                "project/:projectId/milestone/:milestoneId": "milestone",
+                "article/:articleId": "article",
+                "profile/": "profile"
             }
         });
     }
 
     index() {
-        //console.log('index')
+        console.log('index')
     }
 
-    projects(projectId) {
-        //console.log('projects', projectId)
+    project(projectId) {
+        console.log('projects', projectId)
+    }
+
+    milestone(projectId, milestoneId){
+        console.log('milestone', milestoneId)
     }
 
     task(projectId, taskId) {
@@ -29,7 +34,7 @@ class AppRouter extends Router {
     }
 
     docs() {
-        //console.log('docs')
+        console.log('docs')
     }
 
     article(articleId) {
