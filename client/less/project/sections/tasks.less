@@ -32,11 +32,12 @@
 }
 
 .task {
-    &.open .task__cell {
-        box-shadow: 0 -10px @opentask-shadow-type;
-        border: none;
+    &.open {
+        .task__cell{
+            box-shadow: 0 -10px @opentask-shadow-type;
+        }
         & + .opentask {
-            display: block;
+            display: table-row;
         }
     }
     &:last-child .task__cell {
@@ -76,6 +77,7 @@
 }
 
 .opentask {
+    display: none;
     &__wrap {
         border-top: 1px solid @border-color;
         box-shadow: 0 10px @opentask-shadow-type;
@@ -103,7 +105,6 @@
 }
 
 .tasksteps {
-    padding-right: @padding-xl;
     &__list {
         padding: @padding-s 0;
         display: inline-block;

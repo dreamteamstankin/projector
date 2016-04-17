@@ -1,10 +1,8 @@
 var ProjectTemplate = require('../../../templates/project/page.hbs');
-var ListViewTemplate = require('../../../templates/project/listview.hbs');
-var BoardViewTemplate = require('../../../templates/project/boardview.hbs');
-var InnerTasksTemplate = require('../../../templates/project/innertasks.hbs');
+var ListViewTemplate = require('../../../templates/project/listView.hbs');
+var listViewItemTemplate = require('../../../templates/project/listViewItem.hbs');
 
 const { View } = Backbone;
-
 
 const milestone = {
     id: 1,
@@ -17,33 +15,23 @@ const milestone = {
     tasks: [{
         name_id: 'GIS-2',
         title: 'Логирование',
-        type: 1,
-        status: 1,
-        completed: false
+        status: 1
     }, {
         name_id: 'GIS-3',
         title: 'Карта сайта',
-        type: 1,
-        status: 2,
-        completed: false
+        status: 2
     }, {
         name_id: 'GIS-4',
         title: 'Масштабирование при зуме',
-        type: 1,
-        status: 3,
-        completed: false
+        status: 3
     }, {
         name_id: 'GIS-5',
         title: 'Исправление ошибки с температурой',
-        type: 1,
-        status: 4,
-        completed: false
+        status: 4
     }, {
         name_id: 'GIS-6',
         title: 'Мелкие правки по верстке',
-        type: 1,
-        status: 5,
-        completed: false
+        status: 5
     }]
 };
 const task = {
@@ -54,6 +42,8 @@ const task = {
     date_start: (new Date()),
     finish_date: (new Date()),
     status: 3,
+    type: 1,
+    workflow_type: 2,
     workflow: [{
         title: 'Открыто',
         date_finish: (new Date()),
@@ -111,7 +101,6 @@ const task = {
     }]
 };
 
-
 class ProjectPageView extends View {
     constructor() {
         super();
@@ -148,11 +137,26 @@ class ProjectTasksView extends View {
         this.el.html(this.template(milestone));
     }
 
+    toggleTask(task) {
+        $('.js_task_header').removeClass('open');
+        if (task.classList.contains('open')) {
+            $(task).removeClass('open');
+        } else {
+            $(task).addClass('open');
+        }
+    }
+
     openTask(e) {
-        let opentaskBlock = e.currentTarget.nextElementSibling;
-        let opentask = new ProjectTaskView();
-        $(opentaskBlock).html(opentask.render().el);
-        console.log(opentask.render().el)
+        let opentaskBlock = $(e.currentTarget.nextElementSibling);
+        let ready = opentaskBlock.data('task-ready');
+        if (!ready){
+            let opentask = new ProjectTaskView();
+            $(opentaskBlock).html(opentask.render().el);
+            opentaskBlock.data('task-ready', true);
+            this.toggleTask(e.currentTarget);
+        } else {
+            this.toggleTask(e.currentTarget);
+        }
     }
 }
 
@@ -165,7 +169,7 @@ class ProjectTaskView extends View {
                 'colspan': 5
             }
         });
-        this.template = InnerTasksTemplate;
+        this.template = listViewItemTemplate;
     }
 
     render() {
@@ -173,6 +177,5 @@ class ProjectTaskView extends View {
         return this;
     }
 }
-
 
 export { ProjectPageView }
