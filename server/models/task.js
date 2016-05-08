@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var db = require('../components/db')
 
-// var Project = require('project.js')
+// var Project = require('projectModel.js')
 // var Attach = require('attach.js')
 // var Comment = require('comment.js')
 

@@ -1,42 +1,8 @@
 import { ProjectTaskView } from './projectTask'
+import { ProjectModel, Projects  } from '../../model/milestoneModel'
 
 const { View } = Backbone;
-
-const milestone = {
-    id: 1,
-    name_id: 'Master',
-    title: 'Погодный сайт',
-    description: 'Жизненный цикл продукции, несмотря на внешние воздействия, притягивает из ряда вон выходящий критерий сходимости Коши, что и требовалось доказать',
-    start: (new Date()),
-    finish: (new Date()),
-    viewtype: 1,
-    tasks: [{
-        name_id: 'GIS-2',
-        title: 'Инициация',
-        url: 'project/PY/milestone/1',
-        status: 1
-    }, {
-        name_id: 'GIS-3',
-        title: 'Планирование',
-        url: 'project/PY/milestone/1',
-        status: 2
-    }, {
-        name_id: 'GIS-4',
-        title: 'Исполнение',
-        url: 'project/PY/milestone/1',
-        status: 3
-    }, {
-        name_id: 'GIS-5',
-        title: 'Мониторинг и упраавление',
-        url: 'project/PY/milestone/1',
-        status: 4
-    }, {
-        name_id: 'GIS-6',
-        title: 'Завершение',
-        url: 'project/PY/milestone/1',
-        status: 5
-    }]
-};
+const milestone = Projects.first().attributes;
 
 class ProjectTasksView extends View {
     constructor(template) {

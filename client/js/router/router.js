@@ -18,7 +18,7 @@ class AppRouter extends Router {
     }
 
     index() {
-        console.log('index')
+        console.log('indцex')
     }
 
     project(projectId) {
@@ -44,6 +44,6 @@ class AppRouter extends Router {
     profile() {
         //console.log('profile')
     }
-};
+}
 
 export { AppRouter };
