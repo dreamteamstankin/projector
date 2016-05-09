@@ -1,3 +1,6 @@
+import { ProjectView } from '../view/project/projectView'
+import { MilestoneView } from '../view/project/milestoneView'
+
 const { Router } = Backbone;
 
 class AppRouter extends Router {
@@ -5,12 +8,14 @@ class AppRouter extends Router {
         super({
             routes: {
                 "": "index",
+
                 "projects": "projects",
+
                 "project/:projectId/": "project",
+                "milestone/:milestoneId": "milestone",
                 "task/:taskId/": "task",
-                "project/:projectId/task/:taskId/": "task",
+
                 "docs/": "docs",
-                "project/:projectId/milestone/:milestoneId": "milestone",
                 "article/:articleId": "article",
                 "profile/": "profile"
             }
@@ -18,15 +23,17 @@ class AppRouter extends Router {
     }
 
     index() {
-        console.log('indцex')
+        console.log('index');
+        new ProjectView('GIS');
     }
 
     project(projectId) {
         console.log('projects', projectId)
     }
 
-    milestone(projectId, milestoneId){
-        console.log('milestone', milestoneId)
+    milestone(milestoneId){
+        console.log('milestone', milestoneId);
+        new MilestoneView(milestoneId);
     }
 
     task(projectId, taskId) {
