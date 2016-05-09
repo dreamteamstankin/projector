@@ -54,6 +54,13 @@
 			.icon-render(@red, @code);
 		}
 	}
+    &__burger {
+        @code: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26"><path fill="{{{icon-color}}}" d="M0 4v2h26V4H0zm0 8v2h26v-2H0zm0 8v2h26v-2H0z"/></svg>';
+        .icon-render(@black, @code);
+        &.icon_hover_on:hover {
+            .icon-render(@red, @code);
+        }
+    }
 }
 
 .icon {

@@ -34,8 +34,20 @@
 .task {
     display: table-row;
     &.open {
-        .task__cell{
-            box-shadow: 0 -10px @opentask-shadow-type;
+        .task__cell {
+            position: relative;
+            z-index: 10;
+            &:before {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-color: #FFF;
+                left: 0;
+                top: 0;
+                z-index: -1;
+                padding-bottom: 10px;
+            }
         }
         & + .opentask {
             display: table-row;
@@ -85,7 +97,7 @@
     &__wrap {
         border-top: 1px solid @border-color;
         box-shadow: 0 10px @opentask-shadow-type;
-        padding: @padding-m @block-padding-horizontal @padding-l;
+        padding: 0 @padding-m @block-padding-horizontal @padding-l;
     }
     &__title {
         padding-top: @padding-s;
