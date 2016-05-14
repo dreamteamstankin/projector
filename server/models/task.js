@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var db = require('../components/db')
 
 // var Project = require('projectModel.js')
 // var Attach = require('attach.js')
@@ -35,7 +34,7 @@ var taskSchema = new Schema({
     }]
 });
 
-createTask = function() {
+var createTask = function() {
     Task.count(function(err, count) {
         var newTask = {
             name_id: 'TEST' + '-' + count,
@@ -74,12 +73,12 @@ createTask = function() {
             }
         );
     })
-}
-dropTask = function() {
+};
+var dropTask = function() {
     Task.remove({}, function(err, Task) {
         console.log('Successfully deleted all');
     });
-}
+};
 // createTask() 
 // dropTask()
 

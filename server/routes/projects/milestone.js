@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-router.route('/project/')
+router.route('/milestone/')
     .get(function(req, res) {
         res.json({
-            'привет': 'проект!'
+            'привет': 'веха!'
         });
     });
 

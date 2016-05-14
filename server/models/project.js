@@ -1,9 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var db = require('../components/db')
 
-var Task = require('../models/task.js')
-var Company = require('../models/company.js')
+var Task = require('../models/task.js');
+var Company = require('../models/company.js');
 
 var projectSchema = new Schema({
     company_id: {
@@ -32,7 +31,7 @@ var projectSchema = new Schema({
 
 var Project = mongoose.model('Project', projectSchema);
 
-createProject = function() {
+var createProject = function() {
     Company.findOne({
         title: 'Прожектор'
     }, function(err, Companyes) {
@@ -50,7 +49,7 @@ createProject = function() {
                 name: 'Антон Ахатов'
             },
             tasks: []
-        }
+        };
         var project = new Project(newProject);
         project.save(function(err) {
             Project.find(function(err, projects) {
@@ -60,13 +59,13 @@ createProject = function() {
             });
         });
     });
-}
+};
 // createProject()
-dropProject = function() {
+var dropProject = function() {
         Project.remove({}, function(err, Project) {
             console.log('Successfully deleted all');
         });
-    }
+    };
     // dropProject()
     // createProject()
 

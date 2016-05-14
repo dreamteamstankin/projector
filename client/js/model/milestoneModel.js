@@ -28,6 +28,11 @@ class MilestoneCollection extends Collection {
 
 const Milestones = new MilestoneCollection;
 
+
+Milestones.fetch({ data: $.param({ project: 'GIS'}) });
+
+
+
 Milestones.add([new MilestoneModel({
     id: 'GIS-M-1',
     branch: 'GIS-M-1',

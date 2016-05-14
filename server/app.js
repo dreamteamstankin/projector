@@ -6,23 +6,22 @@ var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var passportJS = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
 
-
-/*-----------------------
-	PassportJS config
-------------------------- */
-var User = require('./models/user');
-passportJS.use(new LocalStrategy(User.authenticate()));
-passportJS.serializeUser(User.serializeUser());
-passportJS.deserializeUser(User.deserializeUser());
 
 
 // /*-----------------------
 // 	Mongoose connect
 // ------------------------- */
-// mongoose.connect('mongodb://localhost/mongo_projects');
+mongoose.connect('mongodb://localhost:27017/projector');
+
+var db = mongoose.connection;
+
+db.on('error', function (err) {
+    console.log('Connection error:', err.message);
+});
+db.on('open', function () {
+    console.log("Connected to DB!");
+});
 
 /*-----------------------
 	Express config
@@ -42,25 +41,23 @@ app.use(expressSession({
     resave: false,
     saveUninitialized: false
 }));
-app.use(passportJS.initialize());
-app.use(passportJS.session());
 // app.use(express.static(path.join(__dirname, 'public/')));
 
 
 /*-----------------------
 	Routers
 ------------------------- */
-var index = require('./routes/index');
+//var index = require('./routes/index');
 var task = require('./routes/projects/task');
+var milestone = require('./routes/projects/milestone');
 var project = require('./routes/projects/project');
-var projects = require('./routes/projects/projects');
-var passport = require('./routes/passport/passport');
-
-app.use('/', passport);
-app.use('/', index);
+//var projects = require('./routes/projects/projects');
+//
+//app.use('/', index);
 app.use('/', task);
+app.use('/', milestone);
 app.use('/', project);
-app.use('/', projects);
+//app.use('/', projects);
 
 
 /*-----------------------
@@ -72,7 +69,7 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res) {
     res.status(err.status || 500);
     res.json({
         message: err.message,

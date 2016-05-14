@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var passportLocalMongoose = require('passport-local-mongoose');
 var Schema = mongoose.Schema;
-var db = require('../components/db')
 
 var userSchema = new Schema({
     login: {
@@ -10,17 +9,17 @@ var userSchema = new Schema({
     },
     password: {
         type: String,
-        required: true,
+        required: true
     },
     name: String
 });
 
-createUser = function() {
+var createUser = function() {
     var newUser = {
         login: 'tasha',
         password: '2',
         name: 'Таша'
-    }
+    };
     var user = new User(newUser);
     user.save(function(err) {
         User.find(function(err, users) {
@@ -30,12 +29,12 @@ createUser = function() {
             console.log(users);
         });
     });
-}
-dropUser = function() {
+};
+var dropUser = function() {
     User.remove({}, function(err, User) {
         console.log('Successfully deleted all');
     });
-}
+};
 // createUser()
 // dropUser()
 
