@@ -22,6 +22,10 @@ class MilestoneModel extends Model {
 class MilestoneCollection extends Collection {
     constructor() {
         super();
+        this.url = '//localhost:7000/project';
+        this.parse = function(data) {
+            console.log(data)
+        };
         this.model = MilestoneModel;
     }
 }
@@ -29,7 +33,8 @@ class MilestoneCollection extends Collection {
 const Milestones = new MilestoneCollection;
 
 
-Milestones.fetch({ data: $.param({ project: 'GIS'}) });
+Milestones.fetch();
+//Milestones.fetch({ data: $.param({ project: 'GIS'}) });
 
 
 
