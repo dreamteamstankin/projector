@@ -8,6 +8,10 @@
         border: 1px solid #DDD;
         border-radius: 5px;
         padding: 5px 20px;
+        &.nostyle {
+            padding: 0;
+            border: none;
+        }
     }
     &__context {
         top: 115%;
@@ -32,11 +36,20 @@
         padding: 10px 20px;
         cursor: pointer;
         transition: background .2s;
+        display: block;
         &:hover {
             background-color: @lightwhite;
         }
         &:active {
             background-color: @darkwhite;
+        }
+        &.active {
+            cursor: default;
+            color: @black;
+            &:hover,
+            &:active {
+                background-color: inherit;
+            }
         }
     }
 }

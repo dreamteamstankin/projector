@@ -1,9 +1,16 @@
 <section class="page__section project__menu">
     <div class="menu">
-        <a href="#" class="menu__item link style_black">
-            <i class="icon icon__burger icon_hover_on icon_size_l"></i>
-            <a href="/#" class="menu__item menu__header link style_black">Проекты</a>
-        </a>
+        <div class="menu__item dropdown dropdown_on_hover">
+            <div class="dropdown__trigger nostyle">
+                <i class="icon icon__burger icon_hover_on icon_size_l"></i>
+            </div>
+            <div class="dropdown__context">
+                <span class="dropdown__item active">Проекты</span>
+                <a href="#" class="dropdown__item link blue">Документация</a>
+                <a href="#" class="dropdown__item link blue">Настройки</a>
+            </div>
+        </div>
+        <a href="/#" class="menu__item menu__header link style_black">Проекты</a>
         {{#each links}}
             <a href="/#" data-url="{{url}}" class="menu__item link">{{name}}</a>
         {{/each}}

@@ -1,11 +1,8 @@
 const { View } = Backbone;
 const listViewItemTemplate = require('../../../templates/project/listViewItem.hbs');
-import { TaskModel, Tasks  } from '../../model/taskModel'
-
-const task = Tasks.first().attributes;
 
 class openTaskView extends View {
-    constructor() {
+    constructor(task) {
         super({
             tagName: 'td',
             className: 'opentask__wrap',
@@ -13,11 +10,12 @@ class openTaskView extends View {
                 'colspan': 5
             }
         });
+        this.collection = task;
         this.template = listViewItemTemplate;
     }
 
     render() {
-        this.$el.html(this.template(task));
+        this.$el.html(this.template(this.collection.first().attributes));
         return this;
     }
 }

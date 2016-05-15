@@ -1,5 +1,4 @@
 import { AppRouter } from './router/router'
-
 import { MenuView } from './view/menuView'
 
 $(() => {

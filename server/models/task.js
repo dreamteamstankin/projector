@@ -11,22 +11,29 @@ var taskSchema = new Schema({
         required: true,
         unique: true
     },
-    url: String,
-    user: {
-        url: String,
-        name: String
+    project_id: String,
+    branch: {
+        current: String,
+        parent: String,
+        block: Array
     },
     title: String,
     description: String,
-    start_date: Date,
-    state: Number,
+    user: String,
+    date_start: Date,
+    finish_start: Date,
+    status: Number,
+    workflow: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Workflow'
+    }],
     attaches: [{
         type: Schema.Types.ObjectId,
         ref: 'Attach'
     }],
     subtasks: [{
         type: Schema.Types.ObjectId,
-        ref: '_Task'
+        ref: 'Subtask'
     }],
     comments: [{
         type: Schema.Types.ObjectId,
@@ -38,19 +45,24 @@ var createTask = function() {
     Task.count(function(err, count) {
         var newTask = {
             name_id: 'TEST' + '-' + count,
-            url: '/task/' + 'TEST' + '-' + count,
-            user: {
-                url: '/profile/' + 'gcor',
-                name: 'Антон Ахатов'
+            project_id: String,
+            branch: {
+                current: 'TEST' + '-' + count,
+                parent: null,
+                blocked: null
             },
             title: 'Тестовый проект ' + count,
             description: 'Тестовое описание ' + count,
-            start_date: new Date,
-            state: 0,
+            user: 'Ахатов',
+            date_start: new Date,
+            finish_start: new Date,
+            status: 0,
+            workflow: [],
             attaches: [],
             subtasks: [],
             comments: []
-        }
+        };
+
         var task = new Task(newTask);
         task.save(function(err) {
             Task.find(function(err, tasks) {
@@ -74,12 +86,13 @@ var createTask = function() {
         );
     })
 };
+
 var dropTask = function() {
-    Task.remove({}, function(err, Task) {
+    Task.remove({}, function(err, task) {
         console.log('Successfully deleted all');
     });
 };
 // createTask() 
 // dropTask()
 
-module.exports = mongoose.model('_Task', taskSchema);
+module.exports = mongoose.model('Task', taskSchema);
