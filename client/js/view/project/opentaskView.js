@@ -15,7 +15,7 @@ class openTaskView extends View {
     }
 
     render() {
-        this.$el.html(this.template(this.collection.first().attributes));
+        this.$el.html(this.template(this.collection));
         return this;
     }
 }

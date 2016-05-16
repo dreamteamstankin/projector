@@ -3,6 +3,7 @@ const { Model, Collection } = Backbone;
 class TaskModel extends Model {
     constructor(option) {
         super(option);
+        this.urlRoot = '//localhost:7000/task';
     }
     defaults() {
         return {

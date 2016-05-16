@@ -269,4 +269,9 @@ router.route('/task/')
         res.json(response);
     });
 
+router.route('/task/:id')
+    .get(function (req, res) {
+        res.json(response[0]);
+    });
+
 module.exports = router;
