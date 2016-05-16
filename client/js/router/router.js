@@ -1,6 +1,7 @@
 import { ProjectView } from '../view/project/projectView'
 import { MilestoneView } from '../view/project/milestoneView'
 import { MilestoneModel, Milestones  } from '../model/milestoneModel'
+import { ProjectModel, Projects  } from '../model/projectModel'
 
 const { Router } = Backbone;
 
@@ -24,8 +25,15 @@ class AppRouter extends Router {
     }
 
     index() {
-        console.log('index');
-        new ProjectView('GIS');
+        var project = new ProjectModel({
+            id: 'GIS'
+        });
+        project.fetch({
+            success: function(){
+                Projects.add(project);
+                new ProjectView('GIS');
+            }
+        });
     }
 
     project(projectId) {

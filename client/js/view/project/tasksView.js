@@ -14,8 +14,6 @@ class TasksView extends View {
         this.tasks = tasks;
         this.render();
         View.apply(this);
-
-
     }
 
     render() {
@@ -23,7 +21,7 @@ class TasksView extends View {
     }
 
     toggleTask(task) {
-        $('.js_task_header').removeClass('open');
+        $('.js_task_header').parent().removeClass('open');
         if ($(task).hasClass('open')) {
             $(task).removeClass('open');
         } else {
@@ -32,7 +30,8 @@ class TasksView extends View {
     }
 
     openTask(e) {
-        let openTaskBlock = $(e.currentTarget.nextElementSibling);
+        let item = e.currentTarget.parentNode;
+        let openTaskBlock = $(item.nextElementSibling);
         let ready = openTaskBlock.data('task-ready');
         let taskId = openTaskBlock.data('task-id');
         let self = this;
@@ -47,10 +46,10 @@ class TasksView extends View {
                 let openTask = new openTaskView(Tasks);
                 $(openTaskBlock).html(openTask.render().el);
                 openTaskBlock.data('task-ready', true);
-                self.toggleTask(e.currentTarget);
+                self.toggleTask(item);
             });
         } else {
-            self.toggleTask(e.currentTarget);
+            self.toggleTask(item);
         }
     }
 }

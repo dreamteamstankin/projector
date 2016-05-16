@@ -34,6 +34,10 @@
 .task {
     display: table-row;
     &.open {
+        .task__text {
+            font-weight: bold;
+            font-size: 16px;
+        }
         .task__cell {
             position: relative;
             z-index: 10;
@@ -57,13 +61,13 @@
         border-bottom: none;
     }
     &__cell {
-        white-space: nowrap;
         position: relative;
         padding: @padding-xs @padding-s;
         box-sizing: border-box;
         min-width: 80px;
         border-top: 1px solid @darkwhite;
         transition: background .2s;
+        vertical-align: top;
         &_type_main {
             width: 100%;
         }
@@ -83,12 +87,9 @@
     &__text {
         display: block;
     }
-    &__description {
+    &__content {
         font-size: @font-xs;
-        padding-right: @padding-l;
-    }
-    &__time {
-        font-size: @font-xs;
+        white-space: nowrap;
     }
 }
 
