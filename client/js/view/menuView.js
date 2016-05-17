@@ -25,26 +25,21 @@ class MenuView extends View {
     constructor() {
         super();
         this.el = $('#menu');
+        this.events = {
+            'click .js_menu_item': 'activeItem'
+        };
         this.template = MenuTemplate;
         this.render();
+        View.apply(this);
     }
 
     render() {
         this.el.html(this.template(menu));
     }
-}
 
-class MenuItemView extends View {
-    constructor() {
-        super();
-        this.el = $('#menu');
-        this.template = MenuTemplate;
-        this.render();
-    }
-
-    render() {
-        this.el.html(this.template(menu));
+    activeItem(e) {
+        $('.js_menu_item').removeClass('active');
+        $(e.currentTarget).addClass('active');
     }
 }
-
-export { MenuView, MenuItemView }
+export { MenuView }

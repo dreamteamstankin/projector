@@ -6,14 +6,14 @@
             </div>
             <div class="dropdown__context">
                 <span class="dropdown__item active">Проекты</span>
-                <a href="#" class="dropdown__item link blue">Документация</a>
-                <a href="#" class="dropdown__item link blue">Настройки</a>
+                <a href="#/docs/" class="dropdown__item link blue">Документация</a>
+                <a href="#/settings/" class="dropdown__item link blue">Настройки</a>
             </div>
         </div>
-        <a href="/#" class="menu__item menu__header link style_black">Проекты</a>
+        <a href="/#" class="menu__item active menu__header link style_black js_menu_item">Проекты</a>
         {{#each links}}
-            <a href="/#" data-url="{{url}}" class="menu__item link">{{name}}</a>
+            <a href="/#" data-url="{{url}}" class="menu__item link js_menu_item">{{name}}</a>
         {{/each}}
-        <a href="#" class="link menu__item style_float_right">Антон Ахатов</a>
+        <a href="#/profile/" class="link menu__item style_float_right js_menu_item">Антон Ахатов</a>
     </div>
 </section>
