@@ -1,35 +1,51 @@
 {{#each projects}}
-    <a href="#project/{{id}}/" class="page__section project__projects grid link style_black style_hover_light">
-        <section class="grid__cell grid__cell_size_3 style_black">
-            <div class="dashboard__description">{{description}}</div>
-        </section>
-        <section class="grid__cell grid__cell_size_5 style_black">
-            <div class="dashboard">
-                <div class="dashboard__item">
-                    <div class="header_section style_black">Старт</div>
-                    <div class="dashboard__content">
-                        {{[../../js/hbs/dateFormat] 'DD MMM' start}}
+    <a href="#project/{{id}}/" class="project__projects link style_solid style_black style_hover_light">
+        <div class="page__section">
+            <div class="dashboard__title">
+                <span class="style_size_l style_bold">{{title}}</span>
+                <span class="dropdown dropdown_on_hover nostyle">
+                    <div class="dropdown__trigger nostyle">
+                        <i class="icon icon__more icon_hover_on icon_size_s"></i>
                     </div>
-                </div>
-                <div class="dashboard__item">
-                    <div class="header_section style_black">Релиз</div>
-                    <div class="dashboard__content style_red">
-                        {{[../../js/hbs/dateFormat] 'DD MMM' finish}}
+                    <div class="dropdown__context">
+                        <div class="dropdown__item link blue">Удалить</div>
+                        <div class="dropdown__item link blue">Редактировать</div>
                     </div>
-                </div>
-                <div class="dashboard__item">
-                    <div class="header_section style_black">Ветка GIT</div>
-                    <div class="dashboard__content">{{branch}}</div>
-                </div>
-                <div class="dashboard__item">
-                    <div class="header_section style_black">Прогресс</div>
-                    <div class="dashboard__content">
-                        <span class="style_black">1</span>
-                        <span class="style_delimiter style_gray">/</span>
-                        <span class="style_black">7</span>
-                    </div>
-                </div>
+                </span>
             </div>
-        </section>
+        </div>
+        <div class="page__section  grid">
+            <section class="grid__cell grid__cell_size_3 style_black">
+                <div class="dashboard__description">{{description}}</div>
+            </section>
+            <section class="grid__cell grid__cell_size_5 style_black">
+                <div class="dashboard">
+                    <div class="dashboard__item">
+                        <div class="header_section style_black">Старт</div>
+                        <div class="dashboard__content">
+                            {{[../../js/hbs/dateFormat] 'DD MMM' start}}
+                        </div>
+                    </div>
+                    <div class="dashboard__item">
+                        <div class="header_section style_black">Релиз</div>
+                        <div class="dashboard__content style_red">
+                            {{[../../js/hbs/dateFormat] 'DD MMM' finish}}
+                        </div>
+                    </div>
+                    <div class="dashboard__item">
+                        <div class="header_section style_black">Ветка GIT</div>
+                        <div class="dashboard__content">{{branch}}</div>
+                    </div>
+                    <div class="dashboard__item">
+                        <div class="header_section style_black">Прогресс</div>
+                        <div class="dashboard__content">
+                            <span class="style_black">1</span>
+                            <span class="style_delimiter style_gray">/</span>
+                            <span class="style_black">7</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </a>
 {{/each}}

@@ -64,11 +64,12 @@
         position: relative;
         padding: @padding-xs @padding-s;
         box-sizing: border-box;
-        min-width: 80px;
+        white-space: nowrap;
         border-top: 1px solid @darkwhite;
         transition: background .2s;
         vertical-align: top;
         &_type_main {
+            white-space: normal;
             width: 100%;
         }
         &:first-child {
@@ -161,6 +162,16 @@
     &__description {
         white-space: nowrap;
         font-size: @font-xs;
+    }
+    &__actions {
+        display: none;
+    }
+    &__text {
+        &:hover {
+            .tasksection__actions{
+                display: inline;
+            }
+        }
     }
 }
 

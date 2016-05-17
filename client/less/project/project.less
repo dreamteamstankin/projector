@@ -5,7 +5,7 @@
 @import 'sections/menu.less';
 .project {
     &__breadcrumbs {
-        padding-top: @padding-s;
+        padding-top: @padding-xl;
     }
     &__comments {
         .header__section {
@@ -27,5 +27,9 @@
         display: block;
         padding-top: @padding-xl;
         padding-bottom: @padding-xl;
+        border-bottom-color: @darkwhite;
+        &:last-child {
+            border-bottom: none;
+        }
     }
 }

@@ -1,16 +1,25 @@
 <section class="page__section project__breadcrumbs">
     <div class="breadcrumbs">
         <span class="style_size_l style_bold">{{title}}</span>
+        <span class="dropdown dropdown_on_hover nostyle">
+            <div class="dropdown__trigger nostyle">
+                <i class="icon icon__more icon_hover_on icon_size_s"></i>
+            </div>
+            <div class="dropdown__context">
+                <div class="dropdown__item link blue">Удалить</div>
+                <div class="dropdown__item link blue">Редактировать</div>
+            </div>
+        </span>
     </div>
-    <div class="breadcrumbs">
-        {{#each breadcrumbs}}
-            <span class="style_size_l style_bold">{{item.name}}</span>
-            <a href="#" class="link style_blue"></a>
-            <span class="style_delimiter style_gray">/</span>
-        {{/each}}
-        <!--if i == breadcrumbs.title.length-1-->
-        <!--else-->
-    </div>
+    <!--<div class="breadcrumbs">-->
+        <!--{{#each breadcrumbs}}-->
+            <!--<span class="style_size_l style_bold">{{item.name}}</span>-->
+            <!--<a href="#" class="link style_blue"></a>-->
+            <!--<span class="style_delimiter style_gray">/</span>-->
+        <!--{{/each}}-->
+        <!--&lt;!&ndash;if i == breadcrumbs.title.length-1&ndash;&gt;-->
+        <!--&lt;!&ndash;else&ndash;&gt;-->
+    <!--</div>-->
 </section>
 <section class="page__section project__dashboard grid">
     <section class="grid__cell grid__cell_size_3">

@@ -7,7 +7,7 @@ class openTaskView extends View {
             tagName: 'td',
             className: 'opentask__wrap',
             attributes: {
-                'colspan': 5
+                'colspan': 6
             }
         });
         this.collection = task;
