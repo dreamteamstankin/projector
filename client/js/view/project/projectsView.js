@@ -3,26 +3,26 @@ import { ProjectModel, Projects  } from '../../model/projectModel'
 
 const { View } = Backbone;
 const PageTemplate = require('../../../templates/project/page.hbs');
-const ProjectTemplate = require('../../../templates/project/project.hbs');
+const ProjectsTemplate = require('../../../templates/project/projects.hbs');
 
-class ProjectView extends View {
-    constructor(id) {
+class ProjectsView extends View {
+    constructor() {
         super();
+        var self = this;
         this.el = $('#page');
-        this.template = PageTemplate;
-        this.data = Projects.findWhere({id: id}).attributes;
+        this.template = ProjectsTemplate;
+        this.data = {
+            projects: []
+        };
+        Projects.each(function (project) {
+            self.data.projects.push(project.attributes);
+        });
         this.render();
     }
+
     render() {
         this.el.html(this.template(this.data));
-        switch (this.data.viewtype) {
-            case 1:
-                new TasksView(ProjectTemplate, this.data);
-                break;
-            default:
-                console.warn();
-        }
     }
 }
 
-export { ProjectView }
+export { ProjectsView }

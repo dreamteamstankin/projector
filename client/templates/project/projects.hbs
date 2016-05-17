@@ -1,17 +1,35 @@
-<table class="tasks">
-    {{#each tasks}}
-        <tr class="task">
-            <td class="task__cell header_tag style_gray">{{branch}}</td>
-            <td class="task__cell task__cell_type_main">
-                <a href="#milestone/{{id}}" class="task__link task__text link style_black">{{title}}</a>
-            </td>
-            <td class="task__cell task__time">Ахатов</td>
-            <td class="task__cell style_align_right">
-                <a href="#" class="link style_solid label label_type_open">
-                    <span class="header_tag">Статус {{status}}</span>
-                </a>
-            </td>
-            <td class="task__cell task__time">23 мин</td>
-        </tr>
-    {{/each}}
-</table>
+{{#each projects}}
+    <a href="#project/{{id}}/" class="page__section project__projects grid link style_black style_hover_light">
+        <section class="grid__cell grid__cell_size_3 style_black">
+            <div class="dashboard__description">{{description}}</div>
+        </section>
+        <section class="grid__cell grid__cell_size_5 style_black">
+            <div class="dashboard">
+                <div class="dashboard__item">
+                    <div class="header_section style_black">Старт</div>
+                    <div class="dashboard__content">
+                        {{[../../js/hbs/dateFormat] 'DD MMM' start}}
+                    </div>
+                </div>
+                <div class="dashboard__item">
+                    <div class="header_section style_black">Релиз</div>
+                    <div class="dashboard__content style_red">
+                        {{[../../js/hbs/dateFormat] 'DD MMM' finish}}
+                    </div>
+                </div>
+                <div class="dashboard__item">
+                    <div class="header_section style_black">Ветка GIT</div>
+                    <div class="dashboard__content">{{branch}}</div>
+                </div>
+                <div class="dashboard__item">
+                    <div class="header_section style_black">Прогресс</div>
+                    <div class="dashboard__content">
+                        <span class="style_black">1</span>
+                        <span class="style_delimiter style_gray">/</span>
+                        <span class="style_black">7</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </a>
+{{/each}}

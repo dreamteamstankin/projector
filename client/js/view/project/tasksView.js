@@ -37,7 +37,7 @@ class TasksView extends View {
         let self = this;
         if (!ready){
             var task = new TaskModel({
-                id: 'GIS'
+                id: taskId
             });
             task.fetch({
                 success: function(){
@@ -47,18 +47,6 @@ class TasksView extends View {
                     self.toggleTask(item);
                 }
             });
-            //Tasks.fetch({
-            //    data: $.param({
-            //        task: 'taskId'
-            //    }),
-            //    reset: true
-            //});
-            //Tasks.bind('reset', function () {
-            //    let openTask = new openTaskView(Tasks);
-            //    $(openTaskBlock).html(openTask.render().el);
-            //    openTaskBlock.data('task-ready', true);
-            //    self.toggleTask(item);
-            //});
         } else {
             self.toggleTask(item);
         }

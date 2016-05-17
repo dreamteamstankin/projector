@@ -1,4 +1,5 @@
 import { ProjectView } from '../view/project/projectView'
+import { ProjectsView } from '../view/project/projectsView'
 import { MilestoneView } from '../view/project/milestoneView'
 import { MilestoneModel, Milestones  } from '../model/milestoneModel'
 import { ProjectModel, Projects  } from '../model/projectModel'
@@ -25,8 +26,22 @@ class AppRouter extends Router {
     }
 
     index() {
+        console.log('index');
+        Projects.fetch({
+            data: $.param({
+                project: 'GIS'
+            }),
+            reset: true
+        });
+        Projects.bind('reset', function () {
+            new ProjectsView('GIS');
+        });
+    }
+
+    project(projectId) {
+        console.log('projects', projectId);
         var project = new ProjectModel({
-            id: 'GIS'
+            id: projectId
         });
         project.fetch({
             success: function(){
@@ -34,10 +49,6 @@ class AppRouter extends Router {
                 new ProjectView('GIS');
             }
         });
-    }
-
-    project(projectId) {
-        console.log('projects', projectId)
     }
 
     milestone(milestoneId){
