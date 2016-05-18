@@ -1,21 +1,16 @@
 <div class="opentask__steps tasksteps">
     <div class="tasksteps__list">
-        <div class="tasksteps__item taskstep header_title style_gray">Открыто
-            <div class="taskstep__description">(12.04)</div>
-        </div>
-        <div class="tasksteps__item taskstep header_title style_black">В работе
-            <div class="taskstep__description">(Ахатов, до 16.04)</div>
-            <div class="tasksteps__actions"></div>
-        </div>
-        <div class="tasksteps__item taskstep header_title style_gray">Код-ревью
-            <div class="taskstep__description">(Лунин)</div>
-        </div>
-        <div class="tasksteps__item taskstep header_title style_gray">Дизайн-ревью
-            <div class="taskstep__description">(Синельников)</div>
-        </div>
-        <div class="tasksteps__item taskstep header_title style_gray">Согласование
-            <div class="taskstep__description">(до 20.04)</div>
-        </div>
+        {{#each workflow}}
+            <div class="tasksteps__item taskstep header_title style_gray">
+                {{title}}
+                <div class="taskstep__description">
+                    {{#if date_finish}}
+                        ({{[../../js/hbs/dateFormat] 'DD MMM' date_finish}})
+                    {{/if}}
+
+                </div>
+            </div>
+        {{/each}}
     </div>
 </div>
 <div class="grid">
@@ -23,62 +18,22 @@
         <div class="opentask__section tasksection">
             <div class="opentask__title header_section">Задачи (0/4, 32 часа, 123 ₽)</div>
             <div class="list list_type_todo">
-                <label class="list__item tasksection">
-                    <div class="list__content_align_left">
-                        <input class="tasksection__checkbox" type="checkbox"/>
-                    </div>
-                    <div class="list__content_align_right">
-                        <div class="tasksection__text">
-                            Обводка поиска и фокус
+                {{#each subtasks}}
+                    <label class="list__item tasksection">
+                        <div class="list__content_align_left">
+                            <input class="tasksection__checkbox" type="checkbox" {{#if completed}} checked {{/if}}>
+                        </div>
+                        <div class="list__content_align_right">
+                            <div class="tasksection__text">
+                                {{title}}
                             <span class="tasksection__actions">
                                 <span class="js_subtask_edit link blue">E</span>
                                 <span class="js_subtask_del link blue">X</span>
                             </span>
+                            </div>
                         </div>
-                    </div>
-                </label>
-                <label class="list__item tasksection">
-                    <div class="list__content_align_left">
-                        <input class="tasksection__checkbox" type="checkbox"/>
-                    </div>
-                    <div class="list__content_align_right">
-                        <div class="tasksection__text">
-                            Звезда – серая, когда нажата
-                            <span class="tasksection__actions">
-                                <span class="js_subtask_edit link blue">E</span>
-                                <span class="js_subtask_del link blue">X</span>
-                            </span>
-                        </div>
-                    </div>
-                </label>
-                <label class="list__item tasksection">
-                    <div class="list__content_align_left">
-                        <input class="tasksection__checkbox" type="checkbox"/>
-                    </div>
-                    <div class="list__content_align_right">
-                        <div class="tasksection__text">
-                            Отступ между избранными и поиском
-                            <span class="tasksection__actions">
-                                <span class="js_subtask_edit link blue">E</span>
-                                <span class="js_subtask_del link blue">X</span>
-                            </span>
-                        </div>
-                    </div>
-                </label>
-                <label class="list__item tasksection">
-                    <div class="list__content_align_left">
-                        <input class="tasksection__checkbox" type="checkbox"/>
-                    </div>
-                    <div class="list__content_align_right">
-                        <div class="tasksection__text">
-                            Кегль очистить историю
-                            <span class="tasksection__actions">
-                                <span class="js_subtask_edit link blue">E</span>
-                                <span class="js_subtask_del link blue">X</span>
-                            </span>
-                        </div>
-                    </div>
-                </label>
+                    </label>
+                {{/each}}
             </div>
             <div class="form__add">
                 <input placeholder="Добавить новую задачу" class="input"/><i
@@ -88,15 +43,17 @@
         <div class="opentask__section tasksection">
             <div class="opentask__title comments header_section">Комментарии</div>
             <div class="list list_type_todo">
-                <div class="list__item">
-                    <div class="list__content_align_left">
-                        <div class="comment__photo">A</div>
+                {{#each comments}}
+                    <div class="list__item">
+                        <div class="list__content_align_left">
+                            <div class="comment__photo">{{user}}</div>
+                        </div>
+                        <div class="list__content_align_right">
+                            <div class="comment__header style_gray">{{userName}}</div>
+                            <div class="comment__text">{{content}}</div>
+                        </div>
                     </div>
-                    <div class="list__content_align_right">
-                        <div class="comment__header style_gray">Ахатов</div>
-                        <div class="comment__text">Не могу связаться по телефону</div>
-                    </div>
-                </div>
+                {{/each}}
                 <div class="form__add">
                     <input placeholder="Комментарий" class="input"><i
                         class="icon i icon icon_size_s icon__enter icon_align_vertical"></i>
@@ -133,10 +90,9 @@
                 <tr>
                     <td class="opendescription__cell header_section opendescription__header">Ветки</td>
                     <td class="opendescription__cell">
-                        <div>Начало с<a href="#" class="link"> GIS-281</a></div>
-                        <div>Окончание с<a href="#" class="link"> GIS-900</a></div>
-                        <div>После с<a href="#" class="link"> GIS-522</a></div>
-                        <div>До с<a href="#" class="link"> GIS-467</a></div>
+                        {{#each branches}}
+                            <div>{{title}} <a href="#/task/{{branch}}" class="link">{{branch}}</a></div>
+                        {{/each}}
                     </td>
                 </tr>
             </table>

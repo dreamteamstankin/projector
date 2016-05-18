@@ -10,6 +10,7 @@ var response = [{
     finish_date: (new Date()),
     status: 3,
     type: 1,
+    component: 'API',
     workflow_type: 2,
     workflow: [{
         title: 'Открыто',
@@ -36,7 +37,7 @@ var response = [{
     }],
     subtasks: [{
         user: 1,
-        completed: false,
+        completed: true,
         title: 'Кегль очистить историю сделать поменьше. Как и отступ до поиска.',
         date_finish: null,
         count_money: 0,
@@ -52,6 +53,7 @@ var response = [{
     comments: [{
         id: 1,
         user: 1,
+        userName: 'Ахатов',
         created: (new Date()),
         content: 'Не могу дозвониться до телефона'
     }],
@@ -60,11 +62,12 @@ var response = [{
         type: 'img',
         url: '/img/GIS-1.1.png'
     }],
-    fields: [{
-        component: 'API',
-        workflow_type: 'Верстка',
-        branch_task: 'GIS-1',
-        branch_parent: 'GIS-120'
+    branches: [{
+        branch: 'GIS-12',
+        title: 'Блокируется'
+    }, {
+        branch: 'GIS-120',
+        title: 'Окончание с'
     }]
 }, {
     id: 'GIS-2',
