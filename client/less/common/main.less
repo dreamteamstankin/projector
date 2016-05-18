@@ -51,9 +51,10 @@ body {
         margin: @padding-m 0 @padding-m 0;
         padding: 0 @block-padding-horizontal;
         box-sizing: border-box;
+        //дропдауны обрезаются
         //overflow: hidden;
-        &:first-child,
-        &:last-child {
+        &:not(.page__title):first-child,
+        &:not(.page__title):last-child {
             margin: 0;
         }
     }

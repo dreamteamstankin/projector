@@ -10,8 +10,10 @@ var response = [{
     finish_date: (new Date()),
     status: 3,
     type: 1,
+    priority: 2,
     component: 'API',
-    workflow_type: 2,
+    workflow_id: 2,
+    workflow_type: 'Верстка',
     workflow: [{
         title: 'Открыто',
         date_finish: (new Date()),

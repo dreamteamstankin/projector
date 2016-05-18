@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-
 var response = [{
     id: 'GIS-M-1',
     branch: 'GIS-M-1',
