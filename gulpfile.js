@@ -30,12 +30,11 @@ var config = {
         server: './public/'
     },
     from: {
+        html: "./client/*.html",
         less: "./client/less/*.less",
         allless: "./client/less/**/*.less",
         js: ["./client/js/**/*.js", "./client/templates/**/*"],
-        img: "./client/img/**/*",
-        jade: "./client/pages/**/*.jade",
-        alljade: ["./client/pages/**/*.jade", "./client/jade/**/*.jade"]
+        img: "./client/img/**/*"
     },
     to: {
         css: "./public/css/",
@@ -46,30 +45,18 @@ var config = {
 };
 
 gulp.task('server', ['server-sync']);
-gulp.task('client', ['jade', 'less', 'js', 'images', /*'templates',*/ 'client-sync'], function () {
-    gulp.watch(config.from.alljade, ['jade']);
+gulp.task('client', ['html', 'less', 'js', 'images', 'client-sync'], function () {
+    gulp.watch(config.from.html, ['html']);
     gulp.watch(config.from.allless, ['less']);
     gulp.watch(config.from.js, ['js']);
     gulp.watch(config.from.img, ['images']);
-    //gulp.watch(config.from.templates, ['templates']);
-    // return shell.task(['electron .'])()
+    gulp.watch(config.from.templates, ['templates']);
+     //return shell.task(['electron .'])()
 });
 
 gulp
-    .task('jade', function () {
-        gulp.src(config.from.jade)
-            .pipe(jade({
-                pretty: true
-            }))
-            .on('error', console.log)
-            .pipe(gulp.dest(config.to.html))
-            .pipe(reload({
-                stream: true
-            }));
-    })
     .task('client-sync', function () {
         browserSync.init(null, {
-            // open: false,
             notify: false,
             server: config.client.server,
             files: config.client.files,
@@ -142,22 +129,11 @@ gulp
             .pipe(reload({
                 stream: true
             }));
+    })
+    .task('html', function () {
+        gulp.src(config.from.html)
+            .pipe(gulp.dest(config.to.html))
+            .pipe(reload({
+                stream: true
+            }));
     });
-    //.task('copy', function () {
-    //    gulp.src(config.from.templates)
-    //        .pipe(gulp.dest(config.to.templates))
-    //        .pipe(reload({
-    //            stream: true
-    //        }));
-    //})
-    //.task('templates', function () {
-    //    gulp.src(config.from.templates)
-    //        .pipe(handlebars())
-    //        .pipe(wrap('Handlebars.template(<%= contents %>)'))
-    //        .pipe(declare({
-    //            namespace: 'App.templates',
-    //            noRedeclare: true
-    //        }))
-    //        .pipe(concat('templates.js'))
-    //        .pipe(gulp.dest(config.to.js));
-    //});
