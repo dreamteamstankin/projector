@@ -1,7 +1,7 @@
 <table class="tasks">
     {{#each tasks}}
         <tr class="task" data-task-id="{{id}}">
-            <td class="task__cell header_tag style_gray">{{branch}}</td>
+            <td class="task__cell header_tag style_gray">{{id}}</td>
             <td class="task__cell task__cell_type_main js_task_header">
                 <div class="task__text">{{title}}</div>
             </td>
@@ -24,6 +24,6 @@
                 </div>
             </td>
         </tr>
-        <tr class="opentask js_opentask" data-task-ready="false" data-task-id="{{name_id}}"></tr>
+        <tr class="opentask js_opentask" data-task-ready="false" data-task-id="{{id}}"></tr>
     {{/each}}
 </table>

@@ -38,8 +38,42 @@ var response = [{
 },{
     id: 'Test',
     branch: 'Master',
-    title: 'Погодный сайт',
-    description: 'test',
+    title: 'Другой сайт',
+    description: 'Воздухосодержание продуцирует гистерезис ОГХ. По мнению ведущих маркетологов, волна увлажняет ион-селективный продуктовый ассортимент, опираясь на опыт западных коллег. ',
+    start: (new Date()),
+    finish: (new Date()),
+    viewtype: 1,
+    tasks: [{
+        id: 'TEST-M-1',
+        branch: 'TEST-M-1',
+        title: 'Инициация',
+        status: 1
+    }, {
+        id: 'TEST-M-2',
+        branch: 'TEST-M-2',
+        title: 'Планирование',
+        status: 2
+    }, {
+        id: 'TEST-M-3',
+        branch: 'TEST-M-3',
+        title: 'Исполнение',
+        status: 3
+    }, {
+        id: 'TEST-M-4',
+        branch: 'TEST-M-4',
+        title: 'Мониторинг и упраавление',
+        status: 4
+    }, {
+        id: 'TEST-M-5',
+        branch: 'TEST-M-5',
+        title: 'Завершение',
+        status: 5
+    }]
+}, {
+    id: 'Test2',
+    branch: 'Master',
+    title: 'Cайт',
+    description: 'Газ спорадически вращает бурозём. Как показывает практика режимных наблюдений в полевых условиях, сервисная стратегия возбуждает вихрь.',
     start: (new Date()),
     finish: (new Date()),
     viewtype: 1,
