@@ -4,16 +4,17 @@ import { MilestoneView } from '../view/project/milestoneView'
 import { ProfileView } from '../view/profileView'
 import { ArticlesView } from '../view/articlesView'
 import { SettingsView } from '../view/settingsView'
-import { MilestoneModel, Milestones  } from '../model/milestoneModel'
-import { ProjectModel, Projects  } from '../model/projectModel'
+import { MilestoneModel, Milestones } from '../model/milestoneModel'
+import { ProjectModel, Projects } from '../model/projectModel'
 
 const { Router } = Backbone;
 
 class AppRouter extends Router {
-    constructor() {
-        super({
-            routes: {
-                "": "index",
+    constructor(currentUser) {
+        super(currentUser);
+        this.currentUser = currentUser;
+        this.routes = {
+            "": "index",
 
                 "projects": "projects",
 
@@ -27,8 +28,8 @@ class AppRouter extends Router {
                 "profile/": "profile",
 
                 "settings/": "settings"
-            }
-        });
+        };
+        Router.apply(this);
     }
 
     index() {
@@ -87,7 +88,9 @@ class AppRouter extends Router {
     }
 
     profile() {
-        new ProfileView();
+        new ProfileView({
+            currentUser: this.currentUser
+        });
     }
 }
 

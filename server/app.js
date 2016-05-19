@@ -54,16 +54,18 @@ app.use(allowCrossDomain);
 /*-----------------------
 	Routers
 ------------------------- */
-//var index = require('./routes/index');
 var task = require('./routes/projects/task');
 var milestone = require('./routes/projects/milestone');
 var project = require('./routes/projects/project');
-//var projects = require('./routes/projects/projects');
+var user = require('./routes/projects/user');
+var company = require('./routes/projects/company');
 //
 //app.use('/', index);
 app.use('/', task);
 app.use('/', milestone);
 app.use('/', project);
+app.use('/', user);
+app.use('/', company);
 //app.use('/', projects);
 
 
