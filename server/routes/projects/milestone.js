@@ -181,6 +181,7 @@ var response = [{
 
 
 
+
 var addMilestone = function(info) {
     MilestoneModel.count(function(err, count) {
         if (err) return console.error(err);
@@ -191,8 +192,11 @@ var addMilestone = function(info) {
                 info.project_name = project.name_id;
                 info.name_id = project.name_id + '-M-' + (count + 1);
                 info.branch = project.name_id + '-M-' + (count + 1);
+                info.start = new Date();
+                info.finish = null;
+                info.viewtype = 1;
 
-                milestone = new MilestoneModel(info);
+                var milestone = new MilestoneModel(info);
                 milestone.save(function(err, milestone) {
                     if (err) return console.error(err);
                     console.log(milestone.name_id, 'save')
@@ -206,7 +210,8 @@ var addMilestone = function(info) {
 //     title: 'Релиз — веха',
 //     parent: mongoose.Types.ObjectId('5741d5b3d1156728812f0961'),
 //     company_id: mongoose.Types.ObjectId('57419b50f75c452880252d4c'),
-//     user_id: mongoose.Types.ObjectId('57419b625726f138803ea964')
+//     user_id: mongoose.Types.ObjectId('57419b625726f138803ea964'),
+//     description: 'Описание',
 // })
 
 var removeMilestone = function(milestone_id) {
@@ -222,7 +227,7 @@ var removeMilestone = function(milestone_id) {
 // removeMilestone('5741eeb4c25d25b883ba735d');
 
 var getMilestones = function(milestone_id, cb) {
-    TaskModel.find({parent: milestone_id}, 'id branch title', function(err, tasks) {
+    TaskModel.find({parent: milestone_id}, 'id branch title status', function(err, tasks) {
         if (err) return console.error(err);
         MilestoneModel.findOne({_id: milestone_id}, function (err, melistone) {
             if (err) return console.error(err);

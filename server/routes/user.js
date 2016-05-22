@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var UserModel = require('../../models/user.js');
-var CompanyModel = require('../../models/company.js');
+var UserModel = require('../models/user.js');
+var CompanyModel = require('../models/company.js');
 
 var response = [{
     id: 1,

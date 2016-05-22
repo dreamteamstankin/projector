@@ -10,7 +10,11 @@ var milestoneSchema = Schema({
         required: true,
         unique: true
     },
+    viewtype: Number,
     branch: String,
+    start: Date,
+    finish: Date,
+    description: String,
     parent: Schema.Types.ObjectId,
     company_id: Schema.Types.ObjectId,
     user_id: Schema.Types.ObjectId

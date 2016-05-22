@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var CompanyModel = require('../../models/company.js');
+var CompanyModel = require('../models/company.js');
 
 var response = [{
     company_id: 1,
