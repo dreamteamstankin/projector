@@ -26,6 +26,16 @@ var addCompany = function(info) {
     });
 };
 
+var removeCompany = function(company_id) {
+    CompanyModel.remove({_id:company_id}, function(err, companies) {
+        if (err) return console.error(err);
+        CompanyModel.count(function(err, count) {
+            if (err) return console.error(err);
+            console.log('Компаний:', count)
+        })
+    });
+};
+
 // addCompany({
 //     name_id: 'gismeteo',
 //     name: 'Гисметео'

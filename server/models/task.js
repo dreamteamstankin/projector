@@ -67,6 +67,43 @@ var removeTask = function(task_id) {
     });
 };
 
+var addWorkflow = function (task_id, info) {
+    TaskModel.findOne({_id: task_id}, function (err, task) {
+        task.workflow.push(info);
+        task.save();
+        console.log('добавлено');
+    });
+};
+var addSubtasks = function (task_id, info) {
+    TaskModel.findOne({_id: task_id}, function (err, task) {
+        task.subtasks.push(info);
+        task.save();
+        console.log('добавлено');
+    });
+};
+var addComments = function (task_id, info) {
+    TaskModel.findOne({_id: task_id}, function (err, task) {
+        task.comments.push(info);
+        task.save();
+        console.log('добавлено');
+    });
+};
+
+// addWorkflow('5741ef4eda7910e18367907d', {
+//     title: 'Поток',
+//     user_id: mongoose.Types.ObjectId('57419b625726f138803ea964')
+// });
+
+// addSubtasks('5741f55f15294d8f847c4590', {
+//     title: 'Подзадачка',
+//     user_id: mongoose.Types.ObjectId('57419b625726f138803ea964')
+// });
+
+// addComments('5741f55f15294d8f847c4590', {
+//     title: 'Комментарий',
+//     user_id: mongoose.Types.ObjectId('57419b625726f138803ea964')
+// });
+
 // addTask({
 //     title: 'Такой вот таск',
 //     parent: mongoose.Types.ObjectId('5741eeb4c25d25b883ba735d'),

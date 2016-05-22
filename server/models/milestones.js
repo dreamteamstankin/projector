@@ -61,6 +61,22 @@ var removeMilestone = function(milestone_id) {
 
 // removeMilestone('5741eeb4c25d25b883ba735d');
 
+var getMilestones = function(milestone_id, cb) {
+    TaskModel.find({parent: milestone_id}, 'id branch title', function(err, tasks) {
+        if (err) return console.error(err);
+        MilestoneModel.findOne({_id: milestone_id}, function (err, melistone) {
+            if (err) return console.error(err);
+            var extendedMilestone = JSON.parse(JSON.stringify(melistone));
+            extendedMilestone.tasks = tasks;
+            cb(extendedMilestone);
+        })
+    });
+};
+
+//getMilestones('5741eeb4c25d25b883ba735d', function (data) {
+//    console.log(data);
+//});
+
 // MilestoneModel.find(function(err, milestones) {
 //     if (err) return console.error(err);
 //     console.log('Вехи', milestones);
