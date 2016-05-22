@@ -1,41 +1,45 @@
 var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
+var db = mongoose.connection;
 var Schema = mongoose.Schema;
 
-var companySchema = new Schema({
-    title: String,
-    owner: Schema.Types.ObjectId,
-    users: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    }],
-    projects: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Project'
-    }]
+
+/* Company */
+var companySchema = Schema({
+    name_id: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    name: String,
+    users: []
 });
 
-var createCompany = function() {
-    var newCompany = {
-        title: 'Прожектор',
-        owner: '568c140f238a6a31ecbbffb9',
-        users: [],
-        projects: []
-    };
-    var company = new Company(newCompany);
-    company.save(function(err) {
-        Company.find(function(err, companyes) {
-            if (err) console.log(err);
-            console.log(newCompany.title + ' created');
-        });
-    });
-};
-var dropCompany = function() {
-    Company.remove({}, function(err, Company) {
-        console.log('Successfully deleted all');
-        console.log('______');
-        console.log(Company);
-    });
-};
-// createCompany(newCompany)
+var CompanyModel = mongoose.model('Company', companySchema);
 
-module.exports = mongoose.model('Company', companySchema);
+var addCompany = function(info) {
+    info.users = [];
+    var company = new CompanyModel(info);
+    company.save(function(err, company) {
+        if (err) return console.error(err);
+        console.log(company.name_id, 'save')
+    });
+};
+
+// addCompany({
+//     name_id: 'gismeteo',
+//     name: 'Гисметео'
+// });
+
+// CompanyModel.find(function(err, companies) {
+//     if (err) return console.error(err);
+//     console.log('Компании:', companies)
+// });
+
+// CompanyModel.remove({}, function(err, companies) {
+//     if (err) return console.error(err);
+//     CompanyModel.count(function(err, count) {
+//         if (err) return console.error(err);
+//         console.log('Компаний:', count)
+//     })
+// });

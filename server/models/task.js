@@ -1,98 +1,82 @@
 var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
+var db = mongoose.connection;
 var Schema = mongoose.Schema;
 
-// var Project = require('projectModel.js')
-// var Attach = require('attach.js')
-// var Comment = require('comment.js')
 
-var taskSchema = new Schema({
+
+/* Task */
+var taskSchema = Schema({
+    title: String,
     name_id: {
         type: String,
         required: true,
         unique: true
     },
-    project_id: String,
-    branch: {
-        current: String,
-        parent: String,
-        block: Array
-    },
-    title: String,
-    description: String,
-    user: String,
-    date_start: Date,
-    finish_start: Date,
-    status: Number,
+    branch: String,
+    parent: Schema.Types.ObjectId,
+    company_id: Schema.Types.ObjectId,
+    user_id: Schema.Types.ObjectId,
     workflow: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Workflow'
-    }],
-    attaches: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Attach'
+        title: String
     }],
     subtasks: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Subtask'
+        user_id: Schema.Types.ObjectId,
+        title: String
     }],
     comments: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Comment'
+        user_id: Schema.Types.ObjectId,
+        content: String
+    }],
+    branches: [{
+        branch: String,
+        title: String
     }]
 });
 
-var createTask = function() {
-    Task.count(function(err, count) {
-        var newTask = {
-            name_id: 'TEST' + '-' + count,
-            project_id: String,
-            branch: {
-                current: 'TEST' + '-' + count,
-                parent: null,
-                blocked: null
-            },
-            title: 'Тестовый проект ' + count,
-            description: 'Тестовое описание ' + count,
-            user: 'Ахатов',
-            date_start: new Date,
-            finish_start: new Date,
-            status: 0,
-            workflow: [],
-            attaches: [],
-            subtasks: [],
-            comments: []
-        };
+var TaskModel = mongoose.model('Task', taskSchema);
 
-        var task = new Task(newTask);
-        task.save(function(err) {
-            Task.find(function(err, tasks) {
-                if (err) console.log(err);
-                console.log(task.name_id + ' added');
-            });
-        });
-        Project.findOneAndUpdate({
-                name_id: 'TEST'
-            }, {
-                $push: {
-                    tasks: task
-                }
-            }, {
-                safe: true,
-                upsert: true
-            },
-            function(err, model) {
-                if (err) console.log(err);
+var addTask = function(info) {
+    TaskModel.count(function(err, count) {
+        if (err) return console.error(err);
+
+        MilestoneModel.findOne({ _id: info.parent }, function(err, milestone) {
+            if (err) return console.error(err);
+
+            if (milestone) {
+                info.name_id = milestone.project_name + '-' + (count + 1);
+                info.branch = milestone.project_name + '-' + (count + 1);
+
+                task = new TaskModel(info);
+                task.save(function(err, task) {
+                    if (err) return console.error(err);
+                    console.log(task.name_id, 'save')
+                });
             }
-        );
+        })
     })
 };
 
-var dropTask = function() {
-    Task.remove({}, function(err, task) {
-        console.log('Successfully deleted all');
+var removeTask = function(task_id) {
+    TaskModel.remove({_id:task_id}, function(err, tasks) {
+        if (err) return console.error(err);
+        TaskModel.count(function(err, count) {
+            if (err) return console.error(err);
+            console.log('Задач:', count)
+        })
     });
 };
-// createTask() 
-// dropTask()
 
-module.exports = mongoose.model('Task', taskSchema);
+// addTask({
+//     title: 'Такой вот таск',
+//     parent: mongoose.Types.ObjectId('5741eeb4c25d25b883ba735d'),
+//     company_id: mongoose.Types.ObjectId('57419b50f75c452880252d4c'),
+//     user_id: mongoose.Types.ObjectId('57419b625726f138803ea964')
+// });
+
+// TaskModel.find(function(err, tasks) {
+//     if (err) return console.error(err);
+//     console.log('Задачи:', tasks)
+// })
+
+// removeTask('5741eeecaf5a09c483defc8d');

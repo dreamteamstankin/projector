@@ -1,72 +1,49 @@
 var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
+var db = mongoose.connection;
 var Schema = mongoose.Schema;
 
-var Task = require('../models/task.js');
-var Company = require('../models/company.js');
-
-var projectSchema = new Schema({
-    company_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'Company'
-    },
+/* Project */
+var projectSchema = Schema({
     name_id: {
         type: String,
         required: true,
         unique: true
     },
-    title: String,
-    url: String,
-    description: String,
-    start_date: Date,
-    state: Number,
-    user: {
-        url: String,
-        name: String,
-    },
-    tasks: [{
-        type: Schema.Types.ObjectId,
-        ref: '_Task'
-    }]
+    company_id: Schema.Types.ObjectId,
+    branch: String,
+    title: String
 });
 
-var Project = mongoose.model('Project', projectSchema);
+var ProjectModel = mongoose.model('Project', projectSchema);
 
-var createProject = function() {
-    Company.findOne({
-        title: 'Прожектор'
-    }, function(err, Companyes) {
-        if (err) console.log('ERR ERR ERR ERR ERR ');
-        var newProject = {
-            company_id: Companyes._id,
-            name_id: 'TEST',
-            title: 'Погодный сайт',
-            url: '/project/' + 'TEST',
-            description: 'Подробная информация о текущей погоде и детальный прогноз всегда под рукой, где бы вы ни находились.',
-            start_date: new Date,
-            state: 0,
-            user: {
-                url: '/profile/' + 'gcor',
-                name: 'Антон Ахатов'
-            },
-            tasks: []
-        };
-        var project = new Project(newProject);
-        project.save(function(err) {
-            Project.find(function(err, projects) {
-                if (err) console.log(err);
-                console.log(newProject.name_id + ' added');
-                console.log(projects);
-            });
-        });
+var addProject = function(info) {
+    project = new ProjectModel(info);
+    project.save(function(err, project) {
+        if (err) return console.error(err);
+        console.log(project.name_id, 'save');
     });
 };
-// createProject()
-var dropProject = function() {
-        Project.remove({}, function(err, Project) {
-            console.log('Successfully deleted all');
-        });
-    };
-    // dropProject()
-    // createProject()
 
-module.exports = Project
+// addProject({
+// 	name_id: 'GIS',
+//     company_id: mongoose.Types.ObjectId('57419b50f75c452880252d4c'),
+//     title: 'Погодный сайт',
+//     branch: null
+// })
+
+// removeProject
+
+// ProjectModel.find(function(err, projects) {
+//     if (err) return console.error(err);
+//     console.log('Проекты', projects);
+// })
+
+
+// ProjectModel.remove({}, function(err, projects) {
+//     if (err) return console.error(err);
+//     ProjectModel.count(function(err, count) {
+//         if (err) return console.error(err);
+//         console.log('Проектов:', count)
+//     })
+// });
