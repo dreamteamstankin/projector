@@ -280,7 +280,7 @@ router.route('/milestone/')
             if (data) {
                 res.json({
                     status: true,
-                    data: data,
+                    data: data
                 });
             } else {
                 res.json({
@@ -288,7 +288,6 @@ router.route('/milestone/')
                 });
             }
         });
-
     });
 
 module.exports = router;

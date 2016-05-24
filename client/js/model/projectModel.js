@@ -4,6 +4,11 @@ class ProjectModel extends Model {
     constructor(option) {
         super(option);
         this.urlRoot = '//localhost:7000/project';
+        this.parse = function(response) {
+            if (response.status){
+                return response.data;
+            }
+        }
     }
 
     defaults() {
@@ -25,6 +30,12 @@ class ProjectCollection extends Collection {
         super();
         this.url = '//localhost:7000/project';
         this.model = ProjectModel;
+        this.parse = function(response) {
+            if (response.status){
+                console.log(response.data);
+                return response.data;
+            }
+        }
     }
 }
 
