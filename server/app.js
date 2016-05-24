@@ -17,7 +17,7 @@ mongoose.connect('mongodb://localhost:27017/projector');
 var db = mongoose.connection;
 
 db.on('error', function (err) {
-    console.log('Connection error:', err.message);
+    //console.log('Connection error:', err.message);
 });
 db.on('open', function () {
     console.log("Connected to DB!");

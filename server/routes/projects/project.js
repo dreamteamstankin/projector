@@ -1,4 +1,5 @@
 var express = require('express');
+var mongoose = require('mongoose');
 var router = express.Router();
 var MilestoneModel = require('../../models/milestone.js');
 var ProjectModel = require('../../models/project.js');
@@ -109,8 +110,6 @@ var response = [{
     }]
 }];
 
-
-
 var addProject = function(info) {
     var project = new ProjectModel(info);
     project.save(function(err, project) {
@@ -145,24 +144,21 @@ var removeProject = function(project_id) {
     });
 };
 
-getProjects('5741d5b3d1156728812f0961', function (data) {
-    console.log(data);
-});
+//getProjects('5741d5b3d1156728812f0961', function (data) {
+//    console.log(data);
+//});
 
-// addProject({
-// 	name_id: 'GIS',
-//     company_id: mongoose.Types.ObjectId('57419b50f75c452880252d4c'),
-//     title: 'Погодный сайт',
-//     branch: null
-// })
+//addProject({
+//    name_id: 'GIS',
+//    company_id: mongoose.Types.ObjectId('57419b50f75c452880252d4c'),
+//    title: 'Погодный сайт',
+//    branch: null
+//});
 
-// removeProject
-
-// ProjectModel.find(function(err, projects) {
-//     if (err) return console.error(err);
-//     console.log('Проекты', projects);
-// })
-
+//ProjectModel.find(function(err, projects) {
+//    if (err) return console.error(err);
+//    console.log('Проекты', projects);
+//});
 
 // ProjectModel.remove({}, function(err, projects) {
 //     if (err) return console.error(err);

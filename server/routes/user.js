@@ -1,4 +1,5 @@
 var express = require('express');
+var mongoose = require('mongoose');
 var router = express.Router();
 var UserModel = require('../models/user.js');
 var CompanyModel = require('../models/company.js');
@@ -76,11 +77,11 @@ var removeUser = function(user_id) {
 //     password: '123',
 //     name: 'Антон'
 // }, 'gismeteo')
-
-// UserModel.find(function(err, users) {
-//     if (err) return console.error(err);
-//     console.log('Пользователи:', users)
-// })
+//
+//UserModel.find(function(err, users) {
+//    if (err) return console.error(err);
+//    console.log('Пользователи:', users)
+//});
 
 // UserModel.remove({}, function(err, users) {
 //     if (err) return console.error(err);

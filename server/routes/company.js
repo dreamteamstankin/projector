@@ -32,10 +32,10 @@ var removeCompany = function(company_id) {
 //     name: 'Гисметео'
 // });
 
-// CompanyModel.find(function(err, companies) {
-//     if (err) return console.error(err);
-//     console.log('Компании:', companies)
-// });
+ //CompanyModel.find(function(err, companies) {
+ //    if (err) return console.error(err);
+ //    console.log('Компании:', companies)
+ //});
 
 // CompanyModel.remove({}, function(err, companies) {
 //     if (err) return console.error(err);

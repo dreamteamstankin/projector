@@ -13,21 +13,34 @@ var taskSchema = Schema({
     parent: Schema.Types.ObjectId,
     company_id: Schema.Types.ObjectId,
     user_id: Schema.Types.ObjectId,
+    description: String,
+    start_date: Date,
+    finish_date: Date,
+    status: Number,
+    priority: Number,
     workflow: [{
-        title: String
+        title: String,
+        date_finish: Date,
+        user_id: Schema.Types.ObjectId,
+        status: Number
     }],
     subtasks: [{
         user_id: Schema.Types.ObjectId,
-        title: String
+        title: String,
+        completed: Boolean,
+        date_finish: Date,
+        count_money: Number,
+        count_time: Number
     }],
     comments: [{
         user_id: Schema.Types.ObjectId,
-        content: String
+        content: String,
+        userName: String,
+        created: Date
     }],
     branches: [{
         branch: String,
         title: String
     }]
 });
-
 module.exports = mongoose.model('Task', taskSchema);

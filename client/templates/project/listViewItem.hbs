@@ -1,22 +1,24 @@
-<div class="opentask__steps tasksteps">
-    <div class="tasksteps__list">
-        {{#each workflow}}
-            <div class="tasksteps__item taskstep header_title style_gray">
-                {{title}}
-                <div class="taskstep__description">
-                    {{#if date_finish}}
-                        ({{[../../js/hbs/dateFormat] 'DD MMM' date_finish}})
-                    {{/if}}
-
+{{#if workflow}}
+    <div class="opentask__steps tasksteps">
+        <div class="tasksteps__list">
+            {{#each workflow}}
+                <div class="tasksteps__item taskstep header_title style_gray">
+                    {{title}}
+                    <div class="taskstep__description">
+                        {{#if date_finish}}
+                            ({{[../../js/hbs/dateFormat] 'DD MMM' date_finish}})
+                        {{/if}}
+                    </div>
                 </div>
-            </div>
-        {{/each}}
+            {{/each}}
+        </div>
     </div>
-</div>
+{{/if}}
+
 <div class="grid">
     <div class="grid__cell grid__cell_size_5">
         <div class="opentask__section tasksection">
-            <div class="opentask__title header_section">Задачи (0/4, 32 часа, 123 ₽)</div>
+            <div class="opentask__title header_section">Задачи</div>
             <div class="list list_type_todo">
                 {{#each subtasks}}
                     <label class="list__item tasksection">
@@ -26,7 +28,7 @@
                         <div class="list__content_align_right">
                             <div class="tasksection__text">
                                 {{title}}
-                            <span class="tasksection__actions">
+                                <span class="tasksection__actions">
                                 <span class="js_subtask_edit link blue">E</span>
                                 <span class="js_subtask_del link blue">X</span>
                             </span>
@@ -78,22 +80,14 @@
                     <td class="opendescription__cell header_section opendescription__header">Приоритет</td>
                     <td class="opendescription__cell">{{priority}}</td>
                 </tr>
-                <tr>
-                    <td class="opendescription__cell header_section opendescription__header">Компонент</td>
-                    <td class="opendescription__cell">{{component}}</td>
-                </tr>
-                <tr>
-                    <td class="opendescription__cell header_section opendescription__header">Тип</td>
-                    <td class="opendescription__cell">{{workflow_type}}</td>
-                </tr>
-                <tr>
-                    <td class="opendescription__cell header_section opendescription__header">Ветки</td>
-                    <td class="opendescription__cell">
-                        {{#each branches}}
-                            <div>{{title}} <a href="#/task/{{branch}}" class="link">{{branch}}</a></div>
-                        {{/each}}
-                    </td>
-                </tr>
+                <!--<tr>-->
+                <!--<td class="opendescription__cell header_section opendescription__header">Ветки</td>-->
+                <!--<td class="opendescription__cell">-->
+                    <!--{{#each branches}}-->
+                <!--<div>{{title}} <a href="#/task/{{branch}}" class="link">{{branch}}</a></div>-->
+                    <!--{{/each}}-->
+                <!--</td>-->
+                <!--</tr>-->
             </table>
         </div>
     </div>

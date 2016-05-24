@@ -1,6 +1,9 @@
 var express = require('express');
+var mongoose = require('mongoose');
 var router = express.Router();
+var ProjectModel = require('../../models/project.js');
 var MilestoneModel = require('../../models/milestone.js');
+var TaskModel = require('../../models/task.js');
 
 var response = [{
     id: 'GIS-M-1',
@@ -206,21 +209,23 @@ var addMilestone = function(info) {
     })
 };
 
-// addMilestone({
-//     title: 'Релиз — веха',
-//     parent: mongoose.Types.ObjectId('5741d5b3d1156728812f0961'),
-//     company_id: mongoose.Types.ObjectId('57419b50f75c452880252d4c'),
-//     user_id: mongoose.Types.ObjectId('57419b625726f138803ea964'),
-//     description: 'Описание',
-// })
+//addMilestone({
+//    title: 'Релиз — веха',
+//    parent: mongoose.Types.ObjectId('5744b2459b7fa829b42cc4d9'),
+//    company_id: mongoose.Types.ObjectId('5744b1d035f581ebb3e40fc5'),
+//    user_id: mongoose.Types.ObjectId('5744b2154a081212b428a7d8'),
+//    description: 'Описание'
+//});
 
 var removeMilestone = function(milestone_id) {
     MilestoneModel.remove({ _id: milestone_id }, function(err, milestones) {
         if (err) return console.error(err);
-        MilestoneModel.count(function(err, count) {
-            if (err) return console.error(err);
-            console.log('Вех:', count)
-        })
+        if (milestones){
+            MilestoneModel.count(function(err, count) {
+                if (err) return console.error(err);
+                console.log('Вех:', count)
+            })
+        }
     });
 };
 
@@ -231,9 +236,11 @@ var getMilestones = function(milestone_id, cb) {
         if (err) return console.error(err);
         MilestoneModel.findOne({_id: milestone_id}, function (err, melistone) {
             if (err) return console.error(err);
-            var extendedMilestone = JSON.parse(JSON.stringify(melistone));
-            extendedMilestone.tasks = tasks;
-            cb(extendedMilestone);
+            if (melistone) {
+                var extendedMilestone = JSON.parse(JSON.stringify(melistone));
+                extendedMilestone.tasks = tasks;
+                cb(extendedMilestone);
+            }
         })
     });
 };
@@ -242,10 +249,10 @@ var getMilestones = function(milestone_id, cb) {
 //    console.log(data);
 //});
 
-// MilestoneModel.find(function(err, milestones) {
-//     if (err) return console.error(err);
-//     console.log('Вехи', milestones);
-// });
+//MilestoneModel.find(function(err, milestones) {
+//    if (err) return console.error(err);
+//    console.log('Вехи', milestones);
+//});
 
 // MilestoneModel.remove({}, function(err, milestones) {
 //     if (err) return console.error(err);

@@ -40,7 +40,7 @@ class TasksView extends View {
                 id: taskId
             });
             task.fetch({
-                success: function(){
+                success: function(data){
                     let openTask = new openTaskView(task.attributes);
                     $(openTaskBlock).html(openTask.render().el);
                     openTaskBlock.data('task-ready', true);
