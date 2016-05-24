@@ -182,14 +182,11 @@ var response = [{
     }]
 }];
 
-
-
-
-var addMilestone = function(info) {
-    MilestoneModel.count(function(err, count) {
+var addMilestone = function (info) {
+    MilestoneModel.count(function (err, count) {
         if (err) return console.error(err);
 
-        ProjectModel.findOne({ _id: info.parent }, function(err, project) {
+        ProjectModel.findOne({_id: info.parent}, function (err, project) {
             if (err) return console.error(err);
             if (project) {
                 info.project_name = project.name_id;
@@ -200,7 +197,7 @@ var addMilestone = function(info) {
                 info.viewtype = 1;
 
                 var milestone = new MilestoneModel(info);
-                milestone.save(function(err, milestone) {
+                milestone.save(function (err, milestone) {
                     if (err) return console.error(err);
                     console.log(milestone.name_id, 'save')
                 });
@@ -217,11 +214,11 @@ var addMilestone = function(info) {
 //    description: 'Описание'
 //});
 
-var removeMilestone = function(milestone_id) {
-    MilestoneModel.remove({ _id: milestone_id }, function(err, milestones) {
+var removeMilestone = function (milestone_id) {
+    MilestoneModel.remove({_id: milestone_id}, function (err, milestones) {
         if (err) return console.error(err);
-        if (milestones){
-            MilestoneModel.count(function(err, count) {
+        if (milestones) {
+            MilestoneModel.count(function (err, count) {
                 if (err) return console.error(err);
                 console.log('Вех:', count)
             })
@@ -231,23 +228,36 @@ var removeMilestone = function(milestone_id) {
 
 // removeMilestone('5741eeb4c25d25b883ba735d');
 
-var getMilestones = function(milestone_id, cb) {
-    TaskModel.find({parent: milestone_id}, 'id branch title status', function(err, tasks) {
+var getMilestone = function (milestone_id, cb) {
+    TaskModel.find({parent: milestone_id}, 'id branch title status', function (err, tasks) {
         if (err) return console.error(err);
-        MilestoneModel.findOne({_id: milestone_id}, function (err, melistone) {
+        MilestoneModel.findOne({_id: milestone_id}, function (err, milestone) {
             if (err) return console.error(err);
-            if (melistone) {
-                var extendedMilestone = JSON.parse(JSON.stringify(melistone));
+            if (milestone) {
+                var extendedMilestone = JSON.parse(JSON.stringify(milestone));
                 extendedMilestone.tasks = tasks;
                 cb(extendedMilestone);
             }
         })
     });
 };
-
-//getMilestones('5741eeb4c25d25b883ba735d', function (data) {
-//    console.log(data);
-//});
+var getMilestones = function (cb) {
+    var extendedMilestones = [];
+    MilestoneModel.find({}, function (err, milestones) {
+        if (err) return console.error(err);
+        if (milestones) {
+            var count = milestones.length;
+            milestones.forEach(function (elem, index) {
+                getMilestone(elem._id, function(data){
+                    extendedMilestones.push(data);
+                    if (count-1 == index) {
+                        cb(extendedMilestones);
+                    }
+                });
+            });
+        }
+    });
+};
 
 //MilestoneModel.find(function(err, milestones) {
 //    if (err) return console.error(err);
@@ -264,9 +274,21 @@ var getMilestones = function(milestone_id, cb) {
 
 
 router.route('/milestone/')
-    .get(function(req, res) {
+    .get(function (req, res) {
         console.log('Отправлено /milestone/ в проект ' + req.query.project);
-        res.json(response);
+        getMilestones(function (data) {
+            if (data) {
+                res.json({
+                    status: true,
+                    data: data,
+                });
+            } else {
+                res.json({
+                    status: false
+                });
+            }
+        });
+
     });
 
 module.exports = router;

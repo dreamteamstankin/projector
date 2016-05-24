@@ -10,7 +10,8 @@ class MilestoneView extends View {
         super();
         this.el = $('#page');
         this.template = PageTemplate;
-        this.data = Milestones.findWhere({id: id}).attributes;
+        var currentMilestone = Milestones.findWhere({name_id: id});
+        this.data = currentMilestone.attributes;
         this.render();
     }
     render() {

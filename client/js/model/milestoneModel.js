@@ -24,6 +24,11 @@ class MilestoneCollection extends Collection {
         super();
         this.url = '//localhost:7000/milestone';
         this.model = MilestoneModel;
+        this.parse = function(response) {
+            if (response.status){
+                return response.data;
+            }
+        }
     }
 }
 
