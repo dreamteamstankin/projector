@@ -40,8 +40,9 @@ class TasksView extends View {
                 id: taskId
             });
             task.fetch({
-                success: function(data){
-                    let openTask = new openTaskView(task.attributes);
+                success: function(){
+                    Tasks.add(task);
+                    let openTask = new openTaskView(task);
                     $(openTaskBlock).html(openTask.render().el);
                     openTaskBlock.data('task-ready', true);
                     self.toggleTask(item);

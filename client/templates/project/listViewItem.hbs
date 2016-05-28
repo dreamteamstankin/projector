@@ -29,17 +29,17 @@
                             <div class="tasksection__text">
                                 {{title}}
                                 <span class="tasksection__actions">
-                                <span class="js_subtask_edit link blue">E</span>
-                                <span class="js_subtask_del link blue">X</span>
-                            </span>
+                                    <span class="js_edit_subtask link blue">E</span>
+                                    <span class="js_del_subtask link blue">X</span>
+                                </span>
                             </div>
                         </div>
                     </label>
                 {{/each}}
             </div>
             <div class="form__add">
-                <input placeholder="Добавить новую задачу" class="input"/><i
-                    class="icon icon_size_s icon__enter icon_align_vertical"></i>
+                <input placeholder="Добавить новую задачу" class="input js_add_subtask"/>
+                <i class="icon icon_size_s icon__enter icon_align_vertical"></i>
             </div>
         </div>
         <div class="opentask__section tasksection">
@@ -53,12 +53,16 @@
                         <div class="list__content_align_right">
                             <div class="comment__header style_gray">{{userName}}</div>
                             <div class="comment__text">{{content}}</div>
+                            <span class="tasksection__actions">
+                                <span class="js_comment_edit link blue">E</span>
+                                <span class="js_comment_remove link blue">X</span>
+                            </span>
                         </div>
                     </div>
                 {{/each}}
                 <div class="form__add">
-                    <input placeholder="Комментарий" class="input"><i
-                        class="icon i icon icon_size_s icon__enter icon_align_vertical"></i>
+                    <input placeholder="Комментарий" class="input js_add_comment">
+                    <i class="icon i icon icon_size_s icon__enter icon_align_vertical"></i>
                 </div>
             </div>
         </div>
@@ -76,10 +80,10 @@
                         <div class="opentask__text">{{description}}</div>
                     </td>
                 </tr>
-                <tr>
-                    <td class="opendescription__cell header_section opendescription__header">Приоритет</td>
-                    <td class="opendescription__cell">{{priority}}</td>
-                </tr>
+                <!--<tr>-->
+                    <!--<td class="opendescription__cell header_section opendescription__header">Приоритет</td>-->
+                    <!--<td class="opendescription__cell">{{priority}}</td>-->
+                <!--</tr>-->
                 <!--<tr>-->
                 <!--<td class="opendescription__cell header_section opendescription__header">Ветки</td>-->
                 <!--<td class="opendescription__cell">-->

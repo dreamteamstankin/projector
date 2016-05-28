@@ -6,7 +6,6 @@ class TaskModel extends Model {
         this.urlRoot = '//localhost:7000/task';
         this.parse = function(response) {
             if (response.status){
-                console.log(response.data);
                 return response.data;
             }
         }

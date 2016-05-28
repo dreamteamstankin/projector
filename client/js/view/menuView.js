@@ -3,14 +3,8 @@ var MenuTemplate = require('../../templates/menu/menu.hbs');
 const { View } = Backbone;
 var menu = {
     links: [{
-        name: 'Релизы',
-        url: 'index.html'
-    }, {
         name: 'Бэклог',
         url: 'bytype.html'
-    }, {
-        name: 'Обсуждения',
-        url: 'bygroup.html'
     }, {
         name: 'Статистика',
         url: 'backlog.html'

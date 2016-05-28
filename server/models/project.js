@@ -10,7 +10,11 @@ var projectSchema = Schema({
     },
     company_id: Schema.Types.ObjectId,
     branch: String,
-    title: String
+    title: String,
+    status: Number,
+    description: String,
+    start: Date,
+    finish: Date
 });
 
 module.exports = mongoose.model('Project', projectSchema);

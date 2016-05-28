@@ -39,7 +39,7 @@ var response = [{
         title: 'Завершение',
         status: 5
     }]
-},{
+}, {
     id: 'Test',
     branch: 'Master',
     title: 'Другой сайт',
@@ -110,16 +110,21 @@ var response = [{
     }]
 }];
 
-var addProject = function(info) {
+var addProject = function (info) {
+    info.branch = null;
+    info.start = new Date();
+    info.finish = null;
+    info.status = 0;
+    info.viewtype = 1;
     var project = new ProjectModel(info);
-    project.save(function(err, project) {
+    project.save(function (err, project) {
         if (err) return console.error(err);
         console.log(project.name_id, 'save');
     });
 };
 
-var getProject = function(milestone_id, cb) {
-    MilestoneModel.find({parent: milestone_id}, 'name_id id branch title', function(err, milestones) {
+var getProject = function (milestone_id, cb) {
+    MilestoneModel.find({parent: milestone_id}, 'name_id id branch title', function (err, milestones) {
         if (err) return console.error(err);
         if (milestones) {
             ProjectModel.findOne({_id: milestone_id}, function (err, projects) {
@@ -140,9 +145,10 @@ var getProjects = function (cb) {
         if (projects) {
             var count = projects.length;
             projects.forEach(function (elem, index) {
-                getProject(elem._id, function(data){
+                getProject(elem._id, function (data) {
                     extendedProjects.push(data);
-                    if (count-1 == index) {
+                    console.log(extendedProjects);
+                    if (count - 1 == index) {
                         cb(extendedProjects);
                     }
                 });
@@ -151,10 +157,10 @@ var getProjects = function (cb) {
     });
 };
 
-var removeProject = function(project_id) {
-    ProjectModel.remove({ _id: project_id }, function(err, projects) {
+var removeProject = function (project_id) {
+    ProjectModel.remove({_id: project_id}, function (err, projects) {
         if (err) return console.error(err);
-        ProjectModel.count(function(err, count) {
+        ProjectModel.count(function (err, count) {
             if (err) return console.error(err);
             console.log('Проектов:', count)
         })
@@ -169,13 +175,13 @@ var removeProject = function(project_id) {
 //    name_id: 'GIS',
 //    company_id: mongoose.Types.ObjectId('57419b50f75c452880252d4c'),
 //    title: 'Погодный сайт',
-//    branch: null
+//    description: 'Описание'
 //});
 
-ProjectModel.find(function(err, projects) {
-    if (err) return console.error(err);
-    console.log('Проекты', projects);
-});
+//ProjectModel.find(function(err, projects) {
+//    if (err) return console.error(err);
+//    console.log('Проекты', projects);
+//});
 
 // ProjectModel.remove({}, function(err, projects) {
 //     if (err) return console.error(err);
@@ -184,7 +190,7 @@ ProjectModel.find(function(err, projects) {
 //         console.log('Проектов:', count)
 //     })
 // });
-//
+
 router.route('/project/')
     .get(function (req, res) {
         console.log('Отправлено /project/ в проект ' + req.query.project);

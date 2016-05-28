@@ -1,15 +1,13 @@
 <table class="tasks">
     {{#each tasks}}
-        <tr class="task" data-task-id="{{id}}">
-            <td class="task__cell header_tag style_gray">{{id}}</td>
+        <tr class="task" data-task-id="{{_id}}">
+            <td class="task__cell header_tag style_gray">{{branch}}</td>
             <td class="task__cell task__cell_type_main js_task_header">
                 <div class="task__text">{{title}}</div>
             </td>
             <td class="task__cell task__time">Ахатов</td>
             <td class="task__cell style_align_right">
-                <a href="#" class="link style_solid label label_type_open">
-                    <span class="header_tag">Статус {{status}}</span>
-                </a>
+                {{{[../../js/hbs/statusFormat] status}}}
             </td>
             <td class="task__cell task__time">23 мин</td>
             <td class="task__cell">
@@ -24,6 +22,6 @@
                 </div>
             </td>
         </tr>
-        <tr class="opentask js_opentask" data-task-ready="false" data-task-id="{{id}}"></tr>
+        <tr class="opentask js_opentask" data-task-ready="false" data-task-id="{{_id}}"></tr>
     {{/each}}
 </table>
