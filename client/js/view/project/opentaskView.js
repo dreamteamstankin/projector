@@ -1,6 +1,8 @@
+import { TaskModel, Tasks  } from '../../model/taskModel'
+import { UserModel, Users } from '../../model/userModel'
+
 const { View } = Backbone;
 const listViewItemTemplate = require('../../../templates/project/listViewItem.hbs');
-import { TaskModel, Tasks  } from '../../model/taskModel'
 
 class openTaskView extends View {
     constructor(task) {
@@ -22,17 +24,22 @@ class openTaskView extends View {
             'click .js_edit_subtask': 'editSubtask'
         };
         View.apply(this);
+        this.listenTo(this.model, 'change', function(d){
+            console.log('listenTo', d)
+        });
     }
 
     render() {
+        console.log(this.model.attributes)
         this.$el.html(this.template(this.model.attributes));
         return this;
     }
 
     addComment(e) {
-        if (e.keyCode ===13) { // ENTER
-            var currentModel = Tasks.findWhere({_id: this.model.attributes._id});
+        if (e.keyCode === 13) { // ENTER
             var val = e.currentTarget.value;
+            console.log(this.model);
+            //var currentModel = Tasks.findWhere({_id: this.model.attributes._id});
         }
     }
 
@@ -45,9 +52,22 @@ class openTaskView extends View {
     }
 
     addSubtask(e) {
-        if (e.keyCode ===13) { // ENTER
-            var currentModel = Tasks.findWhere({_id: this.model.attributes._id});
+        var currentUser = Users.first();
+        if (e.keyCode === 13) { // ENTER
             var val = e.currentTarget.value;
+            var subtasks = this.model.attributes.subtasks;
+            subtasks.push({
+                completed: false,
+                date_start: new Date,
+                date_finish: null,
+                count_money: 0,
+                count_time: 0,
+                title: val,
+                user_id: currentUser.attributes._id,
+                userName: currentUser.attributes.name
+            });
+
+            this.model.save({subtasks: subtasks});
         }
     }
 

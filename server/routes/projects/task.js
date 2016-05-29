@@ -51,6 +51,8 @@ var addWorkflow = function (task_id, info) {
 var addSubtasks = function (task_id, info) {
     info.completed = false;
     info.date_finish = null;
+    info.count_money = 0;
+    info.count_time = 0;
     TaskModel.findOne({_id: task_id}, function (err, task) {
         task.subtasks.push(info);
         task.save();
@@ -72,7 +74,6 @@ var addComments = function (task_id, info) {
 // });
 
 // addSubtasks('5741f55f15294d8f847c4590', {
-//     userName: 'Ахатов',
 //     title: 'Подзадачка',
 //     user_id: mongoose.Types.ObjectId('57419b625726f138803ea964')
 // });
@@ -117,18 +118,23 @@ router.route('/task/')
 router.route('/task/:id')
     .get(function (req, res) {
         TaskModel.find(function (err, tasks) {
-            if (err) {
-                res.json({
-                    status: false
-                });
-                return console.error(err);
-            }
+            if (err) return res.json({status: false});
             var responseData = (tasks) ? tasks : [];
             res.json({
                 status: true,
                 data: responseData[0]
             });
         });
+    })
+    .put(function(req, res){
+        TaskModel.findOne({_id: req.params.id}, function(err, task){
+            if (err) return res.json({status: false});
+
+            task.subtasks = req.body.subtasks;
+            task.save();
+
+            res.json({status: true});
+        })
     });
 
 module.exports = router;

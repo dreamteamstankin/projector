@@ -4,14 +4,16 @@ import { UserModel, Users } from './model/userModel'
 
 const App = {};
 
+
 var CurrentUser = new UserModel({
-    id: 1
+    _id: '5744b2154a081212b428a7d8'
 });
+
 CurrentUser.fetch({
     success: function(){
         Users.fetch({
             data: $.param({
-                company_id: CurrentUser.attributes.company.id
+                company_id: CurrentUser.attributes.company_id
             }),
             reset: true
         });

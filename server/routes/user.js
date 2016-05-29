@@ -5,32 +5,13 @@ var UserModel = require('../models/user.js');
 var CompanyModel = require('../models/company.js');
 
 var response = [{
-    id: 1,
+    _id: '5744b2154a081212b428a7d8',
     login: 'gcor',
     password: '10',
     name: 'Антон',
     surname: 'Ахатов',
-    company: {
-        id: 1,
-        access: 777
-    }
-},{
-    id: 2,
-    login: 'tasha',
-    password: '11',
-    name: 'Наталия',
-    surname: 'Соломкина',
-    company_id: 1
-},{
-    id: 3,
-    login: 'tasha',
-    password: '11',
-    name: 'Наталия',
-    surname: 'Соломкина',
-    company: {
-        id: 1,
-        access: 1
-    }
+    company_id: '5744b1d035f581ebb3e40fc5',
+    access: 777
 }];
 
 
@@ -77,7 +58,7 @@ var removeUser = function(user_id) {
 //     password: '123',
 //     name: 'Антон'
 // }, 'gismeteo')
-//
+
 //UserModel.find(function(err, users) {
 //    if (err) return console.error(err);
 //    console.log('Пользователи:', users)

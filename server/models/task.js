@@ -20,6 +20,7 @@ var taskSchema = Schema({
     priority: Number,
     workflow: [{
         title: String,
+        date_start: Date,
         date_finish: Date,
         user_id: Schema.Types.ObjectId,
         status: Number
@@ -28,6 +29,7 @@ var taskSchema = Schema({
         user_id: Schema.Types.ObjectId,
         title: String,
         completed: Boolean,
+        date_start: Date,
         date_finish: Date,
         count_money: Number,
         count_time: Number

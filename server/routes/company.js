@@ -5,7 +5,7 @@ var CompanyModel = require('../models/company.js');
 var response = [{
     company_id: 1,
     name: 'gismeteo',
-    users: [1,2,3]
+    users: ['5744b2154a081212b428a7d8',2,3]
 }];
 
 var addCompany = function(info) {

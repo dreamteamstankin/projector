@@ -7,7 +7,7 @@ class UserModel extends Model {
     }
     defaults() {
         return {
-            id: null,
+            _id: null,
             login: 'person',
             password: null,
             name: 'Имя',
