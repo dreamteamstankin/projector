@@ -1,5 +1,4 @@
 import { AppRouter } from './router/router'
-import { MenuView } from './view/menuView'
 import { UserModel, Users } from './model/userModel'
 
 const App = {};
@@ -21,7 +20,6 @@ CurrentUser.fetch({
 });
 
 Users.bind('reset', function(){
-    App.MenuView = new MenuView();
     App.Router = new AppRouter(CurrentUser);
     Backbone.history.start();
 });

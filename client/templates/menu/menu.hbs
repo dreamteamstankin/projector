@@ -1,19 +1,24 @@
 <section class="page__section project__menu">
     <div class="menu">
         <div class="menu__item menu__item_type_burger dropdown dropdown_on_hover">
-            <div class="dropdown__trigger nostyle">
+            <div class="dropdown__trigger">
                 <i class="icon icon__burger icon_hover_on icon_size_l"></i>
             </div>
             <div class="dropdown__context">
-                <span class="dropdown__item active">Проекты</span>
-                <a href="#/docs/" class="dropdown__item link blue">Документация</a>
-                <a href="#/settings/" class="dropdown__item link blue">Настройки</a>
+                {{#each sections}}
+                    <a href="#{{url}}" data-type="{{type}}" class="dropdown__item link js_menu_subitem {{#if isActive}}active black{{else}}blue{{/if}}">{{name}}</a>
+                {{/each}}
             </div>
         </div>
-        <a href="/#" class="menu__item active menu__header link style_black js_menu_item">Проекты</a>
-        {{#each links}}
-            <a href="/#" data-url="{{url}}" class="menu__item link js_menu_item">{{name}}</a>
+        {{#each sections}}
+            {{#if isActive}}
+                <a href="#{{url}}" class="menu__item active menu__header link style_black js_menu_item">{{name}}</a>
+                {{#each links}}
+                    <a href="#{{url}}" class="menu__item link js_menu_item">{{name}}</a>
+                {{/each}}
+            {{/if}}
         {{/each}}
+        <!--
         <div class="menu__item  dropdown dropdown_on_hover">
             <div class="dropdown__trigger nostyle noalign">
                 Создать
@@ -22,7 +27,7 @@
             <div class="dropdown__context">
                 <span class="dropdown__item js_create_project link blue">Проект</span>
             </div>
-        </div>
+        </div>-->
         <a href="#/profile/" class="link menu__item style_float_right js_menu_item">Антон Ахатов</a>
     </div>
 </section>

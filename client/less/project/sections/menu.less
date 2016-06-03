@@ -1,5 +1,5 @@
 .menu {
-    padding: 0 @block-padding-horizontal;
+    padding-right: @block-padding-horizontal; //справа гамбургер
     line-height: @project-menu-height;
     border-bottom: 1px solid @darkwhite;
     &__item {
@@ -8,6 +8,12 @@
         display: inline-block;
         cursor: pointer;
         &_type_burger {
+            padding-right: 0;
+            .dropdown__trigger {
+                border: none;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
             .icon{
                 margin-top: -6px;
             }

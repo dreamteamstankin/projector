@@ -6,8 +6,10 @@ import { ArticlesView } from '../view/articlesView'
 import { SettingsView } from '../view/settingsView'
 import { MilestoneModel, Milestones } from '../model/milestoneModel'
 import { ProjectModel, Projects } from '../model/projectModel'
+import { MenuView } from '../view/menuView'
 
 const { Router } = Backbone;
+
 
 class AppRouter extends Router {
     constructor(currentUser) {
@@ -29,6 +31,7 @@ class AppRouter extends Router {
 
                 "settings/": "settings"
         };
+        new MenuView();
         Router.apply(this);
     }
 
@@ -76,6 +79,7 @@ class AppRouter extends Router {
     }
 
     articles() {
+
         new ArticlesView();
     }
 
