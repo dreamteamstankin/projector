@@ -2,7 +2,6 @@ import { TasksView } from './tasksView'
 import { ProjectModel, Projects  } from '../../model/projectModel'
 
 const { View } = Backbone;
-const PageTemplate = require('../../../templates/project/page.hbs');
 const ProjectsTemplate = require('../../../templates/project/projects.hbs');
 
 class ProjectsView extends View {
@@ -21,6 +20,7 @@ class ProjectsView extends View {
     }
 
     render() {
+        console.log('render projects');
         this.el.html(this.template(this.data));
     }
 }

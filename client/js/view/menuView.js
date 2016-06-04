@@ -7,6 +7,7 @@ var menu = [{
         name: "Проект",
         url: '/',
         isActive: true,
+        canCreate: true,
         links: [{
             name: 'Бэклог',
             url: 'backlog'

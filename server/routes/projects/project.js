@@ -195,9 +195,6 @@ router.route('/project/')
         console.log('Отправлено /project/ в проект ' + req.query.project);
         getProjects(function (data) {
             if (data) {
-                res.cookie('name', 'tobi');
-                //req.session.message = 'Hello World';
-                console.log(req.session.id);
                 res.json({
                     status: true,
                     data: data

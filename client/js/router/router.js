@@ -42,10 +42,9 @@ class AppRouter extends Router {
             data: $.param({
                 project: 'GIS'
             }),
-            reset: true
-        });
-        Projects.bind('reset', function () {
-            new ProjectsView('GIS');
+            success: function(){
+                new ProjectsView('GIS');
+            }
         });
     }
 

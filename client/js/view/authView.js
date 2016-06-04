@@ -5,6 +5,7 @@ import { MenuView } from '../view/menuView'
 
 const { View } = Backbone;
 const AuthTemplate = require('../../templates/auth.hbs');
+const App = {};
 
 var _initInput = function (input) {
     var inputValue = input.val();
@@ -20,8 +21,8 @@ var auth = function (userData) {
     var user = userData || JSON.parse(localStorage.getItem('user'));
 
     // переходим на главную страницу после авторизации
-    new AppRouter(user).index();
-    new MenuView();
+    App.Router = new AppRouter(user);
+    App.Menu = new MenuView();
 };
 
 class AuthView extends View {
@@ -111,6 +112,7 @@ class AuthView extends View {
                 }
             });
         }
+
     }
 
     signup() {

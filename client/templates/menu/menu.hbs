@@ -17,17 +17,19 @@
                 {{#each links}}
                     <a href="#{{url}}" class="menu__item link js_menu_item">{{name}}</a>
                 {{/each}}
+                {{#if canCreate}}
+                    <div class="menu__item dropdown dropdown_on_hover">
+                        <div class="dropdown__trigger nostyle noalign">
+                            Создать
+                            <i class="icon icon__chevron icon_rotate_180 icon_size_xs"></i>
+                        </div>
+                        <div class="dropdown__context">
+                            <span class="dropdown__item js_create_project link blue">Проект</span>
+                        </div>
+                    </div>
+                {{/if}}
             {{/if}}
         {{/each}}
-        <div class="menu__item  dropdown dropdown_on_hover">
-            <div class="dropdown__trigger nostyle noalign">
-                Создать
-                <i class="icon icon__chevron icon_rotate_180 icon_size_xs"></i>
-            </div>
-            <div class="dropdown__context">
-                <span class="dropdown__item js_create_project link blue">Проект</span>
-            </div>
-        </div>
         <a href="#/profile/" class="link menu__item style_float_right js_menu_item">Антон Ахатов</a>
     </div>
 </section>
