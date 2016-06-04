@@ -12,7 +12,9 @@ var userSchema = Schema({
     password: String,
     name: String,
     surname: String,
-    company_id: Schema.Types.ObjectId
+    company_id: Schema.Types.ObjectId,
+    access: Number,
+    token: String
 });
 
 userSchema.methods.validPassword = function( pwd ) {

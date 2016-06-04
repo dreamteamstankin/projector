@@ -1,9 +1,12 @@
+import { Storage } from '../helpers/storage'
+import { AppRouter } from '../router/router'
 import { UserModel, Users} from '../model/userModel'
 
 const { View } = Backbone;
 const AuthTemplate = require('../../templates/auth.hbs');
 
-function _initInput(input) {
+
+var _initInput = function (input) {
     var inputValue = input.val();
     var validateValue = (inputValue.length > 1) ? inputValue : false;
     input.removeClass('input_state_error');
@@ -11,33 +14,50 @@ function _initInput(input) {
         input.addClass('input_state_error');
     }
     return validateValue
-}
+};
 
+var auth = function (userData) {
+    var user = userData || JSON.parse(localStorage.getItem('user'));
+    var router = new AppRouter(user);
+
+    // переходим на нужную страницу после авторизации
+    router.navigate(location.hash);
+};
 
 class AuthView extends View {
     constructor() {
         super();
         this.el = $('#page');
         this.template = AuthTemplate;
-        this.render();
         this.events = {
             'click .js_login_submit': 'login',
             'click .js_signup_submit': 'signup',
-            'keypress .js_login_input':'loginInput',
+            'keypress .js_login_input': 'loginInput',
             'keypress .js_signup_input': 'signupInput'
         };
         View.apply(this);
     }
 
     render() {
-        this.el.html(this.template());
+        var user = JSON.parse(localStorage.getItem('user'));
+        if (Storage.getCookie('version') && Storage.getCookie('token') && user){
+            auth(user);
+        } else {
+            $(this.el).html(this.template());
+        }
     }
 
-    loginInput(e){
+    logout () {
+        Storage.removeCookie('version');
+        Storage.removeCookie('token');
+        localStorage.removeItem('user');
+    }
+
+    loginInput(e) {
         if (e.keyCode == 13) this.login();
     }
 
-    signupInput(e){
+    signupInput(e) {
         if (e.keyCode == 13) this.signup();
     }
 
@@ -49,7 +69,6 @@ class AuthView extends View {
         var passwordValue = _initInput(password);
 
         notify.html('');
-
         if (usernameValue && passwordValue) {
             $.ajax({
                 type: 'POST',
@@ -59,11 +78,14 @@ class AuthView extends View {
                     password: passwordValue
                 }),
                 contentType: 'application/json',
-                success: function(response){
-                    console.log(response);
-                    switch(response.status){
-                        case 0:
-                            Users.add(new UserModel(response.user));
+                success: function (response) {
+                    switch (response.status) {
+                        case 0: // без ошибок
+                            var userData = _.omit(response.user, 'token');
+                            Storage.setCookie('version', response.version, 24*365*2);
+                            Storage.setCookie('token', response.user._id, 24*365*2);
+                            localStorage.setItem('user', JSON.stringify(userData));
+                            auth(userData);
                             break;
                         case 1:
                             notify.html('Ошибка сервера');

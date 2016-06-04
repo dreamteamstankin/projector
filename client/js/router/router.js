@@ -39,7 +39,6 @@ class AppRouter extends Router {
     }
 
     index() {
-        console.log('index');
         Projects.fetch({
             data: $.param({
                 project: 'GIS'
@@ -82,7 +81,6 @@ class AppRouter extends Router {
     }
 
     articles() {
-
         new ArticlesView();
     }
 
@@ -95,13 +93,13 @@ class AppRouter extends Router {
     }
 
     profile() {
-        new ProfileView({
-            currentUser: this.currentUser
-        });
+        new ProfileView();
     }
 
     logout() {
-        new AuthView();
+        var auth = new AuthView();
+        auth.logout();
+        auth.render();
     }
 }
 

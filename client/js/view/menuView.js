@@ -29,9 +29,18 @@ var menu = [{
 
 
 class MenuView extends View {
-    constructor() {
-        super();
+    constructor(customMenu) {
+        super(customMenu);
         this.el = $('#menu');
+        //if (customMenu) {
+        //    var newMenu = [];
+            //_.each(menu, function(item){
+            //    item.isActive = false;
+            //    newMenu.push(item);
+            //});
+            //newMenu.push(customMenu);
+        //}
+        this.data = menu;
         this.events = {
             'click .js_menu_item': 'activeItem',
             'click .js_menu_subitem': 'changeSection'
@@ -42,7 +51,7 @@ class MenuView extends View {
     }
 
     render() {
-        $(this.el).html(this.template({sections: menu}));
+        $(this.el).html(this.template({sections: this.data}));
     }
 
     activeItem(e) {

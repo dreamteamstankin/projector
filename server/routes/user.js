@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var UserModel = require('../models/user.js');
 var CompanyModel = require('../models/company.js');
+var crypto = require('crypto');
 var router = express.Router();
 
 
@@ -75,13 +76,19 @@ var removeUser = function (user_id) {
 //     })
 // });
 
+//var name = 'braitsch';
+//var hash = crypto.createHash('md5').update(name).digest('hex');
+//console.log(hash); // 9b74c9897bac770ffc029102a200c5de
+
 router.route('/login/')
     .post(function (req, res) {
         var username = req.body.username;
         var password = req.body.password;
+        var token = req.body.token;
         UserModel.findOne({
             username: username,
-            password: password
+            password: password,
+            token: token
         }, function (err, user) {
             if (err) return res.json({
                 code: 500,
@@ -117,6 +124,7 @@ router.route('/login/')
                     surname: user.surname,
                     name: user.name
                 },
+                version: 1,
                 message: 'Success'
             })
         });

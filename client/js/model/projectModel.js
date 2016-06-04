@@ -32,7 +32,7 @@ class ProjectCollection extends Collection {
         this.model = ProjectModel;
         this.parse = function(response) {
             if (response.status){
-                console.log(response.data);
+                //console.log(response.data);
                 return response.data;
             }
         }
