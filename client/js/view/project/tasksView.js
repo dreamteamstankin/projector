@@ -1,3 +1,4 @@
+import { Storage } from '../../helpers/storage'
 import { openTaskView } from './opentaskView'
 import { TaskModel, Tasks  } from '../../model/taskModel'
 

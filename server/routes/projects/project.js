@@ -86,7 +86,6 @@ var removeProject = function (project_id) {
 
 router.route('/project/')
     .get(function (req, res) {
-        console.log('Отправлено /project/ в проект ' + req.query.project);
         getProjects(function (data) {
             if (data) {
                 res.json({
@@ -103,7 +102,7 @@ router.route('/project/')
 
 router.route('/project/:task')
     .get(function (req, res) {
-        console.log('Отправлено /project/ в проект ' + req.query.project);
+        console.log('Отправлено /project/ в проект');
         getProjects(function (data) {
             if (data) {
                 res.json({

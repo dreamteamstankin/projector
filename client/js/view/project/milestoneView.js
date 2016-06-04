@@ -1,3 +1,4 @@
+import { Storage } from '../../helpers/storage'
 import { TasksView } from './tasksView'
 import { MilestoneModel, Milestones  } from '../../model/milestoneModel'
 
@@ -16,7 +17,9 @@ class MilestoneView extends View {
         var self = this;
         Milestones.fetch({
             data: $.param({
-                project: 'GIS'
+                company_id: Storage.getCookie('company_id'),
+                token: Storage.getCookie('token'),
+                project: id
             }),
             success: function(){
                 var milestone = Milestones.findWhere({name_id: id});

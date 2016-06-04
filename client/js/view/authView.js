@@ -44,7 +44,7 @@ class AuthView extends View {
 
     render() {
         var user = JSON.parse(localStorage.getItem('user'));
-        if (Storage.getCookie('version') && Storage.getCookie('token') && user){
+        if (Storage.getCookie('version') && Storage.getCookie('token') && Storage.getCookie('company_id') && user){
             auth(user);
         } else {
             $(this.el).html(this.template());
@@ -54,6 +54,7 @@ class AuthView extends View {
     logout () {
         Storage.removeCookie('version');
         Storage.removeCookie('token');
+        Storage.removeCookie('company_id');
         localStorage.removeItem('user');
     }
 
@@ -76,7 +77,7 @@ class AuthView extends View {
         if (usernameValue && passwordValue) {
             $.ajax({
                 type: 'POST',
-                url: 'http://localhost:3000/login',
+                url: 'http://localhost:3000/login/',
                 data: JSON.stringify({
                     username: usernameValue,
                     password: passwordValue
@@ -88,6 +89,7 @@ class AuthView extends View {
                             var userData = _.omit(response.user, 'token');
                             Storage.setCookie('version', response.version, 24*365*2);
                             Storage.setCookie('token', response.user._id, 24*365*2);
+                            Storage.setCookie('company_id', response.user.company_id, 24*365*2);
                             localStorage.setItem('user', JSON.stringify(userData));
                             auth(userData);
                             break;

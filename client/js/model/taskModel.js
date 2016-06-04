@@ -1,3 +1,4 @@
+import { AppRouter } from '../router/router'
 const { Model, Collection } = Backbone;
 
 class TaskModel extends Model {
@@ -35,6 +36,13 @@ class TaskCollection extends Collection {
         super();
         this.url = '//localhost:7000/task';
         this.model = TaskModel;
+        this.parse = function(response) {
+            if (response.status){
+                return response.data;
+            } else if (response.auth === false){
+                new AppRouter().logout();
+            }
+        }
     }
 }
 

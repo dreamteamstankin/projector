@@ -1,5 +1,7 @@
+import { Storage } from '../../helpers/storage'
 import { TasksView } from './tasksView'
 import { ProjectModel, Projects  } from '../../model/projectModel'
+
 
 const { View } = Backbone;
 const ProjectsTemplate = require('../../../templates/project/projects.hbs');
@@ -15,7 +17,8 @@ class ProjectsView extends View {
         var self = this;
         Projects.fetch({
             data: $.param({
-                project: 'GIS'
+                company_id: Storage.getCookie('company_id'),
+                token: Storage.getCookie('token')
             }),
             success: function(){
                 self.render();

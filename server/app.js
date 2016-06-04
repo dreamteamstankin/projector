@@ -6,8 +6,9 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+
+//var passport = require('passport');
+//var LocalStrategy = require('passport-local').Strategy;
 
 // /*-----------------------
 // 	Mongoose connect
@@ -49,12 +50,14 @@ app.use(session({
     }
 }));
 
+// TODO: убрать
 var allowCrossDomain = function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 };
+
 app.use(allowCrossDomain);
 
 //app.use(passport.initialize());
@@ -70,17 +73,16 @@ var user = require('./routes/user');
 var company = require('./routes/company');
 
 //app.use('/', index);
-app.use('/', task);
-app.use('/', milestone);
-app.use('/', project);
 app.use('/', user);
-app.use('/', company);
+app.use('/', isAuth, task);
+app.use('/', isAuth, milestone);
+app.use('/', isAuth, project);
+app.use('/', isAuth, company);
 //app.use('/', projects);
 
 /*-----------------------
  PassportJS
  ------------------------- */
-//var UserModel = require('./models/user.js');
 //
 //passport.serializeUser(function (user, done) {
 //    done(null, user._id);
@@ -131,13 +133,21 @@ app.use('/', company);
 //    res.redirect('/');
 //});
 //
-//
-//function isAuth(req, res, next) {
-//    if (req.isAuthenticated()) {
-//        return next();
-//    }
-//    res.redirect('/api/unauthorized')
-//}
+
+var UserModel = require('./models/user.js');
+
+function isAuth(req, res, next) {
+    //TODO: сделать сессии
+    UserModel.findOne({
+        _id: req.query.token,
+        company_id: req.query.company_id
+    }, function(err, user){
+        if (err) return res.json({status:false, auth:false});
+        if (user) return next();
+        else return res.json({status:false, auth:false});
+        next();
+    });
+}
 
 
 /*-----------------------

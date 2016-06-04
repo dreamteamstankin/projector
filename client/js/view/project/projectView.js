@@ -1,3 +1,4 @@
+import { Storage } from '../../helpers/storage'
 import { TasksView } from './tasksView'
 import { ProjectModel, Projects  } from '../../model/projectModel'
 
@@ -16,6 +17,10 @@ class ProjectView extends View {
         var self = this;
         var project = new ProjectModel({id: id});
         project.fetch({
+            data: $.param({
+                company_id: Storage.getCookie('company_id'),
+                token: Storage.getCookie('token')
+            }),
             success: function () {
                 Projects.add(project);
                 self.data = project.attributes;

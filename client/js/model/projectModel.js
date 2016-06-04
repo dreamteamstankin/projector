@@ -1,12 +1,15 @@
+import { AppRouter } from '../router/router'
 const { Model, Collection } = Backbone;
 
 class ProjectModel extends Model {
     constructor(option) {
         super(option);
-        this.urlRoot = '//localhost:7000/project';
+        this.urlRoot = '//localhost:7000/project/';
         this.parse = function(response) {
             if (response.status){
                 return response.data;
+            } else if (response.auth === false){
+                new AppRouter().logout();
             }
         }
     }
@@ -28,12 +31,13 @@ class ProjectModel extends Model {
 class ProjectCollection extends Collection {
     constructor() {
         super();
-        this.url = '//localhost:7000/project';
+        this.url = '//localhost:7000/project/';
         this.model = ProjectModel;
         this.parse = function(response) {
             if (response.status){
-                //console.log(response.data);
                 return response.data;
+            } else if (response.auth === false){
+                new AppRouter().logout();
             }
         }
     }

@@ -1,3 +1,4 @@
+import { Storage } from '../../helpers/storage'
 import { TaskModel, Tasks  } from '../../model/taskModel'
 import { UserModel, Users } from '../../model/userModel'
 
@@ -30,7 +31,7 @@ class openTaskView extends View {
     }
 
     render() {
-        console.log(this.model.attributes)
+        console.log(this.model.attributes);
         this.$el.html(this.template(this.model.attributes));
         return this;
     }

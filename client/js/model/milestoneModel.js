@@ -1,3 +1,4 @@
+import { AppRouter } from '../router/router'
 const { Model, Collection } = Backbone;
 
 class MilestoneModel extends Model {
@@ -7,6 +8,8 @@ class MilestoneModel extends Model {
         this.parse = function(response) {
             if (response.status){
                 return response.data;
+            } else if (response.auth === false){
+                new AppRouter().logout();
             }
         }
     }
@@ -32,6 +35,8 @@ class MilestoneCollection extends Collection {
         this.parse = function(response) {
             if (response.status){
                 return response.data;
+            } else if (response.auth === false){
+                new AppRouter().logout();
             }
         }
     }
