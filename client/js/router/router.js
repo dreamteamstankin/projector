@@ -10,7 +10,7 @@ import { ProjectModel, Projects } from '../model/projectModel'
 import { MenuView } from '../view/menuView'
 
 const { Router } = Backbone;
-
+const App = {};
 class AppRouter extends Router {
     constructor(currentUser) {
         super(currentUser);
@@ -38,40 +38,17 @@ class AppRouter extends Router {
 
     index() {
         console.log('index');
-        Projects.fetch({
-            data: $.param({
-                project: 'GIS'
-            }),
-            success: function(){
-                new ProjectsView('GIS');
-            }
-        });
+        App.ProjectsView = new ProjectsView();
     }
 
     project(projectId) {
         console.log('projects', projectId);
-        var project = new ProjectModel({
-            id: projectId
-        });
-        project.fetch({
-            success: function () {
-                Projects.add(project);
-                new ProjectView('GIS');
-            }
-        });
+        App.ProjectView = new ProjectView(projectId);
     }
 
     milestone(milestoneId) {
         console.log('milestone', milestoneId);
-        Milestones.fetch({
-            data: $.param({
-                project: 'GIS'
-            }),
-            reset: true
-        });
-        Milestones.bind('reset', function () {
-            new MilestoneView(milestoneId);
-        });
+        App.MilestoneView = new MilestoneView(milestoneId);
     }
 
     task(projectId, taskId) {

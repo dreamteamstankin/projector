@@ -113,4 +113,21 @@ router.route('/milestone/')
         });
     });
 
+router.route('/milestone/:id')
+    .get(function (req, res) {
+        console.log('Отправлено /milestone/ в проект ' + req.query.project);
+        getMilestones(function (data) {
+            if (data) {
+                res.json({
+                    status: true,
+                    data: data
+                });
+            } else {
+                res.json({
+                    status: false
+                });
+            }
+        });
+    });
+
 module.exports = router;

@@ -7,21 +7,28 @@ const ProjectsTemplate = require('../../../templates/project/projects.hbs');
 class ProjectsView extends View {
     constructor() {
         super();
-        var self = this;
         this.el = $('#page');
         this.template = ProjectsTemplate;
-        this.data = {
-            projects: []
-        };
-        Projects.each(function (project) {
-            self.data.projects.push(project.attributes);
+    }
+
+    initialize(){
+        var self = this;
+        Projects.fetch({
+            data: $.param({
+                project: 'GIS'
+            }),
+            success: function(){
+                self.render();
+            }
         });
-        this.render();
     }
 
     render() {
-        console.log('render projects');
-        this.el.html(this.template(this.data));
+        var projects = [];
+        Projects.each(function (project) {
+            projects.push(project.attributes);
+        });
+        $(this.el).html(this.template({projects: projects}));
     }
 }
 

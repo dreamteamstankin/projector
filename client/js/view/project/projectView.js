@@ -7,12 +7,23 @@ const ProjectTemplate = require('../../../templates/project/project.hbs');
 
 class ProjectView extends View {
     constructor(id) {
-        super();
+        super(id);
         this.el = $('#page');
         this.template = PageTemplate;
-        this.data = Projects.findWhere({id: id}).attributes;
-        this.render();
     }
+
+    initialize(id){
+        var self = this;
+        var project = new ProjectModel({id: id});
+        project.fetch({
+            success: function () {
+                Projects.add(project);
+                self.data = project.attributes;
+                self.render();
+            }
+        });
+    }
+
     render() {
         this.el.html(this.template(this.data));
         switch (this.data.viewtype) {

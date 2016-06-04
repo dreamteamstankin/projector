@@ -3,11 +3,16 @@ const { Model, Collection } = Backbone;
 class MilestoneModel extends Model {
     constructor(option) {
         super(option);
+        this.urlRoot = '//localhost:7000/project';
+        this.parse = function(response) {
+            if (response.status){
+                return response.data;
+            }
+        }
     }
 
     defaults() {
         return {
-            id: 'GIS',
             branch: 'Master',
             title: 'Погодный сайт',
             description: 'Жизненный цикл',

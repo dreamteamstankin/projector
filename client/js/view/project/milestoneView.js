@@ -7,13 +7,25 @@ const MilestoneTemplate = require('../../../templates/project/listView.hbs');
 
 class MilestoneView extends View {
     constructor(id) {
-        super();
+        super(id);
         this.el = $('#page');
         this.template = PageTemplate;
-        var currentMilestone = Milestones.findWhere({name_id: id});
-        this.data = currentMilestone.attributes;
-        this.render();
     }
+
+    initialize (id) {
+        var self = this;
+        Milestones.fetch({
+            data: $.param({
+                project: 'GIS'
+            }),
+            success: function(){
+                var milestone = Milestones.findWhere({name_id: id});
+                self.data = (milestone) ? milestone.attributes : {};
+                self.render();
+            }
+        });
+    }
+
     render() {
         this.el.html(this.template(this.data));
         switch (this.data.viewtype) {

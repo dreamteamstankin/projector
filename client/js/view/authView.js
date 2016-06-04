@@ -2,6 +2,7 @@ import { Storage } from '../helpers/storage'
 import { AppRouter } from '../router/router'
 import { UserModel, Users} from '../model/userModel'
 import { MenuView } from '../view/menuView'
+import { ProjectsView } from '../view/project/projectsView'
 
 const { View } = Backbone;
 const AuthTemplate = require('../../templates/auth.hbs');
@@ -22,6 +23,8 @@ var auth = function (userData) {
 
     // переходим на главную страницу после авторизации
     App.Router = new AppRouter(user);
+    App.ProjectsView = new ProjectsView();
+
     App.Menu = new MenuView();
 };
 

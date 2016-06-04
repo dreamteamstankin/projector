@@ -1,4 +1,4 @@
 module.exports = function(format, start, finish) {
-    if (!!finish) {}
-    return moment(start).format(format);
+    var date = moment(start).format(format);
+    return date;
 };
