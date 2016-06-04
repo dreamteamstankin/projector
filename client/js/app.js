@@ -1,25 +1,16 @@
 import { AppRouter } from './router/router'
+import { AuthView } from './view/authView'
 import { UserModel, Users } from './model/userModel'
 
-const App = {};
+new AuthView();
 
+Users.bind('add', function(){
+    // TODO
+    var currentUser = Users.first();
+    window.Router = new AppRouter(currentUser);
 
-var CurrentUser = new UserModel({
-    _id: '5744b2154a081212b428a7d8'
-});
+    // главная стрнаица
+    window.Router.index();
 
-CurrentUser.fetch({
-    success: function(){
-        Users.fetch({
-            data: $.param({
-                company_id: CurrentUser.attributes.company_id
-            }),
-            reset: true
-        });
-    }
-});
-
-Users.bind('reset', function(){
-    App.Router = new AppRouter(CurrentUser);
     Backbone.history.start();
 });

@@ -4,14 +4,19 @@ mongoose.connect('mongodb://localhost/test');
 
 var userSchema = Schema({
     _id: Schema.Types.ObjectId,
-    login: {
+    username: {
         type: String,
         required: true,
         unique: true
     },
     password: String,
     name: String,
+    surname: String,
     company_id: Schema.Types.ObjectId
 });
+
+userSchema.methods.validPassword = function( pwd ) {
+    return ( this.password === pwd );
+};
 
 module.exports = mongoose.model('User', userSchema);

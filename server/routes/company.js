@@ -27,6 +27,20 @@ var removeCompany = function(company_id) {
     });
 };
 
+var removeUser = function(user_id) {
+    CompanyModel.find(function(err, companies) {
+        if (err) return console.error(err);
+        companies.forEach(function(company){
+            var index = company.users.indexOf(user_id);
+            if (index > -1) {
+                company.users.splice(index, 1);
+                company.save();
+            }
+        });
+    });
+};
+//removeUser('5744b2154a081212b428a7d8');
+
 // addCompany({
 //     name_id: 'gismeteo',
 //     name: 'Гисметео'

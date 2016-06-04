@@ -1,7 +1,7 @@
 .input {
 	width: 100%;
 	display: block;
-    border: 1px solid transparent;
+    border: none;
     border-bottom: 1px solid @lightgray;
 	outline: none;
 	appearance: none;
@@ -11,6 +11,9 @@
     border-radius: 0;
 	transition: border .1s;
     box-sizing: border-box;
+	&:focus {
+		border-color: @orange;
+	}
     &_with_border {
         border-radius: @border-radius/2;
         font-size: @font-s;
@@ -19,9 +22,13 @@
         line-height: 1;
         border: 1px solid @lightgray;
     }
-	&:focus {
-		border-bottom-color: @orange;
-	}
+    &_state{
+        &_error {
+            &, &:focus{
+                border-color: @red;
+            }
+        }
+    }
 }
 
 .select {

@@ -2,6 +2,7 @@ import { ProjectView } from '../view/project/projectView'
 import { ProjectsView } from '../view/project/projectsView'
 import { MilestoneView } from '../view/project/milestoneView'
 import { ProfileView } from '../view/profileView'
+import { AuthView } from '../view/authView'
 import { ArticlesView } from '../view/articlesView'
 import { SettingsView } from '../view/settingsView'
 import { MilestoneModel, Milestones } from '../model/milestoneModel'
@@ -18,18 +19,20 @@ class AppRouter extends Router {
         this.routes = {
             "": "index",
 
-                "projects": "projects",
+            "projects": "projects",
 
-                "project/:projectId/": "project",
-                "milestone/:milestoneId": "milestone",
-                "task/:taskId/": "task",
+            "project/:projectId/": "project",
+            "milestone/:milestoneId": "milestone",
+            "task/:taskId/": "task",
 
-                "docs/": "articles",
-                "article/:articleId": "article",
+            "docs/": "articles",
+            "article/:articleId": "article",
 
-                "profile/": "profile",
+            "profile/": "profile",
 
-                "settings/": "settings"
+            "settings/": "settings",
+
+            "logout/": "logout"
         };
         new MenuView();
         Router.apply(this);
@@ -54,14 +57,14 @@ class AppRouter extends Router {
             id: projectId
         });
         project.fetch({
-            success: function(){
+            success: function () {
                 Projects.add(project);
                 new ProjectView('GIS');
             }
         });
     }
 
-    milestone(milestoneId){
+    milestone(milestoneId) {
         console.log('milestone', milestoneId);
         Milestones.fetch({
             data: $.param({
@@ -95,6 +98,10 @@ class AppRouter extends Router {
         new ProfileView({
             currentUser: this.currentUser
         });
+    }
+
+    logout() {
+        new AuthView();
     }
 }
 

@@ -147,7 +147,6 @@ var getProjects = function (cb) {
             projects.forEach(function (elem, index) {
                 getProject(elem._id, function (data) {
                     extendedProjects.push(data);
-                    console.log(extendedProjects);
                     if (count - 1 == index) {
                         cb(extendedProjects);
                     }
@@ -196,6 +195,9 @@ router.route('/project/')
         console.log('Отправлено /project/ в проект ' + req.query.project);
         getProjects(function (data) {
             if (data) {
+                res.cookie('name', 'tobi');
+                //req.session.message = 'Hello World';
+                console.log(req.session.id);
                 res.json({
                     status: true,
                     data: data
