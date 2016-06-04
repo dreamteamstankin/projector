@@ -1,10 +1,10 @@
 import { Storage } from '../helpers/storage'
 import { AppRouter } from '../router/router'
 import { UserModel, Users} from '../model/userModel'
+import { MenuView } from '../view/menuView'
 
 const { View } = Backbone;
 const AuthTemplate = require('../../templates/auth.hbs');
-
 
 var _initInput = function (input) {
     var inputValue = input.val();
@@ -18,10 +18,10 @@ var _initInput = function (input) {
 
 var auth = function (userData) {
     var user = userData || JSON.parse(localStorage.getItem('user'));
-    var router = new AppRouter(user);
 
-    // переходим на нужную страницу после авторизации
-    router.navigate(location.hash);
+    // переходим на главную страницу после авторизации
+    new AppRouter(user).index();
+    new MenuView();
 };
 
 class AuthView extends View {

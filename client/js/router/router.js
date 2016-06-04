@@ -11,7 +11,6 @@ import { MenuView } from '../view/menuView'
 
 const { Router } = Backbone;
 
-
 class AppRouter extends Router {
     constructor(currentUser) {
         super(currentUser);
@@ -34,11 +33,11 @@ class AppRouter extends Router {
 
             "logout/": "logout"
         };
-        new MenuView();
         Router.apply(this);
     }
 
     index() {
+        console.log('index');
         Projects.fetch({
             data: $.param({
                 project: 'GIS'
@@ -99,7 +98,10 @@ class AppRouter extends Router {
     logout() {
         var auth = new AuthView();
         auth.logout();
-        auth.render();
+        location.hash = '/';
+        location.reload(false);
+        document.location.reload(false);
+        window.location.reload(false);
     }
 }
 
