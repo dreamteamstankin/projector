@@ -24,7 +24,8 @@ class openTaskView extends View {
             'click .js_edit_comment': 'editComment',
             'keypress .js_add_subtask': 'addSubtask',
             'click .js_remove_subtask': 'removeSubtask',
-            'click .js_edit_subtask': 'editSubtask'
+            'click .js_edit_subtask': 'editSubtask',
+            'change .js_subtask_checked' : 'checkedSubtask'
         };
         this.currentUser = JSON.parse(localStorage.getItem('user'));
         View.apply(this);
@@ -35,8 +36,8 @@ class openTaskView extends View {
         return this;
     }
 
-    saveChanges(cb) {
-        this.model.save(null, {
+    saveChanges(data, cb) {
+        this.model.save(data, {
             headers: {
                 company_id: Storage.getCookie('company_id'),
                 token: Storage.getCookie('token')
@@ -59,13 +60,12 @@ class openTaskView extends View {
                 userName: this.currentUser.name || null
             };
             comments.push(newComment);
-            this.model.attributes.comments = comments;
-            self.saveChanges(()=>{
+            self.saveChanges(comments, ()=> {
                 e.currentTarget.value = '';
                 var extended = _.extend(newComment, {
                     firstLetterName: newComment.userName[0]
                 });
-                commentList.append(commentTemplate({comment:extended}));
+                commentList.append(commentTemplate({comment: extended}));
                 self.delegateEvents();
             })
         }
@@ -76,12 +76,12 @@ class openTaskView extends View {
         var self = this;
         var id = $(e.currentTarget).data('id');
         var comments = this.model.attributes.comments;
-        _.each(comments, function(comment, index){
+        _.each(comments, function (comment, index) {
             if (comment.id === id) {
                 comments.splice(index, 1);
             }
         });
-        this.saveChanges(() => {
+        this.saveChanges(comments, () => {
             var item = self.$el.find(`.js_comment_item[data-id="${id}"]`);
             item.remove();
         });
@@ -110,9 +110,9 @@ class openTaskView extends View {
                 userName: this.currentUser.name || null
             };
             subtasks.push(newSubtask);
-            self.saveChanges(()=>{
+            self.saveChanges(subtasks, ()=> {
                 e.currentTarget.value = '';
-                subtaskList.append(subtaskTemplate({subtask:newSubtask}));
+                subtaskList.append(subtaskTemplate({subtask: newSubtask}));
                 self.delegateEvents();
             })
         }
@@ -123,12 +123,12 @@ class openTaskView extends View {
         var self = this;
         var id = $(e.currentTarget).data('id');
         var subtasks = this.model.attributes.subtasks;
-        _.each(subtasks, function(task, index){
-            if (task.id === id) {
+        _.each(subtasks, function (task, index) {
+            if (task && task.id === id) {
                 subtasks.splice(index, 1);
             }
         });
-        this.saveChanges(() => {
+        this.saveChanges(subtasks, () => {
             var item = self.$el.find(`.js_subtask_item[data-id="${id}"]`);
             item.remove();
         });
@@ -137,6 +137,18 @@ class openTaskView extends View {
     editSubtask(e) {
         e.preventDefault();
         console.log('edit', e);
+    }
+
+    checkedSubtask (e) {
+        e.preventDefault();
+        var id = $(e.currentTarget).parent().parent().data('id');
+        var subtasks = this.model.attributes.subtasks;
+        _.each(subtasks, function (task) {
+            if (task && task.id === id) {
+                task.completed = e.currentTarget.checked;
+            }
+        });
+        this.saveChanges(subtasks);
     }
 }
 
