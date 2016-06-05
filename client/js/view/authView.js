@@ -1,4 +1,5 @@
 import { Storage } from '../helpers/storage'
+import { InputHelper } from '../helpers/inputs'
 import { AppRouter } from '../router/router'
 import { UserModel, Users} from '../model/userModel'
 import { MenuView } from '../view/menuView'
@@ -8,16 +9,6 @@ const { View } = Backbone;
 const AuthTemplate = require('../../templates/auth.hbs');
 const App = {};
 
-var _initInput = function (input) {
-    var inputValue = input.val();
-    var validateValue = (inputValue.length > 1) ? inputValue : false;
-    input.removeClass('input_state_error');
-    if (!validateValue) {
-        input.addClass('input_state_error');
-    }
-    return validateValue
-};
-
 var auth = function (userData) {
     var user = userData || JSON.parse(localStorage.getItem('user'));
 
@@ -25,7 +16,7 @@ var auth = function (userData) {
     App.Router = new AppRouter(user);
     App.ProjectsView = new ProjectsView();
 
-    App.Menu = new MenuView();
+    App.Menu = new MenuView(user);
 };
 
 class AuthView extends View {
@@ -70,20 +61,22 @@ class AuthView extends View {
         var notify = $('.js_login_notify');
         var username = this.$el.find('.js_login_username');
         var password = this.$el.find('.js_login_password');
-        var usernameValue = _initInput(username);
-        var passwordValue = _initInput(password);
+        var usernameValue = InputHelper.initInput(username);
+        var passwordValue = InputHelper.initInput(password);
 
         notify.html('');
         if (usernameValue && passwordValue) {
             $.ajax({
                 type: 'POST',
                 url: 'http://localhost:3000/login/',
+                dataType: 'JSON',
                 data: JSON.stringify({
                     username: usernameValue,
                     password: passwordValue
                 }),
                 contentType: 'application/json',
                 success: function (response) {
+                    var response = JSON.parse(response);
                     switch (response.status) {
                         case 0: // без ошибок
                             var userData = _.omit(response.user, 'token');
@@ -111,7 +104,7 @@ class AuthView extends View {
                             break;
                         default:
                             notify.html('Ошибка системы');
-                            console.log('неизвестный код');
+                            console.log('неизвестный код', response);
                             break;
                     }
                 }
@@ -130,12 +123,12 @@ class AuthView extends View {
         var company = this.$el.find('.js_signup_company');
         var companyTitle = this.$el.find('.js_signup_company_title');
 
-        //var nameValue = _initInput(this.$el.find('.js_signup_name'));
-        //var surnameValue = _initInput(this.$el.find('.js_signup_surname'));
-        //var usernameValue = _initInput(this.$el.find('.js_signup_username'));
-        //var passwordValue = _initInput(this.$el.find('.js_signup_password'));
-        //var companyValue = _initInput(this.$el.find('.js_signup_company'));
-        //var companyTitleValue = _initInput(this.$el.find('.js_signup_company_title'));
+        //var nameValue = InputHelper.initInput(this.$el.find('.js_signup_name'));
+        //var surnameValue = InputHelper.initInput(this.$el.find('.js_signup_surname'));
+        //var usernameValue = InputHelper.initInput(this.$el.find('.js_signup_username'));
+        //var passwordValue = InputHelper.initInput(this.$el.find('.js_signup_password'));
+        //var companyValue = InputHelper.initInput(this.$el.find('.js_signup_company'));
+        //var companyTitleValue = InputHelper.initInput(this.$el.find('.js_signup_company_title'));
 
         notify.html('Ошибка. Попробуйте позже');
     }

@@ -1,8 +1,9 @@
-var MenuTemplate = require('../../templates/menu/menu.hbs');
+import { AddProjectView } from './components/addProjectView'
 
+const MenuTemplate = require('../../templates/menu/menu.hbs');
 const { View } = Backbone;
 
-var menu = [{
+const menu = [{
         type: "project",
         name: "Проект",
         url: '/',
@@ -29,25 +30,16 @@ var menu = [{
         url: 'settings/'
     }];
 
-var user = JSON.parse(localStorage.getItem('user'));
-
 
 class MenuView extends View {
-    constructor(customMenu) {
-        super(customMenu);
+    constructor(option) {
+        super(option);
         this.el = $('#menu');
-        //if (customMenu) {
-        //    var newMenu = [];
-            //_.each(menu, function(item){
-            //    item.isActive = false;
-            //    newMenu.push(item);
-            //});
-            //newMenu.push(customMenu);
-        //}
         this.data = menu;
         this.events = {
             'click .js_menu_item': 'activeItem',
-            'click .js_menu_subitem': 'changeSection'
+            'click .js_menu_subitem': 'changeSection',
+            'click .js_create_project': 'showCreateProjectForm'
         };
         this.template = MenuTemplate;
         this.render();
@@ -55,7 +47,7 @@ class MenuView extends View {
     }
 
     render() {
-        console.log(user)
+        const user = JSON.parse(localStorage.getItem('user'));
         $(this.el).html(this.template({sections: this.data, user: user}));
     }
 
@@ -72,6 +64,11 @@ class MenuView extends View {
             section.isActive = (type == section.type);
         });
         this.render();
+    }
+
+    showCreateProjectForm (e) {
+        var addProject = new AddProjectView();
+        addProject.render();
     }
 }
 export { MenuView }
