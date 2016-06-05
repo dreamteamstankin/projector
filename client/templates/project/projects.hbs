@@ -1,5 +1,5 @@
 {{#each projects}}
-    <a href="#project/{{id}}/" class="project__projects link style_solid style_black style_hover_light">
+    <a href="#project/{{id}}/" class="project__projects link style_solid style_black style_hover_light" data-project-id="{{_id}}">
         <div class="page__section">
             <div class="dashboard__title">
                 <span class="style_size_l style_bold">{{title}}</span>
@@ -8,8 +8,7 @@
                         <i class="icon icon__more icon_hover_on icon_size_s"></i>
                     </div>
                     <div class="dropdown__context">
-                        <div class="dropdown__item link blue">Удалить</div>
-                        <div class="dropdown__item link blue">Редактировать</div>
+                        <div class="dropdown__item link blue js_project_remove" data-project-id="{{_id}}">Удалить</div>
                     </div>
                 </span>
             </div>
@@ -33,7 +32,7 @@
                         </div>
                     </div>
                     <div class="dashboard__item">
-                        <div class="header_section style_black">Ветка GIT</div>
+                        <div class="header_section style_black">Код</div>
                         <div class="dashboard__content">{{name_id}}</div>
                     </div>
                     <div class="dashboard__item">

@@ -142,7 +142,15 @@ router.route('/task/:id')
             //    task[property] = req.body[property];
             //}
             task.save();
-            res.json({status: true, task: task.subtasks.length, comment: task.comments.length});
+            res.json({status: true});
+        });
+    })
+    .delete(function(req, res){
+        TaskModel.findOne({_id:req.params.id}, function(err, task){
+            if (err) return res.json({status: false});
+            if (!task) return res.json({status: false});
+            task.remove();
+            res.json({status: true});
         });
     });
 

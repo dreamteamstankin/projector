@@ -76,8 +76,8 @@ router.route('/login/')
                 status: 0,
                 auth: true,
                 user: {
-                    username: user.username,
                     _id: user._id,
+                    username: user.username,
                     company_id: user.company_id,
                     surname: user.surname,
                     name: user.name

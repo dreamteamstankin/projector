@@ -10,6 +10,37 @@
     }
 }
 
+.tasksadd {
+    position: relative;
+    display: inline-block;
+    visibility: hidden;
+    opacity: 0;
+    width: 220px;
+    margin-left: 10px;
+    transition: opacity .2s;
+    &__input {
+        display: none;
+        &:checked {
+            & ~ label .tasksadd__icon {
+                display: none;
+            }
+            & ~ .tasksadd {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+    }
+    &__wrap {
+        height: 31px;
+    }
+    .input {
+        padding: 5px 0;
+    }
+    .icon {
+        right: -25px;
+    }
+}
+
 .grouptask {
     &.grouptask_no_padding .task:not(.grouptask__header) .task__cell:first-child {
         padding-left: @block-padding-horizontal;

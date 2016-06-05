@@ -29,6 +29,8 @@ var menu = [{
         url: 'settings/'
     }];
 
+var user = JSON.parse(localStorage.getItem('user'));
+
 
 class MenuView extends View {
     constructor(customMenu) {
@@ -53,7 +55,8 @@ class MenuView extends View {
     }
 
     render() {
-        $(this.el).html(this.template({sections: this.data}));
+        console.log(user)
+        $(this.el).html(this.template({sections: this.data, user: user}));
     }
 
     activeItem(e) {

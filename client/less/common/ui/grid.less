@@ -6,6 +6,13 @@
             display: table;
             clear: both;
         }
+        &_type_table {
+            display: table;
+            width: 100%;
+            .@{prefix}__cell {
+                display: table-cell;
+            }
+        }
         &_padding_xs .@{prefix}__cell:not(:first-child):not(:last-child) {
             padding: 0 @padding-xs;
         }
@@ -35,14 +42,6 @@
             .@{prefix}_flex_@{index} > .@{prefix}__cell {
                 width: 100% / @index;
             }
-            //&.@{prefix}_horizontal-list_@{index} .@{prefix}__cell {
-            //    &:nth-child(@{index}n + @{index}) {
-            //        padding-right: 0;
-            //    }
-            //    &:nth-child(@{index}n+@{index}+1) {
-            //        clear: left;
-            //    }
-            //}
             .gridGenerator(@index - 1);
         }
         .gridGenerator(@columns);

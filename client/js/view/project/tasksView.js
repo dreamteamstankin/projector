@@ -9,7 +9,9 @@ class TasksView extends View {
         super();
         this.el = $('#tasks');
         this.events = {
-            'click .js_task_header': 'openTask'
+            'click .js_task_header': 'openTask',
+            'click .js_task_delete': 'removeTask',
+            'click .js_task_edit': 'editTask'
         };
         this.template = template;
         this.tasks = tasks;
@@ -30,9 +32,23 @@ class TasksView extends View {
         }
     }
 
-    addTask () {}
-    editTask () {}
-    removeTask () {}
+    addTask (e) {}
+    editTask (e) {}
+    removeTask (e) {
+        var id = $(e.currentTarget).data('task-id');
+        var task = new TaskModel({
+            id: id
+        });
+        task.destroy({
+            headers: {
+                company_id: Storage.getCookie('company_id'),
+                token: Storage.getCookie('token')
+            },
+            success: function(){
+                $(`tr[data-task-id="${id}"]`).remove();
+            }
+        })
+    }
 
     openTask(e) {
         let item = e.currentTarget.parentNode;

@@ -6,8 +6,7 @@
                 <i class="icon icon__more icon_hover_on icon_size_s"></i>
             </div>
             <div class="dropdown__context">
-                <div class="dropdown__item link blue">Удалить</div>
-                <div class="dropdown__item link blue">Редактировать</div>
+                <div class="dropdown__item link blue" data-id="{{_id}}">Удалить</div>
             </div>
         </span>
     </div>
@@ -31,7 +30,7 @@
                 </div>
             </div>
             <div class="dashboard__item">
-                <div class="header_section style_black">Ветка GIT</div>
+                <div class="header_section style_black">Код</div>
                 <div class="dashboard__content">{{name_id}}</div>
             </div>
             <div class="dashboard__item">
@@ -47,9 +46,16 @@
 </section>
 <section class="page__section project__actions grid">
     <div class="grid__cell header_title">
-        <div class="tabs__item_state_open style_black">
+        <div class="tasksadd__wrap tabs__item_state_open style_black">
             Все задачи
-            <i class="icon icon__add icon_hover_on"></i>
+            <input type="checkbox" id="__addtask" class="tasksadd__input">
+            <label for="__addtask">
+                <i class="tasksadd__icon icon icon__add icon_hover_on"></i>
+            </label>
+            <span class="tasksadd js_task_add">
+                <input placeholder="Новая задача" class="input js_add_subtask"/>
+                <i class="icon icon_size_s icon__enter icon_align_vertical"></i>
+            </span>
         </div>
     </div>
     <!--<div class="grid__cell grid__cell_align_right header_title">
