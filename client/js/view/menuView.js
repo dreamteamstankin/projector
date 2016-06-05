@@ -7,17 +7,18 @@ var menu = [{
         name: "Проект",
         url: '/',
         isActive: true,
-        canCreate: true,
-        links: [{
-            name: 'Бэклог',
-            url: 'backlog'
-        }, {
-            name: 'Статистика',
-            url: 'stats'
-        }, {
-            name: 'Поиск',
-            url: 'search'
-        }]
+        canCreate: true
+        //,
+        //links: [{
+        //    name: 'Бэклог',
+        //    url: 'backlog'
+        //}, {
+        //    name: 'Статистика',
+        //    url: 'stats'
+        //}, {
+        //    name: 'Поиск',
+        //    url: 'search'
+        //}]
     }, {
         type: 'docs',
         name: "Документация",

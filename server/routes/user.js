@@ -1,11 +1,9 @@
 var express = require('express');
 var mongoose = require('mongoose');
-var passport = require('passport');
 var UserModel = require('../models/user.js');
 var CompanyModel = require('../models/company.js');
 var crypto = require('crypto');
 var router = express.Router();
-
 
 var response = [{
     _id: '5744b2154a081212b428a7d8',
@@ -80,55 +78,6 @@ var removeUser = function (user_id) {
 //var hash = crypto.createHash('md5').update(name).digest('hex');
 //console.log(hash); // 9b74c9897bac770ffc029102a200c5de
 
-router.route('/login/')
-    .post(function (req, res) {
-        var username = req.body.username;
-        var password = req.body.password;
-        var token = req.body.token;
-        UserModel.findOne({
-            username: username,
-            password: password,
-            token: token
-        }, function (err, user) {
-            if (err) return res.json({
-                code: 500,
-                status: 1,
-                auth: false,
-                message: 'error'
-            });
-
-            if (!user) return res.json({
-                code: 300,
-                status: 2,
-                auth: false,
-                message: 'Incorrect username.'
-            });
-
-            if (!user.validPassword(password)) {
-                res.json({
-                    code: 300,
-                    status: 3,
-                    auth: false,
-                    message: 'Incorrect password.'
-                })
-            }
-
-            return res.json({
-                code: 200,
-                status: 0,
-                auth: true,
-                user: {
-                    username: user.username,
-                    _id: user._id,
-                    company_id: user.company_id,
-                    surname: user.surname,
-                    name: user.name
-                },
-                version: 1,
-                message: 'Success'
-            })
-        });
-    });
 
 router.route('/user/')
     .get(function (req, res) {

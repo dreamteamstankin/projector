@@ -7,9 +7,6 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-//var passport = require('passport');
-//var LocalStrategy = require('passport-local').Strategy;
-
 // /*-----------------------
 // 	Mongoose connect
 // ------------------------- */
@@ -28,10 +25,6 @@ db.on('open', function () {
  Express config
  ------------------------- */
 var app = express();
-
-// app.use(express.static(path.join(__dirname, 'public/')));
-// app.set('views', path.join(__dirname, 'app/pages/'));
-// app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -60,81 +53,24 @@ var allowCrossDomain = function (req, res, next) {
 
 app.use(allowCrossDomain);
 
-//app.use(passport.initialize());
-//app.use(passport.session());
-
 /*-----------------------
  Routers
  ------------------------- */
+var UserModel = require('./models/user.js');
+
+var auth = require('./routes/auth');
 var task = require('./routes/projects/task');
 var milestone = require('./routes/projects/milestone');
 var project = require('./routes/projects/project');
 var user = require('./routes/user');
 var company = require('./routes/company');
 
-//app.use('/', index);
-app.use('/', user);
+app.use('/', auth);
+app.use('/', isAuth, user);
 app.use('/', isAuth, task);
 app.use('/', isAuth, milestone);
 app.use('/', isAuth, project);
 app.use('/', isAuth, company);
-//app.use('/', projects);
-
-/*-----------------------
- PassportJS
- ------------------------- */
-//
-//passport.serializeUser(function (user, done) {
-//    done(null, user._id);
-//});
-//
-//passport.deserializeUser(function (id, done) {
-//    UserModel.findById(id, function (err, user) {
-//        done(err, user);
-//    });
-//});
-//
-//passport.use(new LocalStrategy(
-//    function (username, password, done) {
-//        UserModel.findOne({username: username}, function (err, user) {
-//            if (err) {
-//                return done(err);
-//            }
-//            if (!user) {
-//                return done(null, false, {message: 'Incorrect username.'});
-//            }
-//            if (!user.validPassword(password)) {
-//                return done(null, false, {message: 'Incorrect password.'});
-//            }
-//            return done(null, user);
-//        });
-//    }
-//));
-//
-//app.post('/login',
-//    passport.authenticate('local', {
-//        successRedirect: '/',
-//        failureRedirect: '/login',
-//        failureFlash: true
-//    })
-//);
-//
-////app.get('/', isAuth, function(req, res){
-////    res.json({ message: "Authenticated" })
-////});
-//app.get('/api/account', isAuth, function (req, res) {
-//    res.json({message: "Authenticated"})
-//});
-//app.get('/api/unauthorized', function (req, res) {
-//    res.json({message: "Authentication Error"})
-//});
-//app.get('/logout', function (req, res) {
-//    req.logout();
-//    res.redirect('/');
-//});
-//
-
-var UserModel = require('./models/user.js');
 
 function isAuth(req, res, next) {
     //TODO: сделать сессии
@@ -145,7 +81,6 @@ function isAuth(req, res, next) {
         if (err) return res.json({status:false, auth:false});
         if (user) return next();
         else return res.json({status:false, auth:false});
-        next();
     });
 }
 

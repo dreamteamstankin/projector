@@ -105,7 +105,7 @@ class AuthView extends View {
                             break;
                         case 3:
                             notify.html('Неправильный пароль');
-                            $(username)[0].focus();
+                            $(password)[0].focus();
                             $(password).addClass('input_state_error');
                             console.log(2, response.message);
                             break;
