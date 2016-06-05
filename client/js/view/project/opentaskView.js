@@ -31,13 +31,11 @@ class openTaskView extends View {
     }
 
     render() {
-        //console.log(this.model.attributes);
-        _.sortBy(this.model.attributes, 'name_id');
         this.$el.html(this.template(this.model.attributes));
         return this;
     }
 
-    saveChanges(subtasks, cb) {
+    saveChanges(cb) {
         this.model.save(null, {
             headers: {
                 company_id: Storage.getCookie('company_id'),
@@ -49,7 +47,7 @@ class openTaskView extends View {
 
     addComment(e) {
         var self = this;
-        var commentList = $('.js_comments');
+        var commentList = this.$el.find('.js_comments');
         if (e.keyCode === 13) { // ENTER
             var val = e.currentTarget.value;
             var comments = this.model.attributes.comments;
@@ -61,9 +59,13 @@ class openTaskView extends View {
                 userName: this.currentUser.name || null
             };
             comments.push(newComment);
-            self.saveChanges(comments,()=>{
+            this.model.attributes.comments = comments;
+            self.saveChanges(()=>{
                 e.currentTarget.value = '';
-                commentList.append(commentTemplate({comment:newComment}));
+                var extended = _.extend(newComment, {
+                    firstLetterName: newComment.userName[0]
+                });
+                commentList.append(commentTemplate({comment:extended}));
                 self.delegateEvents();
             })
         }
@@ -71,7 +73,18 @@ class openTaskView extends View {
 
     removeComment(e) {
         e.preventDefault();
-        console.log('remove', e);
+        var self = this;
+        var id = $(e.currentTarget).data('id');
+        var comments = this.model.attributes.comments;
+        _.each(comments, function(comment, index){
+            if (comment.id === id) {
+                comments.splice(index, 1);
+            }
+        });
+        this.saveChanges(() => {
+            var item = self.$el.find(`.js_comment_item[data-id="${id}"]`);
+            item.remove();
+        });
     }
 
     editComment(e) {
@@ -81,7 +94,7 @@ class openTaskView extends View {
 
     addSubtask(e) {
         var self = this;
-        var subtaskList = $('.js_subtasks');
+        var subtaskList = this.$el.find('.js_subtasks');
         if (e.keyCode === 13) { // ENTER
             var val = e.currentTarget.value;
             var subtasks = this.model.attributes.subtasks;
@@ -97,7 +110,7 @@ class openTaskView extends View {
                 userName: this.currentUser.name || null
             };
             subtasks.push(newSubtask);
-            self.saveChanges(subtasks,()=>{
+            self.saveChanges(()=>{
                 e.currentTarget.value = '';
                 subtaskList.append(subtaskTemplate({subtask:newSubtask}));
                 self.delegateEvents();
@@ -115,7 +128,7 @@ class openTaskView extends View {
                 subtasks.splice(index, 1);
             }
         });
-        this.saveChanges(subtasks, () => {
+        this.saveChanges(() => {
             var item = self.$el.find(`.js_subtask_item[data-id="${id}"]`);
             item.remove();
         });

@@ -84,7 +84,7 @@ var addComments = function (task_id, info) {
 // });
 
 //addTask({
-//    title: 'Такой вот таск 5',
+//    title: 'Такой вот таск 4',
 //    parent: mongoose.Types.ObjectId('5744b32c3f256db0b4437ff0'),
 //    company_id: mongoose.Types.ObjectId('57419b50f75c452880252d4c'),
 //    user_id: mongoose.Types.ObjectId('57419b625726f138803ea964'),

@@ -32,6 +32,8 @@ class MilestoneView extends View {
     }
 
     render() {
+        this.data.tasks = _.sortBy(this.data.tasks, 'branch');
+        console.log(this.data.tasks);
         this.el.html(this.template(this.data));
         switch (this.data.viewtype) {
             case 1:
