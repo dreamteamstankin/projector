@@ -19,22 +19,9 @@
     <div class="grid__cell grid__cell_size_5">
         <div class="opentask__section tasksection">
             <div class="opentask__title header_section">Задачи</div>
-            <div class="list list_type_todo">
+            <div class="list list_type_todo js_subtasks">
                 {{#each subtasks}}
-                    <label class="list__item tasksection">
-                        <div class="list__content_align_left">
-                            <input class="tasksection__checkbox" type="checkbox" {{#if completed}} checked {{/if}}>
-                        </div>
-                        <div class="list__content_align_right">
-                            <div class="tasksection__text">
-                                {{title}}
-                                <span class="tasksection__actions">
-                                    <span class="js_edit_subtask link blue">E</span>
-                                    <span class="js_del_subtask link blue">X</span>
-                                </span>
-                            </div>
-                        </div>
-                    </label>
+                    {{{[../../js/hbs/subtask] this}}}
                 {{/each}}
             </div>
             <div class="form__add">
@@ -44,26 +31,14 @@
         </div>
         <div class="opentask__section tasksection">
             <div class="opentask__title comments header_section">Комментарии</div>
-            <div class="list list_type_todo">
+            <div class="list list_type_todo js_comments">
                 {{#each comments}}
-                    <div class="list__item">
-                        <div class="list__content_align_left">
-                            <div class="comment__photo">{{user}}</div>
-                        </div>
-                        <div class="list__content_align_right">
-                            <div class="comment__header style_gray">{{userName}}</div>
-                            <div class="comment__text">{{content}}</div>
-                            <span class="tasksection__actions">
-                                <span class="js_comment_edit link blue">E</span>
-                                <span class="js_comment_remove link blue">X</span>
-                            </span>
-                        </div>
-                    </div>
+                    {{{[../../js/hbs/comment] this}}}
                 {{/each}}
-                <div class="form__add">
-                    <input placeholder="Комментарий" class="input js_add_comment">
-                    <i class="icon i icon icon_size_s icon__enter icon_align_vertical"></i>
-                </div>
+            </div>
+            <div class="form__add">
+                <input placeholder="Комментарий" class="input js_add_comment">
+                <i class="icon i icon icon_size_s icon__enter icon_align_vertical"></i>
             </div>
         </div>
     </div>

@@ -16,9 +16,11 @@ class MilestoneView extends View {
     initialize (id) {
         var self = this;
         Milestones.fetch({
-            data: $.param({
+            headers: {
                 company_id: Storage.getCookie('company_id'),
-                token: Storage.getCookie('token'),
+                token: Storage.getCookie('token')
+            },
+            data: $.param({
                 project: id
             }),
             success: function(){

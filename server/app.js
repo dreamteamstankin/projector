@@ -47,7 +47,7 @@ app.use(session({
 var allowCrossDomain = function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, company_id, token, project');
     next();
 };
 
@@ -73,14 +73,14 @@ app.use('/', isAuth, project);
 app.use('/', isAuth, company);
 
 function isAuth(req, res, next) {
-    //TODO: сделать сессии
     UserModel.findOne({
-        _id: req.query.token,
-        company_id: req.query.company_id
+        _id: req.headers.token,
+        company_id: req.headers.company_id
     }, function(err, user){
         if (err) return res.json({status:false, auth:false});
         if (user) return next();
         else return res.json({status:false, auth:false});
+        next()
     });
 }
 

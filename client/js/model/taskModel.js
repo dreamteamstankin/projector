@@ -6,8 +6,11 @@ class TaskModel extends Model {
         super(option);
         this.urlRoot = '//localhost:7000/task';
         this.parse = function(response) {
+            console.log('taskmodel', response);
             if (response.status){
                 return response.data;
+            //} else if (response.auth === false){
+            //    new AppRouter().logout();
             }
         }
     }
@@ -37,10 +40,11 @@ class TaskCollection extends Collection {
         this.url = '//localhost:7000/task';
         this.model = TaskModel;
         this.parse = function(response) {
+            console.log('taskcollection', response);
             if (response.status){
                 return response.data;
-            } else if (response.auth === false){
-                new AppRouter().logout();
+            //} else if (response.auth === false){
+                //new AppRouter().logout();
             }
         }
     }

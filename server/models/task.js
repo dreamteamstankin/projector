@@ -26,6 +26,7 @@ var taskSchema = Schema({
         status: Number
     }],
     subtasks: [{
+        id: Number,
         user_id: Schema.Types.ObjectId,
         title: String,
         completed: Boolean,
@@ -35,6 +36,7 @@ var taskSchema = Schema({
         count_time: Number
     }],
     comments: [{
+        id: Number,
         user_id: Schema.Types.ObjectId,
         content: String,
         userName: String,

@@ -84,7 +84,7 @@ var addComments = function (task_id, info) {
 // });
 
 //addTask({
-//    title: 'Такой вот таск 4',
+//    title: 'Такой вот таск 5',
 //    parent: mongoose.Types.ObjectId('5744b32c3f256db0b4437ff0'),
 //    company_id: mongoose.Types.ObjectId('57419b50f75c452880252d4c'),
 //    user_id: mongoose.Types.ObjectId('57419b625726f138803ea964'),
@@ -117,24 +117,26 @@ router.route('/task/')
 
 router.route('/task/:id')
     .get(function (req, res) {
-        TaskModel.find(function (err, tasks) {
+        TaskModel.findOne({_id: req.params.id}, function (err, task) {
             if (err) return res.json({status: false});
-            var responseData = (tasks) ? tasks : [];
-            res.json({
+            if (!task) return res.json({status: false});
+            return res.json({
                 status: true,
-                data: responseData[0]
+                data: task
             });
         });
     })
-    .put(function(req, res){
-        TaskModel.findOne({_id: req.params.id}, function(err, task){
+    .put(function (req, res) {
+        TaskModel.findOne({_id: req.params.id}, function (err, task) {
             if (err) return res.json({status: false});
-
-            task.subtasks = req.body.subtasks;
+            if (!task) return res.json({status: false});
+            for (var property in req.body) {
+                //if (!task.hasOwnProperty(property)) continue;
+                task[property] = req.body[property];
+            }
             task.save();
-
-            res.json({status: true});
-        })
+            res.json({status: true, task: task.subtasks});
+        });
     });
 
 module.exports = router;

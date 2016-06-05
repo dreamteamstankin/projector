@@ -16,10 +16,10 @@ class ProjectsView extends View {
     initialize(){
         var self = this;
         Projects.fetch({
-            data: $.param({
+            headers: {
                 company_id: Storage.getCookie('company_id'),
                 token: Storage.getCookie('token')
-            }),
+            },
             success: function(){
                 self.render();
             }

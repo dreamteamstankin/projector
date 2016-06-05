@@ -1,0 +1,14 @@
+<label class="list__item tasksection js_subtask_item" data-id="{{subtask.id}}">
+    <div class="list__content_align_left">
+        <input class="tasksection__checkbox" type="checkbox" {{#if subtask.completed}} checked {{/if}}>
+    </div>
+    <div class="list__content_align_right">
+        <div class="tasksection__text">
+            {{subtask.title}}
+            <span class="tasksection__actions">
+                <span class="js_edit_subtask link blue" data-id="{{subtask.id}}">E</span>
+                <span class="js_remove_subtask link blue" data-id="{{subtask.id}}">X</span>
+            </span>
+        </div>
+    </div>
+</label>

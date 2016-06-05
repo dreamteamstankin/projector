@@ -41,6 +41,10 @@ class TasksView extends View {
                 id: taskId
             });
             task.fetch({
+                headers: {
+                    company_id: Storage.getCookie('company_id'),
+                    token: Storage.getCookie('token')
+                },
                 success: function(){
                     Tasks.add(task);
                     let openTask = new openTaskView(task);

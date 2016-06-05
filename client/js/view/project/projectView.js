@@ -17,10 +17,10 @@ class ProjectView extends View {
         var self = this;
         var project = new ProjectModel({id: id});
         project.fetch({
-            data: $.param({
+            headers: {
                 company_id: Storage.getCookie('company_id'),
                 token: Storage.getCookie('token')
-            }),
+            },
             success: function () {
                 Projects.add(project);
                 self.data = project.attributes;
