@@ -92,6 +92,14 @@
         font-size: @font-xs;
         white-space: nowrap;
     }
+    &__dropdown {
+        &, &:last-child {
+            padding: 0;
+        }
+        .dropdown__trigger {
+            padding: 5px @block-padding-horizontal 5px 10px;
+        }
+    }
 }
 
 .opentask {

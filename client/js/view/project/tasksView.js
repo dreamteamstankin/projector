@@ -30,6 +30,10 @@ class TasksView extends View {
         }
     }
 
+    addTask () {}
+    editTask () {}
+    removeTask () {}
+
     openTask(e) {
         let item = e.currentTarget.parentNode;
         let openTaskBlock = $(item.nextElementSibling);
