@@ -16,7 +16,8 @@ class ProjectModel extends Model {
 
     defaults() {
         return {
-            id: 'GIS',
+            _id: 13123,
+            name_id: 'GIS',
             branch: 'Master',
             title: 'Погодный сайт',
             description: 'Жизненный цикл',

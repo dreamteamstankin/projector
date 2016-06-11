@@ -1,8 +1,8 @@
 {{#each projects}}
-    <a href="#project/{{id}}/" class="project__projects link style_solid style_black style_hover_light" data-project-id="{{_id}}">
+    <div class="project__projects js_project link style_solid style_black style_hover_light" data-project-id="{{_id}}">
         <div class="page__section">
             <div class="dashboard__title">
-                <span class="style_size_l style_bold">{{title}}</span>
+                <a href="#project/{{name_id}}/" class="link style_black style_size_l style_bold">{{title}}</a>
                 <span class="dropdown dropdown_on_hover nostyle">
                     <div class="dropdown__trigger nostyle">
                         <i class="icon icon__more icon_hover_on icon_size_s"></i>
@@ -13,7 +13,7 @@
                 </span>
             </div>
         </div>
-        <div class="page__section  grid">
+        <a href="#project/{{name_id}}/" class="page__section grid">
             <section class="grid__cell grid__cell_size_3 style_black">
                 <div class="dashboard__description">{{description}}</div>
             </section>
@@ -45,6 +45,6 @@
                     </div>
                 </div>
             </section>
-        </div>
-    </a>
+        </a>
+    </div>
 {{/each}}

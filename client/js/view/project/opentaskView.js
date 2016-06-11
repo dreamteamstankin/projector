@@ -49,8 +49,8 @@ class openTaskView extends View {
     addComment(e) {
         var self = this;
         var commentList = this.$el.find('.js_comments');
-        if (e.keyCode === 13) { // ENTER
-            var val = e.currentTarget.value;
+        var val = e.currentTarget.value;
+        if (e.keyCode === 13 && val.length) { // ENTER
             var comments = this.model.attributes.comments;
             var newComment = {
                 id: comments.length,
@@ -95,8 +95,8 @@ class openTaskView extends View {
     addSubtask(e) {
         var self = this;
         var subtaskList = this.$el.find('.js_subtasks');
-        if (e.keyCode === 13) { // ENTER
-            var val = e.currentTarget.value;
+        var val = e.currentTarget.value;
+        if (e.keyCode === 13 && val.length) { // ENTER
             var subtasks = this.model.attributes.subtasks;
             var newSubtask = {
                 id: subtasks.length,

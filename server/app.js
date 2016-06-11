@@ -80,7 +80,6 @@ function isAuth(req, res, next) {
         if (err) return res.json({status:false, auth:false});
         if (user) return next();
         else return res.json({status:false, auth:false});
-        next()
     });
 }
 

@@ -4,16 +4,18 @@ var router = express.Router();
 var MilestoneModel = require('../../models/milestone.js');
 var ProjectModel = require('../../models/project.js');
 
-var addProject = function (info) {
+var addProject = function (info ,cb) {
     info.branch = null;
     info.start = new Date();
     info.finish = null;
     info.status = 0;
     info.viewtype = 1;
+    info.description = 'Описание';
     var project = new ProjectModel(info);
     project.save(function (err, project) {
-        if (err) return console.error(err);
+        if (err) return cb({status:false});
         console.log(project.name_id, 'save');
+        cb({status:true, data:project});
     });
 };
 
@@ -50,40 +52,6 @@ var getProjects = function (cb) {
     });
 };
 
-var removeProject = function (project_id) {
-    ProjectModel.remove({_id: project_id}, function (err, projects) {
-        if (err) return console.error(err);
-        ProjectModel.count(function (err, count) {
-            if (err) return console.error(err);
-            console.log('Проектов:', count)
-        })
-    });
-};
-
-//getProject('5741d5b3d1156728812f0961', function (data) {
-//    console.log(data);
-//});
-
-//addProject({
-//    name_id: 'GIS',
-//    company_id: mongoose.Types.ObjectId('57419b50f75c452880252d4c'),
-//    title: 'Погодный сайт',
-//    description: 'Описание'
-//});
-
-//ProjectModel.find(function(err, projects) {
-//    if (err) return console.error(err);
-//    console.log('Проекты', projects);
-//});
-
-// ProjectModel.remove({}, function(err, projects) {
-//     if (err) return console.error(err);
-//     ProjectModel.count(function(err, count) {
-//         if (err) return console.error(err);
-//         console.log('Проектов:', count)
-//     })
-// });
-
 router.route('/project/')
     .get(function (req, res) {
         getProjects(function (data) {
@@ -98,9 +66,27 @@ router.route('/project/')
                 });
             }
         });
+    })
+    .post(function (req, res) {
+        addProject({
+            name_id: req.body.name_id,
+            company_id: req.header.company_id,
+            title: req.body.title
+        }, function(data){
+            if (data.status) res.json({status:true, data:data});
+            else res.json({status:false});
+        });
     });
 
-router.route('/project/:task')
+router.route('/project/:id')
+    .delete(function(req, res){
+        ProjectModel.findOne({_id:req.params.id}, function(err, project){
+            if (err) return res.json({status: false});
+            if (!project) return res.json({status: false});
+            project.remove();
+            res.json({status: true});
+        });
+    })
     .get(function (req, res) {
         console.log('Отправлено /project/ в проект');
         getProjects(function (data) {
