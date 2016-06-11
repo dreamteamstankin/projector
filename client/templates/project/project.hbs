@@ -1,6 +1,6 @@
 <table class="tasks">
     {{#each tasks}}
-        <tr class="task">
+        <tr class="task" data-id="{{_id}}">
             <td class="task__cell header_tag style_gray">{{branch}}</td>
             <td class="task__cell task__cell_type_main">
                 <a href="#milestone/{{name_id}}" class="task__link task__text link style_black">{{title}}</a>
@@ -16,7 +16,7 @@
                         <i class="icon icon__more icon_hover_on icon_size_s"></i>
                     </div>
                     <div class="dropdown__context dropdown__context_position_right">
-                        <div class="dropdown__item link blue">Удалить</div>
+                        <div class="dropdown__item link blue js_remove_subtask" data-id="{{_id}}">Удалить</div>
                         <!--<div class="dropdown__item link blue">Редактировать</div>-->
                     </div>
                 </div>

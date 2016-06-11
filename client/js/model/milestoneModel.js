@@ -4,7 +4,7 @@ const { Model, Collection } = Backbone;
 class MilestoneModel extends Model {
     constructor(option) {
         super(option);
-        this.urlRoot = '//localhost:7000/project';
+        this.urlRoot = '//localhost:7000/milestone';
         this.parse = function(response) {
             if (response.status){
                 return response.data;

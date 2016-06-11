@@ -5,7 +5,7 @@ var ProjectModel = require('../../models/project.js');
 var MilestoneModel = require('../../models/milestone.js');
 var TaskModel = require('../../models/task.js');
 
-var addMilestone = function (info) {
+var addMilestone = function (info, cb) {
     MilestoneModel.count(function (err, count) {
         if (err) return console.error(err);
 
@@ -17,25 +17,18 @@ var addMilestone = function (info) {
                 info.branch = project.name_id + '-M-' + (count + 1);
                 info.start = new Date();
                 info.finish = null;
+                info.description = null;
                 info.viewtype = 1;
 
                 var milestone = new MilestoneModel(info);
                 milestone.save(function (err, milestone) {
-                    if (err) return console.error(err);
-                    console.log(milestone.name_id, 'save')
+                    if (err) return cb({status:false});
+                    cb({status:true, data:milestone});
                 });
             }
         })
     })
 };
-
-//addMilestone({
-//    title: 'Релиз — веха',
-//    parent: mongoose.Types.ObjectId('5744b2459b7fa829b42cc4d9'),
-//    company_id: mongoose.Types.ObjectId('5744b1d035f581ebb3e40fc5'),
-//    user_id: mongoose.Types.ObjectId('5744b2154a081212b428a7d8'),
-//    description: 'Описание'
-//});
 
 var removeMilestone = function (milestone_id) {
     MilestoneModel.remove({_id: milestone_id}, function (err, milestones) {
@@ -48,8 +41,6 @@ var removeMilestone = function (milestone_id) {
         }
     });
 };
-
-// removeMilestone('5741eeb4c25d25b883ba735d');
 
 var getMilestone = function (milestone_id, cb) {
     TaskModel.find({parent: milestone_id}, 'id branch title status', function (err, tasks) {
@@ -82,21 +73,19 @@ var getMilestones = function (cb) {
     });
 };
 
-//MilestoneModel.find(function(err, milestones) {
-//    if (err) return console.error(err);
-//    console.log('Вехи', milestones);
-//});
-
-// MilestoneModel.remove({}, function(err, milestones) {
-//     if (err) return console.error(err);
-//     MilestoneModel.count(function(err, count) {
-//         if (err) return console.error(err);
-//         console.log('Проектов:', count)
-//     })
-// });
-
 
 router.route('/milestone/')
+    .post(function (req, res) {
+        addMilestone({
+            company_id: req.headers.company_id,
+            user_id: req.headers.token,
+            title: req.body.title,
+            parent: req.body.parent_id
+        }, function(data){
+            if (data.status) res.json({status:true, data:data.data});
+            else res.json({status:false});
+        });
+    })
     .get(function (req, res) {
         console.log('Отправлено /milestone/ в проект ' + req.query.project);
         getMilestones(function (data) {
@@ -114,6 +103,14 @@ router.route('/milestone/')
     });
 
 router.route('/milestone/:id')
+    .delete(function(req, res){
+        MilestoneModel.findOne({_id:req.params.id}, function(err, milestone){
+            if (err) return res.json({status: false});
+            if (!milestone) return res.json({status: false});
+            milestone.remove();
+            res.json({status: true});
+        });
+    })
     .get(function (req, res) {
         console.log('Отправлено /milestone/ в проект ' + req.query.project);
         getMilestones(function (data) {

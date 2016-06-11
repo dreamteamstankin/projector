@@ -34,9 +34,10 @@ var getProject = function (milestone_id, cb) {
         }
     });
 };
-var getProjects = function (cb) {
+var getProjects = function (id, cb) {
     var extendedProjects = [];
-    ProjectModel.find({}, function (err, projects) {
+    var findWhere = (id) ? {name_id:id} : {};
+    ProjectModel.find(findWhere, function (err, projects) {
         if (err) return console.error(err);
         if (projects) {
             var count = projects.length;
@@ -44,7 +45,8 @@ var getProjects = function (cb) {
                 getProject(elem._id, function (data) {
                     extendedProjects.push(data);
                     if (count - 1 == index) {
-                        cb(extendedProjects);
+                        if (id) cb(extendedProjects[0]);
+                        else cb(extendedProjects);
                     }
                 });
             });
@@ -54,7 +56,7 @@ var getProjects = function (cb) {
 
 router.route('/project/')
     .get(function (req, res) {
-        getProjects(function (data) {
+        getProjects(null, function (data) {
             if (data) {
                 res.json({
                     status: true,
@@ -70,7 +72,7 @@ router.route('/project/')
     .post(function (req, res) {
         addProject({
             name_id: req.body.name_id,
-            company_id: req.header.company_id,
+            company_id: req.headers.company_id,
             title: req.body.title
         }, function(data){
             if (data.status) res.json({status:true, data:data});
@@ -88,12 +90,11 @@ router.route('/project/:id')
         });
     })
     .get(function (req, res) {
-        console.log('Отправлено /project/ в проект');
-        getProjects(function (data) {
+        getProjects(req.params.id, function (data) {
             if (data) {
                 res.json({
                     status: true,
-                    data: data[0]
+                    data: data
                 });
             } else {
                 res.json({
