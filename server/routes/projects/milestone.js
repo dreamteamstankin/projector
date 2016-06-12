@@ -6,7 +6,7 @@ var MilestoneModel = require('../../models/milestone.js');
 var TaskModel = require('../../models/task.js');
 
 var addMilestone = function (info, cb) {
-    MilestoneModel.count(function (err, count) {
+    MilestoneModel.count({parent: info.parent}, function (err, count) {
         if (err) return console.error(err);
 
         ProjectModel.findOne({_id: info.parent}, function (err, project) {
@@ -28,18 +28,6 @@ var addMilestone = function (info, cb) {
             }
         })
     })
-};
-
-var removeMilestone = function (milestone_id) {
-    MilestoneModel.remove({_id: milestone_id}, function (err, milestones) {
-        if (err) return console.error(err);
-        if (milestones) {
-            MilestoneModel.count(function (err, count) {
-                if (err) return console.error(err);
-                console.log('Вех:', count)
-            })
-        }
-    });
 };
 
 var getMilestone = function (milestone_id, cb) {
@@ -72,7 +60,6 @@ var getMilestones = function (cb) {
         }
     });
 };
-
 
 router.route('/milestone/')
     .post(function (req, res) {

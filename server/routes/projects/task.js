@@ -5,7 +5,7 @@ var MilestoneModel = require('../../models/milestone.js');
 var TaskModel = require('../../models/task.js');
 
 var addTask = function (info, cb) {
-    TaskModel.count(function (err, count) {
+    TaskModel.count({parent: info.parent}, function (err, count) {
         if (err) return console.error(err);
 
         MilestoneModel.findOne({_id: info.parent}, function (err, milestone) {
