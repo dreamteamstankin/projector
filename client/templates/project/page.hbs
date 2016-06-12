@@ -13,7 +13,13 @@
 </section>
 <section class="page__section project__dashboard grid">
     <section class="grid__cell grid__cell_size_3">
-        <div class="dashboard__description">{{description}}</div>
+        <div class="dashboard__description">
+            {{#if description}}
+                {{description}}
+            {{else}}
+                &nbsp;
+            {{/if}}
+        </div>
     </section>
     <section class="grid__cell grid__cell_size_5">
         <div class="dashboard">

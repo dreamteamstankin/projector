@@ -60,6 +60,7 @@ class ProjectView extends View {
                     },
                     success: function (data) {
                         var response = JSON.parse(data);
+                        console.log(response);
                         if (response.status) {
                             switch (type) {
                                 case 'project':
@@ -96,6 +97,7 @@ class ProjectView extends View {
                 token: Storage.getCookie('token')
             },
             success: function(response){
+                console.log(response);
                 $(`tr[data-task-id="${id}"]`).remove();
                 console.log(123132, response)
             }

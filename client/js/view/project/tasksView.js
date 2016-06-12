@@ -11,7 +11,8 @@ class TasksView extends View {
         this.events = {
             'click .js_task_header': 'openTask',
             'click .js_task_delete': 'removeTask',
-            'click .js_task_edit': 'editTask'
+            'click .js_task_edit': 'editTask',
+            'click body': 'addTask'
         };
         this.template = template;
         this.tasks = tasks;
@@ -32,7 +33,12 @@ class TasksView extends View {
         }
     }
 
-    addTask (e) {}
+    addTask (e) {
+        //let ready = openTaskBlock.data('task-ready');
+        //let taskId = openTaskBlock.data('task-id');
+        //'keypress .js_add_subtask': 'addTask';
+        console.log(e.currentTarget);
+    }
     editTask (e) {}
     removeTask (e) {
         var id = $(e.currentTarget).data('task-id');
