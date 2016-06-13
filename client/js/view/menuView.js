@@ -23,7 +23,8 @@ const menu = [{
     }, {
         type: 'docs',
         name: "Документация",
-        url: 'docs/'
+        url: 'docs/',
+        canCreate: true
     }, {
         type: 'settings',
         name: "Настройки",

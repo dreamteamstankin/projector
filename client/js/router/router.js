@@ -3,7 +3,7 @@ import { ProjectsView } from '../view/project/projectsView'
 import { MilestoneView } from '../view/project/milestoneView'
 import { ProfileView } from '../view/profileView'
 import { AuthView } from '../view/authView'
-import { ArticlesView } from '../view/articlesView'
+import { ArticlesView } from '../view/docs/articlesView'
 import { SettingsView } from '../view/settingsView'
 import { MilestoneModel, Milestones } from '../model/milestoneModel'
 import { ProjectModel, Projects } from '../model/projectModel'
@@ -37,17 +37,14 @@ class AppRouter extends Router {
     }
 
     index() {
-        console.log('index');
         App.ProjectsView = new ProjectsView();
     }
 
     project(projectId) {
-        console.log('projects', projectId);
         App.ProjectView = new ProjectView(projectId);
     }
 
     milestone(milestoneId) {
-        console.log('milestone', milestoneId);
         App.MilestoneView = new MilestoneView(milestoneId);
     }
 
@@ -56,11 +53,11 @@ class AppRouter extends Router {
     }
 
     articles() {
-        new ArticlesView();
+        App.ArticlesView = new ArticlesView();
     }
 
     settings() {
-        new SettingsView();
+        App.SettingsView = new SettingsView();
     }
 
     article(articleId) {
@@ -68,7 +65,7 @@ class AppRouter extends Router {
     }
 
     profile() {
-        new ProfileView();
+        App.ProfileView = new ProfileView();
     }
 
     logout() {

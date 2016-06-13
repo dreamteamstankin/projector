@@ -22,7 +22,6 @@ var addTask = function (info, cb) {
 
                 var task = new TaskModel(info);
                 task.save(function (err, task) {
-                    console.log(err)
                     if (err) return cb({status:false});
                     console.log(task.name_id, 'save');
                     return cb({status:true, data: task})

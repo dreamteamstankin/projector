@@ -64,10 +64,12 @@ var milestone = require('./routes/projects/milestone');
 var project = require('./routes/projects/project');
 var user = require('./routes/user');
 var company = require('./routes/company');
+var docs = require('./routes/docs/docs');
 
 app.use('/', auth);
 app.use('/', isAuth, user);
 app.use('/', isAuth, task);
+app.use('/', isAuth, docs);
 app.use('/', isAuth, milestone);
 app.use('/', isAuth, project);
 app.use('/', isAuth, company);

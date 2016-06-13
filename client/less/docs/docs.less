@@ -1,0 +1,36 @@
+.docs {
+    &__tableofcontent {
+        font-size: 13px;
+        min-width: 200px;
+    }
+    &__list {
+        padding-left: 14px;
+        display: none;
+    }
+    &__side {}
+    &__section {
+        margin-bottom: 5px;
+        &.opened {
+            .icon {
+                transform: rotate(180deg);
+            }
+            .docs__list {
+                display: block;
+            }
+        }
+    }
+    &__title {
+    }
+    &__item {
+        display: block;
+    }
+}
+
+.doc {
+    padding-left: 10px;
+    box-sizing: border-box;
+    &__header {
+        padding-bottom: 20px;
+    }
+    &__content {}
+}
