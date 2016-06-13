@@ -9,22 +9,16 @@ class ArticlesView extends View {
         super();
         this.el = $('#page');
         this.template = ArticlesTemplate;
-        this.render();
         this.events = {
             'click .js_article': 'readArticle',
             'click .js_docs_section': 'openArticlesList'
         };
+        this.inizialize();
         View.apply(this);
     }
 
-    openArticlesList(e) {
-        console.log(1, e);
-    }
-    readArticle(e) {
-        console.log(2, e);
-    }
-
-    render() {
+    inizialize() {
+        console.log(1);
         var self = this;
         Articles.fetch({
             headers: {
@@ -32,11 +26,37 @@ class ArticlesView extends View {
                 token: Storage.getCookie('token')
             },
             success: function(){
-                var sections = Articles.toJSON();
-                console.log(sections);
-                $(self.el).html(self.template({sections:sections}));
+                self.render();
             }
         });
+    }
+
+    openArticlesList(e) {
+        var section = $(e.currentTarget.parentNode);
+        $('.js_article').removeClass('opened');
+        if (section.hasClass('opened')) {
+            section.removeClass('opened');
+        } else {
+            section.addClass('opened');
+        }
+    }
+    readArticle(e) {
+        var item = $(e.currentTarget);
+        var itemId = item.data('id');
+        Articles.each(function(section){
+            _.each(section.attributes.articles, function(article){
+                if (article._id === itemId) {
+                    var renderArticle = new ArticleView(article);
+                }
+            });
+        });
+    }
+
+    render() {
+        var self = this;
+        var sections = Articles.toJSON();
+        console.log(sections);
+        $(self.el).html(self.template({sections:sections}));
     }
 }
 export { ArticlesView }

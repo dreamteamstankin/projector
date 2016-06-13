@@ -2,15 +2,15 @@
     <div class="docs grid grid_type_table">
         <div class="docs__side docs__tableofcontent grid__cell">
             {{#each sections}}
-                <div class="docs__section js_docs_section" data-id="{{_id}}">
-                    <div class="docs__title">
+                <div class="docs__section" data-id="{{_id}}">
+                    <div class="docs__title js_docs_section">
                         <icon class="icon icon__chevron icon_size_xs"></icon>
                         {{title}}
                         <i class="icon icon__add icon_hover_on"></i>
                     </div>
                     <div class="docs__list">
                         {{#each articles}}
-                            <div class="link style_blue docs__item js_article" data-id="{{id}}">{{title}}</div>
+                            <div class="link style_blue docs__item js_article" data-id="{{_id}}">{{title}}</div>
                         {{/each}}
                     </div>
                 </div>
