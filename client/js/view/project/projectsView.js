@@ -49,10 +49,7 @@ class ProjectsView extends View {
         Projects.each(function (project) {
             projects.push(project.attributes);
         });
-        var data = _.extend({projects: projects}, {
-            finish: '2016-10-15'
-        });
-        $(this.el).html(this.template(data));
+        $(this.el).html(this.template({projects: projects}));
     }
 }
 export { ProjectsView }

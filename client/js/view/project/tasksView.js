@@ -21,7 +21,6 @@ class TasksView extends View {
     }
 
     render() {
-        this.tasks.finish = '2016-10-15';
         this.el.html(this.template(this.tasks));
     }
 

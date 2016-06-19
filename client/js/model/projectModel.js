@@ -17,12 +17,12 @@ class ProjectModel extends Model {
     defaults() {
         return {
             _id: 13123,
-            name_id: 'GIS',
+            name_id: '',
             branch: 'Master',
-            title: 'Погодный сайт',
-            description: 'Жизненный цикл',
+            title: '',
+            description: 'Описание',
             start: (new Date()),
-            finish: (new Date()),
+            finish: null,
             viewtype: 1,
             tasks: []
         }

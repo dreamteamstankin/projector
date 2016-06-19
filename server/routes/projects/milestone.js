@@ -5,8 +5,12 @@ var ProjectModel = require('../../models/project.js');
 var MilestoneModel = require('../../models/milestone.js');
 var TaskModel = require('../../models/task.js');
 
+//ProjectModel.remove({});
+//MilestoneModel.remove({});
+//TaskModel.remove({});
+
 var addMilestone = function (info, cb) {
-    MilestoneModel.count({parent: info.parent}, function (err, count) {
+    MilestoneModel.count({}, function (err, count) {
         if (err) return console.error(err);
 
         ProjectModel.findOne({_id: info.parent}, function (err, project) {
@@ -16,7 +20,7 @@ var addMilestone = function (info, cb) {
                 info.name_id = project.name_id + '-M-' + (count + 1);
                 info.branch = project.name_id + '-M-' + (count + 1);
                 info.start = new Date();
-                info.finish = '2016-10-15';
+                info.finish = null;
                 info.description = null;
                 info.viewtype = 1;
 
