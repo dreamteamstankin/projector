@@ -107,6 +107,9 @@ class ProjectView extends View {
     render() {
         var self = this;
         this.data.pagetype = 'project'; // мы на этой странице
+        this.data.finish = '2016-10-15';
+        $(this.el).html(this.template(data));
+
         this.$el.html(this.template(this.data));
         switch (this.data.viewtype) {
             case 1:

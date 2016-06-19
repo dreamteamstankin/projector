@@ -2,7 +2,7 @@
     <div class="opentask__steps tasksteps">
         <div class="tasksteps__list">
             {{#each workflow}}
-                <div class="tasksteps__item taskstep header_title style_gray">
+                <div class="tasksteps__item taskstep header_title {{#if isActive}} style_black {{else}} style_gray{{/if}}">
                     {{title}}
                     <div class="taskstep__description">
                         {{#if date_finish}}

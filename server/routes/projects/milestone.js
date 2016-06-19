@@ -16,7 +16,7 @@ var addMilestone = function (info, cb) {
                 info.name_id = project.name_id + '-M-' + (count + 1);
                 info.branch = project.name_id + '-M-' + (count + 1);
                 info.start = new Date();
-                info.finish = null;
+                info.finish = '2016-10-15';
                 info.description = null;
                 info.viewtype = 1;
 

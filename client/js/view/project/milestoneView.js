@@ -88,6 +88,7 @@ class MilestoneView extends View {
         var self = this;
         this.data.tasks = _.sortBy(this.data.tasks, 'branch');
         this.data.pagetype = 'milestone'; // мы на этой странице
+        this.data.finish = '2016-10-15';
         this.el.html(this.template(this.data));
         switch (this.data.viewtype) {
             case 1:

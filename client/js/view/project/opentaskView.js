@@ -32,7 +32,30 @@ class openTaskView extends View {
     }
 
     render() {
-        this.$el.html(this.template(this.model.attributes));
+        this.data = _.extend(this.model.attributes, {
+            workflow: [{
+                title: 'Открыто',
+                date_finish: new Date()
+            }, {
+                title: 'Разработка',
+                date_finish: '2016-10-10',
+                username: 'Ахатов',
+                isActive: true
+            }, {
+                title: 'Тестирование',
+                date_finish: '2016-10-12'
+            }, {
+                title: 'Согласование',
+                date_finish: '2016-10-13',
+                username: 'Иванов'
+            }, {
+                title: 'Срок',
+                date_finish: '2016-10-15'
+            }],
+            description: 'Описание проекта',
+            finish: '2016-10-15'
+        });
+        this.$el.html(this.template(this.data));
         return this;
     }
 
