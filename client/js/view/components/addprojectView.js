@@ -2,6 +2,7 @@ import { Storage } from '../../helpers/storage'
 import { InputHelper } from '../../helpers/inputs'
 import { ProjectModel, Projects} from '../../model/projectModel'
 import { ProjectsView } from '../project/projectsView'
+import { AppRouter } from '../../router/router'
 
 const CreateProjectTemplate = require('../../../templates/components/addproject.hbs');
 const { View } = Backbone;
@@ -61,10 +62,9 @@ class AddProjectView extends View {
                 success: function(data){
                     var response = JSON.parse(data);
                     if (response.status) {
-                        console.log(response);
                         Projects.add(new ProjectModel(data));
                         var projectsPage = new ProjectsView();
-                        projectsPage.render();
+                        projectsPage.render(Projects);
                     } else {
                         $(name_id).addClass('input_state_error');
                         $(title).addClass('input_state_error');
