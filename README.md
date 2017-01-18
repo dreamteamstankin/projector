@@ -1,5 +1,7 @@
-# Projector (in progress)
+# Projector (deprecated)
 Project management system
+
+<img src="https://cloud.githubusercontent.com/assets/4715396/22081697/9c877b06-ddd5-11e6-9478-6caa5cc180e3.png" width="796">
 
 #### Frontend
 - Backbone
@@ -9,6 +11,9 @@ Project management system
 - Node.js
 - Express
 - MongoDB
+
+### Design
+- Sketch
 
 #### Start
 ##### Install 
